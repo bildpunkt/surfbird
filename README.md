@@ -39,7 +39,7 @@ Add your Twitter Application keys to `src/twitter.js` then run following command
   * [ ] Destroying (Unretweeting)
 * [ ] Favorites
   * [x] Creating
-  * [ ] Destroying (Unretweeting)
+  * [ ] Destroying (Unfavoriting)
   
 ## License
 
