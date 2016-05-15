@@ -1,0 +1,50 @@
+{
+  "name": "linnun",
+  "version": "0.1.0",
+  "description": "Electron twitter client",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron main.js",
+    "lint": "eslint .",
+    "build": "npm run build:linux && npm run build:windows",
+    "build:linux": "NODE_ENV=production electron-packager . --overwrite --asar --out=dist --prune --platform=linux --arch=x64 --app-bundle-id=com.pixeldesu.linnun --app-version=$npm_package_version && cd dist/linnun-linux-x64/ && zip -ryq9 ../linnun-linux-${npm_package_version}.zip *",
+    "build:windows": "NODE_ENV=production electron-packager . --overwrite --asar --out=dist --prune --platform=win32 --arch=ia32 --icon=media/Icon.ico --version-string.ProductName=$npm_package_productName --app-version=$npm_package_version && cd dist/linnun-win32-ia32 && zip -ryq9 ../linnun-windows-${npm_package_version}.zip *",
+    "build:osx": "electron-packager . --overwrite --asar --out=dist --prune --platform=darwin --arch=x64 --icon=media/Icon.icns --app-bundle-id=com.pixeldesu.linnun --app-version=$npm_package_version && cd dist/linnun-darwin-x64 && zip -ryXq9 ../linnun-osx-${npm_package_version}.zip linnun.app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixeldesu/linnun.git"
+  },
+  "keywords": [
+    "twitter",
+    "electron",
+    "desktop",
+    "application"
+  ],
+  "author": {
+    "name": "Andreas Nedbal",
+    "email": "andy@pixelde.su",
+    "url": "pixelde.su"
+  },
+  "license": "aGPLv3",
+  "bugs": {
+    "url": "https://github.com/pixeldesu/linnun/issues"
+  },
+  "homepage": "https://github.com/pixeldesu/linnun#readme",
+  "devDependencies": {
+    "electron-packager": "7.0.0",
+    "electron-prebuilt": "0.37.8",
+    "eslint": "2.9.0",
+    "eslint-config-vgno": "6.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.3.1",
+    "gulp-uglify": "^1.5.3",
+    "jquery": "^2.2.3",
+    "moment": "^2.13.0",
+    "node-sass": "^3.7.0",
+    "vue": "^1.0.24",
+    "webpack": "^1.13.0"
+  }
+}

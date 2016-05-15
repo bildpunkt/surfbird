@@ -1,0 +1,25 @@
+.loader {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255,255,255, 0.8);
+    z-index: 100;
+    
+    .wrapper {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        
+        p {
+            text-align: center;
+        }
+        
+        .la-ball-scale-multiple {
+            color: #2196F3;
+            margin: 0 auto;
+        }
+    }
+}
