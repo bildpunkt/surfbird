@@ -62,6 +62,14 @@ function createWindow() {
         mainWindow.webContents.send('linnun-tweets', tweet);
     })
 
+    ipcMain.on('request-home-timeline', function(e) {
+      twitter.get('statuses/home_timeline', function(e, tweets) {
+        tweets.forEach(function(tweet) {
+          mainWindow.webContents.send('linnun-tweets', tweet);
+        });
+      });
+    });
+
     // Let's wait for sent tweets..
     ipcMain.on('linnun-send', function(e, tweet) {
         // ..and then post them to Twitter..

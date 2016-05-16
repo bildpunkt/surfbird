@@ -4,7 +4,8 @@ window.app = {}
 
 app.tweets = []
 
-Vue.component('stream-item', require('./vue/tweet.vue'))
+Vue.component('stream-item', require('./vue/stream-item.vue'))
+Vue.component('tweet-body', require('./vue/tweet-body.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
 
 var vm = new Vue({
@@ -18,7 +19,7 @@ var vm = new Vue({
 const ipcRenderer = require('electron').ipcRenderer;
 
 ipcRenderer.on('linnun-tweets', function(e, tweet) {
-  app.tweets.unshift(tweet)
+  app.tweets.unshift(tweet);
 
   if (app.tweets.length >= 0 && !$('#mainloader').hasClass('hidden')) {
     $('#mainloader').addClass('hidden')
@@ -50,3 +51,5 @@ $(document.body).on('click', 'button.reply', function() {
     $('#tweet').val("@" + $(this).closest('.tweet').data('username') + " ")
     $('#tweet').focus()
 })
+
+ipcRenderer.send('request-home-timeline', true);
