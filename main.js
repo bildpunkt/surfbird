@@ -88,19 +88,31 @@ function createWindow() {
     });
 
     // Let's wait for retweets..
-    ipcMain.on('linnun-retweet', function(e, tid) {
+    ipcMain.on('linnun-retweet', function(e, tweet) {
         // ..and then post them to Twitter
-        twitter.post('statuses/retweet/:id', { id: tid }, function (err, data, response) {
-            // do nothing!
-        })
+        if (tweet.type == "retweet") {
+            twitter.post('statuses/retweet/:id', { id: tweet.id }, function (err, data, response) {
+                // do nothing!
+            })
+        } else if (tweet.type == "unretweet") {
+            twitter.post('statuses/unretweet/:id', { id: tweet.id }, function (err, data, response) {
+                // do nothing!
+            })
+        }
     })
 
     // Let's wait for favorites..
-    ipcMain.on('linnun-favorite', function(e, tid) {
+    ipcMain.on('linnun-favorite', function(e, tweet) {
         // ..and then post them to Twitter
-        twitter.post('favorites/create', { id: tid }, function (err, data, response) {
-            // do nothing!
-        })
+        if (tweet.type == "favorite") {
+            twitter.post('favorites/create', { id: tweet.id }, function (err, data, response) {
+                // do nothing!
+            })
+        } else if (tweet.type == "unfavorite") {
+            twitter.post('favorites/destroy', { id: tweet.id }, function (err, data, response) {
+                // do nothing!
+            })
+        }
     })
 }
 

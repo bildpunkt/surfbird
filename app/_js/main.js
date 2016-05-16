@@ -39,11 +39,27 @@ $('#send').on('click', function () {
 });
 
 $(document.body).on('click', 'button.retweet', function() {
-    ipcRenderer.send('linnun-retweet', $(this).closest('.tweet').data('tweet-id'))
+    if ($(this).hasClass('active')) {
+        tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unretweet"}
+        ipcRenderer.send('linnun-retweet', tweet)
+        $(this).removeClass('active')
+    } else {
+        tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "retweet"}
+        ipcRenderer.send('linnun-retweet', tweet)
+        $(this).addClass('active')
+    }
 })
 
 $(document.body).on('click', 'button.favorite', function() {
-    ipcRenderer.send('linnun-favorite', $(this).closest('.tweet').data('tweet-id'))
+    if ($(this).hasClass('active')) {
+        tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unfavorite"}
+        ipcRenderer.send('linnun-favorite', tweet)
+        $(this).removeClass('active')
+    } else {
+        tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "favorite"}
+        ipcRenderer.send('linnun-favorite', tweet)
+        $(this).addClass('active')
+    }
 })
 
 $(document.body).on('click', 'button.reply', function() {

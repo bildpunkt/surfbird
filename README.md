@@ -42,10 +42,10 @@ fix building, I welcome a pull request!
 * [ ] Retweets
   * [x] Distinguished on Timeline
   * [x] Creating
-  * [ ] Destroying (Unretweeting)
+  * [x] Destroying (Unretweeting)
 * [ ] Favorites
   * [x] Creating
-  * [ ] Destroying (Unfavoriting)
+  * [x] Destroying (Unfavoriting)
 * [ ] Interactions
 * [ ] Profiles
 
