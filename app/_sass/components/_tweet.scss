@@ -1,30 +1,30 @@
 .tweet {
     padding: 8px 10px;
     border-bottom: 1px solid #eee;
-    
+
     &-context {
         color: #8899a6;
         font-size: 0.8em;
         padding-bottom: 4px;
     }
-    
+
     &-header {
         font-weight: bold;
         font-size: 0.9em;
         padding-bottom: 5px;
-        
+
         small {
             font-weight: normal;
             color: #a0a0a0;
         }
     }
-    
+
     &-text {
         font-size: 0.8em;
         overflow: hidden;
         white-space: pre-wrap;
     }
-    
+
     &-avatar {
         margin-left: -58px;
         float: left;
@@ -33,16 +33,16 @@
         height: 48px;
         border-radius: 3px;
     }
-    
+
     &-content {
         padding-left: 58px;
     }
-    
+
     &-media-wrapper {
         margin: 5px 0;
         height: 120px;
         width: 100%;
-        
+
         .media-image {
             position: relative;
             display: inline-block;
@@ -51,51 +51,51 @@
             background-position: 50% 50%;
             background-size: cover;
             float: left;
-            
+
             &:nth-child(2) {
                 left: 3px;
             }
-            
+
             &:nth-child(3) {
                 top: 3px;
             }
-            
+
             &:nth-child(4) {
                 top: 3px;
                 left: 3px;
             }
         }
-        
+
         &.media-1 {
             .media-image {
                 height: 100%;
             }
         }
-        
+
         &.media-2 {
             .media-image {
                 width: 50%;
             }
         }
-        
+
         &.media-3 {
             .media-image {
                 padding: 0;
                 width: 50%;
                 height: 50%;
                 float: left;
-                
+
                 &:first-child {
                     height: 100%;
                 }
-                
+
                 &:nth-child(3) {
                     left: 3px;
                     height: calc(50% - 3px);
                 }
             }
         }
-        
+
         &.media-4 {
             .media-image {
                 padding: 0;

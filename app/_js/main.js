@@ -1,8 +1,25 @@
+const Vue = require('vue');
+window.$ = window.jQuery = require('jquery');
+window.app = {}
+
+app.tweets = []
+
+Vue.component('stream-item', require('./vue/tweet.vue'))
+Vue.component('loader', require('./vue/loader.vue'))
+
+var vm = new Vue({
+    el: "#tweets",
+    data: {
+        tweets: app.tweets,
+    },
+})
+
+
 const ipcRenderer = require('electron').ipcRenderer;
 
 ipcRenderer.on('linnun-tweets', function(e, tweet) {
   app.tweets.unshift(tweet)
-  
+
   if (app.tweets.length >= 0 && !$('#mainloader').hasClass('hidden')) {
     $('#mainloader').addClass('hidden')
   }
@@ -14,7 +31,7 @@ $('#send').on('click', function () {
     } else {
       tweet = {text: $('#tweet').val()}
     }
-    
+
     ipcRenderer.send('linnun-send', tweet)
     $('#tweet').val('')
     $('#tweet').removeAttr('data-tweet-id')
