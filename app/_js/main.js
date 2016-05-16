@@ -1,3 +1,20 @@
+const Vue = require('vue');
+window.$ = window.jQuery = require('jquery');
+window.app = {}
+
+app.tweets = []
+
+Vue.component('stream-item', require('./vue/tweet.vue'))
+Vue.component('loader', require('./vue/loader.vue'))
+
+var vm = new Vue({
+    el: "#tweets",
+    data: {
+        tweets: app.tweets,
+    },
+})
+
+
 const ipcRenderer = require('electron').ipcRenderer;
 
 ipcRenderer.on('linnun-tweets', function(e, tweet) {
