@@ -21,7 +21,7 @@ coverage
 .lock-wscript
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+dist
 
 # Dependency directory
 node_modules
@@ -35,3 +35,6 @@ node_modules
 # Compiled assets
 app/assets/js/main.js
 app/assets/css/style.css
+
+# Configuration
+linnun.json

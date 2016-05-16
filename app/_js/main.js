@@ -1,9 +1,7 @@
 const ipcRenderer = require('electron').ipcRenderer;
 
 ipcRenderer.on('linnun-tweets', function(e, tweet) {
-  //if (tweet.favorited === false || tweet.retweeted === false) {
-    app.tweets.unshift(tweet)
-  //}
+  app.tweets.unshift(tweet)
   
   if (app.tweets.length >= 0 && !$('#mainloader').hasClass('hidden')) {
     $('#mainloader').addClass('hidden')

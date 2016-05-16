@@ -13,21 +13,27 @@ so the only way of effectively using it is adding your own keys and running/buil
 
 ### Preparations
 
-Add your Twitter Application keys to `src/twitter.js` then run following commands:
+Copy `linnun.example.json` to `linnun.json`, add your keys and then run following commands:
 
 * `npm install`
 * `gulp assets`
 * `npm start`
 
+**Information about `callback_url`:** It pretty much does not matter what URL you use here, as long
+as it can hold get parameters without removing them, the client only needs to be able to grab them.
+
 ### Building linnun
 
 `npm build:[windows|linux|osx]`
 
+**Note:** Because of electron-packager acting up, building does not really work as of now. If you can
+fix building, I welcome a pull request!
+
 ## Roadmap
 
-* [ ] Authentication
-  * [ ] Authenticating over Twitter
-  * [ ] Storing user secrets
+* [x] Authentication
+  * [x] Authenticating over Twitter
+  * [x] Storing user secrets
 * [ ] Tweets
   * [x] Receiving
   * [x] Sending
@@ -40,6 +46,8 @@ Add your Twitter Application keys to `src/twitter.js` then run following command
 * [ ] Favorites
   * [x] Creating
   * [ ] Destroying (Unfavoriting)
+* [ ] Interactions
+* [ ] Profiles
   
 ## License
 
