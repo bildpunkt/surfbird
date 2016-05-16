@@ -17,7 +17,7 @@
                 <div class="column-content">
                     <div class="column-scroller">
                         <loader id="mainloader" message="Establishing Streaming Connection"></loader>
-                        <stream-item v-for="tweet in tweets | orderBy 'created_at' -1" v-bind:content="tweet" v-bind:index="$index"></stream-item>
+                        <stream-item v-for="tweet in tweets | orderBy 'id_str' -1" v-bind:content="tweet" v-bind:index="$index"></stream-item>
                     </div>
                 </div>
             </div>
