@@ -48,7 +48,7 @@ fix building, I welcome a pull request!
   * [ ] Destroying (Unfavoriting)
 * [ ] Interactions
 * [ ] Profiles
-  
+
 ## License
 
 linnun is licensed under the MIT License

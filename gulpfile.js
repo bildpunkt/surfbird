@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
- 
+
 gulp.task('js', function() {
   return gulp.src('./app/_js/*.js')
     .pipe(concat('main.js'))

@@ -23,14 +23,14 @@ function createWindow() {
         title: 'Linnun',
         autoHideMenuBar: true
     });
-    
+
     twitter = new Twit({
         consumer_key:         storage.get('consumer_key'),
         consumer_secret:      storage.get('consumer_secret'),
         access_token:         storage.get('access_token'),
         access_token_secret:  storage.get('access_token_secret')
     })
-    
+
     mainWindow.loadURL('file://' + __dirname + '/app/index.html')
 
     mainWindow.on('closed', () => {
@@ -50,14 +50,14 @@ function createWindow() {
 
         shell.openExternal(url);
     });
-    
+
     var stream = twitter.stream('user', { with: "followings", include_rts: "false"})
 
     // Let's get our tweets,..
     stream.on('tweet', function (tweet) {
         // ..manipulate the time to be a unix timestamp...
         tweet.created_at = tweet.timestamp_ms
-        
+
         // ..and send them to our client!
         mainWindow.webContents.send('linnun-tweets', tweet);
     })
@@ -76,7 +76,7 @@ function createWindow() {
             // do nothing!
             })
         }
-        
+
     });
 
     // Let's wait for retweets..
@@ -106,23 +106,43 @@ function createAuthWindow() {
             nodeIntegration: false
         }
     });
-    
+
     if (storage.get('callback_url') == 'YOUR_URL_HERE') {
-        throw new Error("Callback URL empty, without this the client can't authenticate properly")    
+        throw new Error("Callback URL empty, without this the client can't authenticate properly")
     }
-    
+
+    /* developer workaround ;) */
+    if(storage.get('pin') !== void 8 && storage.get('callback_url') == 'oob') {
+      var rot = storage.get('pin').split(':');
+      twitterAuth.getAccessToken(rot[0], rot[1], rot[2], function(error, accessToken, accessTokenSecret, results) {
+          if (error) {
+              console.log(error);
+          } else {
+              storage.set('pin', null);
+              storage.set('access_token', accessToken)
+              storage.set('access_token_secret', accessTokenSecret)
+              authPage.session.clearCache(function() {});
+
+              createWindow()
+              authWindow.close()
+          }
+      })
+    }
+
     twitterAuth.getRequestToken(function(error, requestToken, requestTokenSecret, results){
         if (error) {
-            console.log("Error getting OAuth request token : " + error);
+            console.log("Error getting OAuth request token : " + error.data);
         } else {
             authWindow.loadURL(twitterAuth.getAuthUrl(requestToken))
             rqt = requestToken
             rqts = requestTokenSecret
+
+            console.log(rqt, rqts);
         }
     });
 
     const authPage = authWindow.webContents;
-    
+
     authWindow.on('closed', () => {
         authWindow = null
     });
@@ -136,12 +156,12 @@ function createAuthWindow() {
 
         shell.openExternal(url);
     });
-    
+
     authPage.on("will-navigate", function(e, url) {
 		if(url.indexOf("oauth_verifier=") > 0) { // If the callback page is loaded
 			authWindow.hide();
 			const oauth_verifier = (url.substring(url.indexOf("oauth_verifier="), url.length)).replace("oauth_verifier=", ""); // Get the oauthVerifier token
-            
+
             twitterAuth.getAccessToken(rqt, rqts, oauth_verifier, function(error, accessToken, accessTokenSecret, results) {
                 if (error) {
                     console.log(error);
@@ -149,7 +169,7 @@ function createAuthWindow() {
                     storage.set('access_token', accessToken)
                     storage.set('access_token_secret', accessTokenSecret)
                     authPage.session.clearCache(function() {});
-                    
+
                     createWindow()
                     authWindow.close()
                 }

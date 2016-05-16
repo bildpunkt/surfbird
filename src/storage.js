@@ -1,4 +1,4 @@
-var nconf = require('nconf').file({file: __dirname + './../linnun.json'});
+var nconf = require('nconf').file({file: __dirname + '/./../linnun.json'});
 
 function set(key, value) {
     nconf.set(key, value);
