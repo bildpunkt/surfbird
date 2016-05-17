@@ -62,16 +62,16 @@ function createWindow() {
         mainWindow.webContents.send('linnun-tweets', tweet);
     })
 
-    ipcMain.on('request-home-timeline', function(e) {
+    ipcMain.on('linnun:home-timeline', function(e) {
       twitter.get('statuses/home_timeline', function(e, tweets) {
         tweets.forEach(function(tweet) {
-          mainWindow.webContents.send('linnun-tweets', tweet);
+          mainWindow.webContents.send('linnun:tweets', tweet);
         });
       });
     });
 
     // Let's wait for sent tweets..
-    ipcMain.on('linnun-send', function(e, tweet) {
+    ipcMain.on('linnun:send', function(e, tweet) {
         // ..and then post them to Twitter..
         if (tweet.id !== undefined) {
             // ..with an ID attached (as reply)
@@ -88,7 +88,7 @@ function createWindow() {
     });
 
     // Let's wait for retweets..
-    ipcMain.on('linnun-retweet', function(e, tweet) {
+    ipcMain.on('linnun:retweet', function(e, tweet) {
         // ..and then post them to Twitter
         if (tweet.type == "retweet") {
             twitter.post('statuses/retweet/:id', { id: tweet.id }, function (err, data, response) {
@@ -102,7 +102,7 @@ function createWindow() {
     })
 
     // Let's wait for favorites..
-    ipcMain.on('linnun-favorite', function(e, tweet) {
+    ipcMain.on('linnun:favorite', function(e, tweet) {
         // ..and then post them to Twitter
         if (tweet.type == "favorite") {
             twitter.post('favorites/create', { id: tweet.id }, function (err, data, response) {
@@ -156,8 +156,6 @@ function createAuthWindow() {
             authWindow.loadURL(twitterAuth.getAuthUrl(requestToken))
             rqt = requestToken
             rqts = requestTokenSecret
-
-            console.log(rqt, rqts);
         }
     });
 

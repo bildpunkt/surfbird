@@ -1,5 +1,10 @@
-# linnun
-A Twitter client, written in Electron
+<div align='center'>
+  <img width=500px src='http://file.pixelde.su/linnun-logo.png'>
+</div>
+
+<p align='center'>
+  A Twitter client, written in Electron
+</p>
 
 ## Usage
 Currently linnun is not considered usable at all. It misses authentication and storage logic,
@@ -43,11 +48,14 @@ fix building, I welcome a pull request!
   * [x] Distinguished on Timeline
   * [x] Creating
   * [x] Destroying (Unretweeting)
+  * [ ] Design
 * [ ] Favorites
   * [x] Creating
   * [x] Destroying (Unfavoriting)
+  * [ ] Design
 * [ ] Interactions
 * [ ] Profiles
+* [ ] Twitter Card Support (implement an iframe that displays `https://twitter.com/i/cards/tfw/v1/[tweet-id]` if available)
 
 ## License
 

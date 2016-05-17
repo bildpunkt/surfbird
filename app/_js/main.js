@@ -18,7 +18,7 @@ var vm = new Vue({
 
 const ipcRenderer = require('electron').ipcRenderer;
 
-ipcRenderer.on('linnun-tweets', function(e, tweet) {
+ipcRenderer.on('linnun:tweets', function(e, tweet) {
   app.tweets.unshift(tweet);
 
   if (app.tweets.length >= 0 && !$('#mainloader').hasClass('hidden')) {
@@ -33,7 +33,7 @@ $('#send').on('click', function () {
       tweet = {text: $('#tweet').val()}
     }
 
-    ipcRenderer.send('linnun-send', tweet)
+    ipcRenderer.send('linnun:send', tweet)
     $('#tweet').val('')
     $('#tweet').removeAttr('data-tweet-id')
 });
@@ -41,11 +41,11 @@ $('#send').on('click', function () {
 $(document.body).on('click', 'button.retweet', function() {
     if ($(this).hasClass('active')) {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unretweet"}
-        ipcRenderer.send('linnun-retweet', tweet)
+        ipcRenderer.send('linnun:retweet', tweet)
         $(this).removeClass('active')
     } else {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "retweet"}
-        ipcRenderer.send('linnun-retweet', tweet)
+        ipcRenderer.send('linnun:retweet', tweet)
         $(this).addClass('active')
     }
 })
@@ -53,11 +53,11 @@ $(document.body).on('click', 'button.retweet', function() {
 $(document.body).on('click', 'button.favorite', function() {
     if ($(this).hasClass('active')) {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unfavorite"}
-        ipcRenderer.send('linnun-favorite', tweet)
+        ipcRenderer.send('linnun:favorite', tweet)
         $(this).removeClass('active')
     } else {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "favorite"}
-        ipcRenderer.send('linnun-favorite', tweet)
+        ipcRenderer.send('linnun:favorite', tweet)
         $(this).addClass('active')
     }
 })
@@ -68,4 +68,4 @@ $(document.body).on('click', 'button.reply', function() {
     $('#tweet').focus()
 })
 
-ipcRenderer.send('request-home-timeline', true);
+ipcRenderer.send('linnun:home-timeline', true);
