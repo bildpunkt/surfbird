@@ -3,7 +3,7 @@
 </div>
 
 <p align='center'>
-  A Twitter client, written on Electron
+  A Twitter client, built on Electron
 </p>
 
 ## Usage
