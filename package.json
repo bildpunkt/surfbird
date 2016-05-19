@@ -37,7 +37,8 @@
     "nconf": "^0.8.4",
     "node-twitter-api": "^1.7.2",
     "twit": "^2.2.4",
-    "vue": "^1.0.24"
+    "vue": "^1.0.24",
+    "vue-i18n": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.8.0",

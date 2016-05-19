@@ -1,8 +1,14 @@
 const Vue = require('vue');
+var VueI18n = require('vue-i18n');
 window.$ = window.jQuery = require('jquery');
-window.app = {}
 
+window.app = {}
 app.tweets = []
+
+Vue.use(VueI18n)
+Vue.config.lang = 'en'
+
+Vue.locale('en', require('./locales/en.json'))
 
 Vue.component('compose', require('./vue/compose.vue'))
 Vue.component('stream-item', require('./vue/stream-item.vue'))
