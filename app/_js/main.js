@@ -9,7 +9,7 @@ Vue.component('tweet-body', require('./vue/tweet-body.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
 
 var vm = new Vue({
-    el: "#tweets",
+    el: "#main",
     data: {
         tweets: app.tweets,
     },
