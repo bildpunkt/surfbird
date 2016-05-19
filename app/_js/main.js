@@ -4,6 +4,7 @@ window.app = {}
 
 app.tweets = []
 
+Vue.component('compose', require('./vue/compose.vue'))
 Vue.component('stream-item', require('./vue/stream-item.vue'))
 Vue.component('tweet-body', require('./vue/tweet-body.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
