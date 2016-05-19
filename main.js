@@ -50,7 +50,7 @@ function createWindow() {
         tweet.created_at = tweet.timestamp_ms
 
         // ..and send them to our client!
-        mainWindow.webContents.send('linnun-tweets', tweet);
+        mainWindow.webContents.send('linnun:tweets', tweet);
     })
 
     ipcMain.on('linnun:home-timeline', function(e) {
