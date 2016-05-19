@@ -4,13 +4,9 @@ const path = require('path');
 const fs = require('fs');
 const { app, BrowserWindow, shell, ipcMain } = require('electron');
 const root = path.join(path.dirname(fs.realpathSync(__filename)));
-const Twit = require('twit');
-const twitterAuth = require('./src/twitter-auth');
 const storage = require('./src/storage');
 
 let mainWindow, authWindow, rqt, rqts, act, acts, oauth_verifier;
-
-let twitter;
 
 if (storage.get('consumer_key') == 'YOUR_KEYS_HERE') {
     throw new Error('Twitter keys not defined, please add your consumer keys to linnun.json!')
@@ -24,12 +20,7 @@ function createWindow() {
         autoHideMenuBar: true
     });
 
-    twitter = new Twit({
-        consumer_key:         storage.get('consumer_key'),
-        consumer_secret:      storage.get('consumer_secret'),
-        access_token:         storage.get('access_token'),
-        access_token_secret:  storage.get('access_token_secret')
-    })
+    const twitter = require('./src/twitter');
 
     mainWindow.loadURL('file://' + __dirname + '/app/index.html')
 
@@ -130,6 +121,8 @@ function createAuthWindow() {
     if (storage.get('callback_url') == 'YOUR_URL_HERE') {
         throw new Error("Callback URL empty, without this the client can't authenticate properly")
     }
+
+    const twitterAuth = require('./src/twitter-auth');
 
     /* developer workaround ;) */
     if(storage.get('pin') !== void 8 && storage.get('callback_url') == 'oob') {
