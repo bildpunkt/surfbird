@@ -34,29 +34,6 @@ as it can hold get parameters without removing them, the client only needs to be
 **Note:** Because of electron-packager acting up, building does not really work as of now. If you can
 fix building, I welcome a pull request!
 
-## Roadmap
-
-* [x] Authentication
-  * [x] Authenticating over Twitter
-  * [x] Storing user secrets
-* [ ] Tweets
-  * [x] Receiving
-  * [x] Sending
-  * [x] Replying
-  * [ ] Deleting
-* [ ] Retweets
-  * [x] Distinguished on Timeline
-  * [x] Creating
-  * [x] Destroying (Unretweeting)
-  * [ ] Design
-* [ ] Favorites
-  * [x] Creating
-  * [x] Destroying (Unfavoriting)
-  * [ ] Design
-* [ ] Interactions
-* [ ] Profiles
-* [ ] Twitter Card Support (implement an iframe that displays `https://twitter.com/i/cards/tfw/v1/[tweet-id]` if available)
-
 ## License
 
 linnun is licensed under the MIT License
