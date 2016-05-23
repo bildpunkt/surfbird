@@ -29,7 +29,7 @@ as it can hold get parameters without removing them, the client only needs to be
 
 ### Building linnun
 
-`npm build:[windows|linux|osx]`
+`npm run build:[windows|linux|osx]`
 
 **Note:** Because of electron-packager acting up, building does not really work as of now. If you can
 fix building, I welcome a pull request!
