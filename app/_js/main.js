@@ -4,6 +4,7 @@ window.$ = window.jQuery = require('jquery');
 
 window.app = {}
 app.tweets = []
+app.themes = []
 
 Vue.use(VueI18n)
 Vue.config.lang = 'en'
@@ -19,11 +20,16 @@ var vm = new Vue({
     el: "#main",
     data: {
         tweets: app.tweets,
+        themes: app.themes
     },
 })
 
 
 const ipcRenderer = require('electron').ipcRenderer;
+
+ipcRenderer.on('linnun:themes', function(e, theme) {
+    app.themes.push(theme);
+})
 
 ipcRenderer.on('linnun:tweets', function(e, tweet) {
   app.tweets.unshift(tweet);
@@ -73,6 +79,14 @@ $(document.body).on('click', 'button.reply', function() {
     document.getElementById('tweet').setAttribute('data-tweet-id', $(this).closest('.tweet').data('tweet-id'))
     $('#tweet').val("@" + $(this).closest('.tweet').data('username') + " ")
     $('#tweet').focus()
+})
+
+$('#theme-select').change(function(){
+    if ($('#theme-select option:selected').val() == '#') {
+        $('#theme-tag').attr('href', $('#theme-select option:selected').val())
+    } else {
+        $('#theme-tag').attr('href', 'assets/themes/' + $('#theme-select option:selected').val())
+    }
 })
 
 ipcRenderer.send('linnun:home-timeline', true);

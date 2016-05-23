@@ -34,6 +34,14 @@ function createWindow() {
 
     page.on('dom-ready', () => {
         mainWindow.show();
+        
+        fs.readdir('./app/assets/themes/', function(err, files) {
+            files.forEach(function(theme) {
+                if (theme.indexOf('.css') > -1) {
+                    mainWindow.webContents.send('linnun:themes', theme)
+                }
+            })
+        })
     });
 
     page.on('new-window', (e, url) => {
@@ -41,7 +49,7 @@ function createWindow() {
 
         shell.openExternal(url);
     });
-
+    
     var stream = twitter.stream('user', { with: "followings", include_rts: "false"})
 
     // Let's get our tweets,..
