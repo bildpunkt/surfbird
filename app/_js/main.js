@@ -1,6 +1,7 @@
 const Vue = require('vue');
 var VueI18n = require('vue-i18n');
 window.$ = window.jQuery = require('jquery');
+require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 
 window.app = {}
 app.tweets = []
