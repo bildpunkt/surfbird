@@ -25,10 +25,15 @@
                 <div class="column-header">Settings</div>
                 <div class="column-content">
                     <div class="column-scroller">
-                        <select id="theme-select">
-                            <option value="#">None</option>
-                            <option v-for="theme in themes" value="{{ theme }}">{{ theme }}</option>
-                        </select>
+                        <div class="form-group form-horizontal">
+                            <label for="#theme-select" class="col-sm-3 control-label">Theme</label>
+                            <div class="col-sm-9">
+                                <select id="theme-select" class="form-control">
+                                    <option value="#">None</option>
+                                    <option v-for="theme in themes" value="{{ theme }}">{{ theme }}</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
