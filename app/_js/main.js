@@ -12,6 +12,7 @@ Vue.config.lang = 'en'
 
 Vue.locale('en', require('./locales/en.json'))
 
+Vue.component('app-header', require('./vue/header.vue'))
 Vue.component('compose', require('./vue/compose.vue'))
 Vue.component('stream-item', require('./vue/stream-item.vue'))
 Vue.component('tweet-body', require('./vue/tweet-body.vue'))

@@ -1,0 +1,37 @@
+.drawer {
+    position: absolute;
+    width: 270px;
+    top: 0;
+    left: -270px;
+    height: 100%;
+    margin-right: 0;
+}
+
+.compose {
+    background-color: #2b7bb9;
+    color: #fff;
+    height: 100%;
+    overflow: hidden;
+
+    &-content {
+        bottom: 40px;
+        left: 0;
+        right: 0;
+    }
+
+    &-antiscroll {
+        position: absolute;
+        top: 50px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    &-header {
+        box-sizing: border-box;
+        position: relative;
+        height: 50px;
+        padding: 0 10px;
+        line-height: 50px;
+    }
+}

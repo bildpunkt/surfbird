@@ -6,32 +6,34 @@
     <link rel="stylesheet" href="#" id="theme-tag"/>
 </head>
 <body id="main">
+    <app-header></app-header>
+    <div class="app-content is-open">
     <compose></compose>
-    {{{ $t('message.hello') }}}
-    <div class="columns">
-        <div class="column">
-            <div class="column-panel">
-                <div class="column-header">Home</div>
-                <div class="column-content">
-                    <div class="column-scroller">
-                        <loader id="mainloader" message="Establishing Streaming Connection"></loader>
-                        <stream-item v-for="tweet in tweets | orderBy 'id_str' -1" v-bind:content="tweet" v-bind:index="$index"></stream-item>
+        <div class="columns">
+            <div class="column">
+                <div class="column-panel">
+                    <div class="column-header">Home</div>
+                    <div class="column-content">
+                        <div class="column-scroller">
+                            <loader id="mainloader" message="Establishing Streaming Connection"></loader>
+                            <stream-item v-for="tweet in tweets | orderBy 'id_str' -1" v-bind:content="tweet" v-bind:index="$index"></stream-item>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="column">
-            <div class="column-panel">
-                <div class="column-header">Settings</div>
-                <div class="column-content">
-                    <div class="column-scroller">
-                        <div class="form-group form-horizontal">
-                            <label for="#theme-select" class="col-sm-3 control-label">Theme</label>
-                            <div class="col-sm-9">
-                                <select id="theme-select" class="form-control">
-                                    <option value="#">None</option>
-                                    <option v-for="theme in themes" value="{{ theme }}">{{ theme }}</option>
-                                </select>
+            <div class="column">
+                <div class="column-panel">
+                    <div class="column-header">Settings</div>
+                    <div class="column-content">
+                        <div class="column-scroller">
+                            <div class="form-group form-horizontal">
+                                <label for="#theme-select" class="col-sm-3 control-label">Theme</label>
+                                <div class="col-sm-9">
+                                    <select id="theme-select" class="form-control">
+                                        <option value="#">None</option>
+                                        <option v-for="theme in themes" value="{{ theme }}">{{ theme }}</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>

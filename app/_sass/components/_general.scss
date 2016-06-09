@@ -5,3 +5,23 @@ html, body {
 .hidden {
     display: none !important;
 }
+
+.app-content {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    right: 0;
+    bottom: 0;
+    background-color: #ddd;
+    margin-left: 0;
+    overflow: visible;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+
+    &.is-open {
+        transform: translateX(270px);
+        margin-right: 270px;
+    }
+}
