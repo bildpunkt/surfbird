@@ -15,6 +15,10 @@
             font-weight: normal;
             color: #a0a0a0;
         }
+
+        span {
+            font-weight: normal;
+        }
     }
 
     &-text {
@@ -29,6 +33,12 @@
         width: 48px;
         height: 48px;
         border-radius: 3px;
+
+        &.small {
+            width: 24px;
+            height: 24px;
+            margin-left: -36px;
+        }
     }
 
     &-content {

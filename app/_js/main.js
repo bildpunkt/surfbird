@@ -18,6 +18,7 @@ Vue.component('compose', require('./vue/compose.vue'))
 Vue.component('column', require('./vue/column.vue'))
 Vue.component('stream-item', require('./vue/stream-item.vue'))
 Vue.component('tweet-body', require('./vue/tweet-body.vue'))
+Vue.component('interaction', require('./vue/interaction.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
 
 var vm = new Vue({
@@ -45,7 +46,11 @@ ipcRenderer.on('linnun:tweets', function(e, tweet) {
 });
 
 ipcRenderer.on('linnun:interactions', function(e, interaction) {
-    console.log(interaction);
+    app.interactions.unshift(interaction);
+
+    if (app.interactions.length >= 0 && !$('#interactionloader').hasClass('hidden')) {
+        $('#interactionloader').addClass('hidden')
+    }
 })
 
 $('#send').on('click', function () {

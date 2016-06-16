@@ -3,6 +3,9 @@
     box-sizing: border-box;
     padding: 6px 0 6px 6px;
     overflow: visible;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 
 .column {
