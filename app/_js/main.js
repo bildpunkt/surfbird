@@ -5,6 +5,7 @@ require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 
 window.app = {}
 app.tweets = []
+app.interactions = []
 app.themes = []
 
 Vue.use(VueI18n)
@@ -40,6 +41,10 @@ ipcRenderer.on('linnun:tweets', function(e, tweet) {
     $('#mainloader').addClass('hidden')
   }
 });
+
+ipcRenderer.on('linnun:interactions', function(e, interaction) {
+    console.log(interaction);
+})
 
 $('#send').on('click', function () {
     if ($('#tweet').data('tweet-id') !== undefined) {
