@@ -70,6 +70,7 @@ function createWindow() {
     });
 
     require('./src/twitter/actions');
+    require('./src/twitter/interactions')(mainWindow);
 }
 
 function createAuthWindow() {

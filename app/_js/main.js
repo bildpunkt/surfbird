@@ -5,6 +5,7 @@ require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 
 window.app = {}
 app.tweets = []
+app.interactions = []
 app.themes = []
 
 Vue.use(VueI18n)
@@ -14,14 +15,17 @@ Vue.locale('en', require('./locales/en.json'))
 
 Vue.component('app-header', require('./vue/header.vue'))
 Vue.component('compose', require('./vue/compose.vue'))
+Vue.component('column', require('./vue/column.vue'))
 Vue.component('stream-item', require('./vue/stream-item.vue'))
 Vue.component('tweet-body', require('./vue/tweet-body.vue'))
+Vue.component('interaction', require('./vue/interaction.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
 
 var vm = new Vue({
     el: "#main",
     data: {
         tweets: app.tweets,
+        interactions: app.interactions,
         themes: app.themes
     },
 })
@@ -40,6 +44,14 @@ ipcRenderer.on('linnun:tweets', function(e, tweet) {
     $('#mainloader').addClass('hidden')
   }
 });
+
+ipcRenderer.on('linnun:interactions', function(e, interaction) {
+    app.interactions.unshift(interaction);
+
+    if (app.interactions.length >= 0 && !$('#interactionloader').hasClass('hidden')) {
+        $('#interactionloader').addClass('hidden')
+    }
+})
 
 $('#send').on('click', function () {
     if ($('#tweet').data('tweet-id') !== undefined) {
