@@ -26,6 +26,16 @@
         white-space: pre-wrap;
     }
 
+    &-body {
+        &.contextual {
+            color: #a0a0a0;
+
+            .tweet-header {
+                padding-bottom: 0;
+            }
+        }
+    }
+
     &-avatar {
         margin-left: -58px;
         float: left;
