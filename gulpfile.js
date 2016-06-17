@@ -23,9 +23,14 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./app/assets/css'));
 });
 
+gulp.task('fonts', function() {
+  return gulp.src('./node_modules/font-awesome/fonts/*')
+    .pipe(gulp.dest('./app/assets/fonts'));
+});
+
 gulp.task('watch', function () {
   gulp.watch('./app/_sass/**/*.scss', ['sass']);
   gulp.watch('./app/_js/*.js', ['js']);
 });
 
-gulp.task('assets', ['js', 'sass']);
+gulp.task('assets', ['js', 'sass', 'fonts']);

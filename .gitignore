@@ -35,6 +35,7 @@ node_modules
 # Compiled assets
 app/assets/js/main.js
 app/assets/css/style.css
+app/assets/fonts/
 
 # Configuration
 linnun.json

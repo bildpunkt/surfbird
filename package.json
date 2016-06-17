@@ -52,6 +52,7 @@
     "electron-prebuilt": "1.0.2",
     "eslint": "2.9.0",
     "eslint-config-vgno": "6.0.0",
+    "font-awesome": "^4.6.3",
     "gulp": "^3.9.1",
     "gulp-add-src": "^0.2.0",
     "gulp-concat": "^2.6.0",
