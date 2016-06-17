@@ -21,6 +21,34 @@
         }
     }
 
+    &-footer {
+        display: block;
+        float: right;
+        margin-top: 3px;
+
+        &:before, &:after {
+            display: block;
+            content: " ";
+        }
+
+        &:after {
+            clear: both;
+        }
+    }
+
+    &-actions {
+        float: left;
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        .action-item {
+            margin-right: 13px !important;
+            float: left;
+        }
+    }
+
     &-text {
         overflow: hidden;
         white-space: pre-wrap;
@@ -53,6 +81,15 @@
 
     &-content {
         padding-left: 58px;
+
+        &:before, &:after {
+            display: block;
+            content: " ";
+        }
+
+        &:after {
+            clear: both;
+        }
     }
 
     &-media-wrapper {

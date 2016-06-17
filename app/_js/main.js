@@ -16,8 +16,9 @@ Vue.locale('en', require('./locales/en.json'))
 Vue.component('app-header', require('./vue/header.vue'))
 Vue.component('compose', require('./vue/compose.vue'))
 Vue.component('column', require('./vue/column.vue'))
-Vue.component('stream-item', require('./vue/stream-item.vue'))
-Vue.component('tweet-body', require('./vue/tweet-body.vue'))
+Vue.component('stream-item', require('./vue/tweet/general.vue'))
+Vue.component('tweet-body', require('./vue/tweet/body.vue'))
+Vue.component('tweet-footer', require('./vue/tweet/footer.vue'))
 Vue.component('interaction', require('./vue/interaction.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
 
@@ -65,7 +66,9 @@ $('#send').on('click', function () {
     $('#tweet').removeAttr('data-tweet-id')
 });
 
-$(document.body).on('click', 'button.retweet', function() {
+$(document.body).on('click', 'a.retweet', function(e) {
+    e.preventDefault();
+    
     if ($(this).hasClass('active')) {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unretweet"}
         ipcRenderer.send('linnun:retweet', tweet)
@@ -77,7 +80,9 @@ $(document.body).on('click', 'button.retweet', function() {
     }
 })
 
-$(document.body).on('click', 'button.favorite', function() {
+$(document.body).on('click', 'a.favorite', function(e) {
+    e.preventDefault();
+
     if ($(this).hasClass('active')) {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unfavorite"}
         ipcRenderer.send('linnun:favorite', tweet)
@@ -89,7 +94,9 @@ $(document.body).on('click', 'button.favorite', function() {
     }
 })
 
-$(document.body).on('click', 'button.reply', function() {
+$(document.body).on('click', 'a.reply', function(e) {
+    e.preventDefault();
+
     document.getElementById('tweet').setAttribute('data-tweet-id', $(this).closest('.tweet').data('tweet-id'))
     $('#tweet').val("@" + $(this).closest('.tweet').data('username') + " ")
     $('#tweet').focus()
