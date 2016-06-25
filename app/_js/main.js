@@ -4,6 +4,7 @@ window.$ = window.jQuery = require('jquery');
 require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 
 window.app = {}
+app.user = {}
 app.tweets = []
 app.interactions = []
 app.themes = []
@@ -34,11 +35,15 @@ var vm = new Vue({
 
 const ipcRenderer = require('electron').ipcRenderer;
 
-ipcRenderer.on('linnun:themes', function(e, theme) {
+ipcRenderer.on('linnun:get:user', function(e, user) {
+    app.user = user;
+})
+
+ipcRenderer.on('linnun:get:themes', function(e, theme) {
     app.themes.push(theme);
 })
 
-ipcRenderer.on('linnun:tweets', function(e, tweet) {
+ipcRenderer.on('linnun:get:tweets', function(e, tweet) {
   app.tweets.unshift(tweet);
 
   if (app.tweets.length >= 0 && !$('#mainloader').hasClass('hidden')) {
@@ -46,7 +51,7 @@ ipcRenderer.on('linnun:tweets', function(e, tweet) {
   }
 });
 
-ipcRenderer.on('linnun:interactions', function(e, interaction) {
+ipcRenderer.on('linnun:get:interactions', function(e, interaction) {
     app.interactions.unshift(interaction);
 
     if (app.interactions.length >= 0 && !$('#interactionloader').hasClass('hidden')) {
@@ -61,7 +66,7 @@ $('#send').on('click', function () {
       tweet = {text: $('#tweet').val()}
     }
 
-    ipcRenderer.send('linnun:send', tweet)
+    ipcRenderer.send('linnun:send:tweet', tweet)
     $('#tweet').val('')
     $('#tweet').removeAttr('data-tweet-id')
 });
@@ -71,11 +76,11 @@ $(document.body).on('click', 'a.retweet', function(e) {
     
     if ($(this).hasClass('active')) {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unretweet"}
-        ipcRenderer.send('linnun:retweet', tweet)
+        ipcRenderer.send('linnun:send:retweet', tweet)
         $(this).removeClass('active')
     } else {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "retweet"}
-        ipcRenderer.send('linnun:retweet', tweet)
+        ipcRenderer.send('linnun:send:retweet', tweet)
         $(this).addClass('active')
     }
 })
@@ -85,11 +90,11 @@ $(document.body).on('click', 'a.favorite', function(e) {
 
     if ($(this).hasClass('active')) {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unfavorite"}
-        ipcRenderer.send('linnun:favorite', tweet)
+        ipcRenderer.send('linnun:send:favorite', tweet)
         $(this).removeClass('active')
     } else {
         tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "favorite"}
-        ipcRenderer.send('linnun:favorite', tweet)
+        ipcRenderer.send('linnun:send:favorite', tweet)
         $(this).addClass('active')
     }
 })
@@ -110,4 +115,5 @@ $('#theme-select').change(function(){
     }
 })
 
-ipcRenderer.send('linnun:home-timeline', true);
+ipcRenderer.send('linnun:send:home-timeline', true);
+ipcRenderer.send('linnun:send:user', true);

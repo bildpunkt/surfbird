@@ -20,7 +20,7 @@ module.exports = function(mainWindow) {
                 var ev = {type: event_name, event: event}
                 
                 console.log(event.target_object)
-                mainWindow.webContents.send('linnun:interactions', ev);
+                mainWindow.webContents.send('linnun:get:interactions', ev);
             }
         })
     })

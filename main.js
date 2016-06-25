@@ -5,6 +5,7 @@ const fs = require('fs');
 const { app, BrowserWindow, shell, ipcMain } = require('electron');
 const root = path.join(path.dirname(fs.realpathSync(__filename)));
 const storage = require('./src/storage');
+const current_user = storage.get('access_token').split("-")[0]
 
 let mainWindow, authWindow, rqt, rqts, act, acts, oauth_verifier;
 
@@ -38,7 +39,7 @@ function createWindow() {
         fs.readdir('./app/assets/themes/', function(err, files) {
             files.forEach(function(theme) {
                 if (theme.indexOf('.css') > -1) {
-                    mainWindow.webContents.send('linnun:themes', theme)
+                    mainWindow.webContents.send('linnun:get:themes', theme)
                 }
             })
         })
@@ -58,15 +59,21 @@ function createWindow() {
         tweet.created_at = tweet.timestamp_ms
 
         // ..and send them to our client!
-        mainWindow.webContents.send('linnun:tweets', tweet);
+        mainWindow.webContents.send('linnun:get:tweets', tweet);
     })
 
-    ipcMain.on('linnun:home-timeline', function(e) {
+    ipcMain.on('linnun:send:home-timeline', function(e) {
       twitter.get('statuses/home_timeline', function(e, tweets) {
         tweets.forEach(function(tweet) {
-          mainWindow.webContents.send('linnun:tweets', tweet);
+          mainWindow.webContents.send('linnun:get:tweets', tweet);
         });
       });
+    });
+
+    ipcMain.on('linnun:send:user', function(e) {
+      twitter.get('users/show', {user_id: current_user}, function(e, data) {
+          mainWindow.webContents.send('linnun:get:user', data);
+      })
     });
 
     require('./src/twitter/actions');

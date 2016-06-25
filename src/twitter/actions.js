@@ -2,7 +2,7 @@ const { ipcMain } = require('electron');
 const twitter = require('../twitter');
 
 // Let's wait for sent tweets..
-ipcMain.on('linnun:send', function(e, tweet) {
+ipcMain.on('linnun:send:tweet', function(e, tweet) {
     // ..and then post them to Twitter..
     if (tweet.id !== undefined) {
         // ..with an ID attached (as reply)
@@ -19,7 +19,7 @@ ipcMain.on('linnun:send', function(e, tweet) {
 });
 
 // Let's wait for retweets..
-ipcMain.on('linnun:retweet', function(e, tweet) {
+ipcMain.on('linnun:send:retweet', function(e, tweet) {
     // ..and then post them to Twitter
     if (tweet.type == "retweet") {
         twitter.post('statuses/retweet/:id', { id: tweet.id }, function (err, data, response) {
@@ -33,7 +33,7 @@ ipcMain.on('linnun:retweet', function(e, tweet) {
 })
 
 // Let's wait for favorites..
-ipcMain.on('linnun:favorite', function(e, tweet) {
+ipcMain.on('linnun:send:favorite', function(e, tweet) {
     // ..and then post them to Twitter
     if (tweet.type == "favorite") {
         twitter.post('favorites/create', { id: tweet.id }, function (err, data, response) {
