@@ -1,5 +1,5 @@
 <div align='center'>
-  <img width=500px src='http://file.pixelde.su/linnun-logo.png'>
+  <img width=500px src='http://file.pixelde.su/surfbird-logo.png'>
 </div>
 
 <p align='center'>
@@ -7,7 +7,7 @@
 </p>
 
 ## Usage
-Currently linnun is not considered usable at all. It misses authentication and storage logic,
+Currently Surfbird is not really usable. It misses authentication and storage logic,
 so the only way of effectively using it is adding your own keys and running/building it yourself.
 
 ## Development

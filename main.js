@@ -10,7 +10,7 @@ const current_user = storage.get('access_token').split("-")[0]
 let mainWindow, authWindow, rqt, rqts, act, acts, oauth_verifier;
 
 if (storage.get('consumer_key') == 'YOUR_KEYS_HERE') {
-    throw new Error('Twitter keys not defined, please add your consumer keys to linnun.json!')
+    throw new Error('Twitter keys not defined, please add your consumer keys to surfbird.json!')
 }
 
 function createWindow() {
@@ -39,7 +39,7 @@ function createWindow() {
         fs.readdir('./app/assets/themes/', function(err, files) {
             files.forEach(function(theme) {
                 if (theme.indexOf('.css') > -1) {
-                    mainWindow.webContents.send('linnun:get:themes', theme)
+                    mainWindow.webContents.send('surfbird:get:themes', theme)
                 }
             })
         })
@@ -59,20 +59,20 @@ function createWindow() {
         tweet.created_at = tweet.timestamp_ms
 
         // ..and send them to our client!
-        mainWindow.webContents.send('linnun:get:tweets', tweet);
+        mainWindow.webContents.send('surfbird:get:tweets', tweet);
     })
 
-    ipcMain.on('linnun:send:home-timeline', function(e) {
+    ipcMain.on('surfbird:send:home-timeline', function(e) {
       twitter.get('statuses/home_timeline', function(e, tweets) {
         tweets.forEach(function(tweet) {
-          mainWindow.webContents.send('linnun:get:tweets', tweet);
+          mainWindow.webContents.send('surfbird:get:tweets', tweet);
         });
       });
     });
 
-    ipcMain.on('linnun:send:user', function(e) {
+    ipcMain.on('surfbird:send:user', function(e) {
       twitter.get('users/show', {user_id: current_user}, function(e, data) {
-          mainWindow.webContents.send('linnun:get:user', data);
+          mainWindow.webContents.send('surfbird:get:user', data);
       })
     });
 
@@ -84,7 +84,7 @@ function createAuthWindow() {
     authWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        title: 'Linnun',
+        title: 'Surfbird - Authenticate with Twitter',
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: false
