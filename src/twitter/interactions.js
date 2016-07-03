@@ -19,7 +19,7 @@ module.exports = function(mainWindow) {
             if (event.target.id_str == current_user) {
                 var ev = {type: event_name, event: event}
                 
-                mainWindow.webContents.send('linnun:get:interactions', ev);
+                mainWindow.webContents.send('surfbird:get:interactions', ev);
             }
         })
     })

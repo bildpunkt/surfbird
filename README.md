@@ -7,8 +7,8 @@
 </p>
 
 ## Usage
-Currently Surfbird is not really usable. It misses authentication and storage logic,
-so the only way of effectively using it is adding your own keys and running/building it yourself.
+Currently Surfbird is not really usable. It has authentication and basic storage logic,
+but settings are not saved and several things are unoptimized and uncached.
 
 ## Development
 
@@ -18,7 +18,7 @@ so the only way of effectively using it is adding your own keys and running/buil
 
 ### Preparations
 
-Copy `linnun.example.json` to `linnun.json`, add your keys and then run following commands:
+Copy `surfbird.example.json` to `surfbird.json`, add your keys and then run following commands:
 
 * `npm install`
 * `gulp assets`
@@ -27,7 +27,7 @@ Copy `linnun.example.json` to `linnun.json`, add your keys and then run followin
 **Information about `callback_url`:** It pretty much does not matter what URL you use here, as long
 as it can hold get parameters without removing them, the client only needs to be able to grab them.
 
-### Building linnun
+### Building Surfbird
 
 `npm run build:[windows|linux|osx]`
 
@@ -36,4 +36,4 @@ fix building, I welcome a pull request!
 
 ## License
 
-linnun is licensed under the MIT License
+Surfbird is licensed under the MIT License
