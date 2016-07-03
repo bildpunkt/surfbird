@@ -14,11 +14,17 @@
           <img :src="user.profile_banner_url" />
         </div>
         <div class="compose-antiscroll">
-          {{{ $t('message.hello') }}}
-          <form action="/" method="HEAD" onsubmit="return false;">
-            <textarea id="tweet" placeholder="Tweet here bby"></textarea>
-            <input type="submit" id="send" value="Send">
-          </form>
+          <div class="compose-container">
+            {{{ $t('message.hello') }}}
+            <form action="/" method="HEAD" onsubmit="return false;">
+              <div class="compose-input-container">
+                <textarea id="tweet" class="compose-input" placeholder="Tweet here bby"></textarea>
+              </div>
+              <div class="pull-right compose-actions">
+                <input type="submit" class="btn btn-primary" id="send" value="Send">
+              </div>
+            </form>
+          </div>
         </div>  
       </div>
     </div>

@@ -9,9 +9,12 @@
 
 .compose {
     background-color: #2b7bb9;
-    color: #fff;
     height: 100%;
     overflow: hidden;
+
+    &-actions {
+        margin-top: 15px;
+    }
 
     &-content {
         bottom: 40px;
@@ -25,6 +28,24 @@
         bottom: 0;
         left: 0;
         right: 0;
+    }
+
+    &-input {
+        width: 100%;
+        resize: none;
+        border: none;
+        color: #111;
+        padding: 10px;
+        font-size: 1rem;
+
+        &-container {
+            background-color: #fff;
+            font-size: 0;
+        }
+    }
+
+    &-container {
+        padding: 15px;
     }
 
     &-header {
