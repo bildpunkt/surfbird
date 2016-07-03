@@ -17,7 +17,7 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 1000,
         height: 900,
-        title: 'Linnun',
+        title: 'Surfbird',
         autoHideMenuBar: true
     });
 

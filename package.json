@@ -1,5 +1,5 @@
 {
-  "name": "linnun",
+  "name": "surfbird",
   "version": "0.1.0",
   "description": "Electron twitter client",
   "main": "main.js",
@@ -8,13 +8,13 @@
     "start": "electron main.js",
     "lint": "eslint .",
     "build": "npm run build:linux && npm run build:windows",
-    "build:linux": "electron-packager . --overwrite --asar --out=dist --prune --platform=linux --arch=x64 --app-bundle-id=com.pixeldesu.linnun --app-version=$version",
+    "build:linux": "electron-packager . --overwrite --asar --out=dist --prune --platform=linux --arch=x64 --app-bundle-id=com.pixeldesu.surfbird --app-version=$version",
     "build:windows": "electron-packager . --overwrite --out=dist --platform=win32 --arch=ia32 --version-string.ProductName=$npm_package_productName --app-version=0.1.0",
-    "build:osx": "electron-packager . --overwrite --asar --out=dist --prune --platform=darwin --arch=x64 --icon=media/Icon.icns --app-bundle-id=com.pixeldesu.linnun --app-version=$version"
+    "build:osx": "electron-packager . --overwrite --asar --out=dist --prune --platform=darwin --arch=x64 --icon=media/Icon.icns --app-bundle-id=com.pixeldesu.surfbird --app-version=$version"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pixeldesu/linnun.git"
+    "url": "git+https://github.com/pixeldesu/surfbird.git"
   },
   "keywords": [
     "twitter",
@@ -29,9 +29,9 @@
   },
   "license": "aGPLv3",
   "bugs": {
-    "url": "https://github.com/pixeldesu/linnun/issues"
+    "url": "https://github.com/pixeldesu/surfbird/issues"
   },
-  "homepage": "https://github.com/pixeldesu/linnun#readme",
+  "homepage": "https://github.com/pixeldesu/surfbird#readme",
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
     "jquery": "^2.2.3",
