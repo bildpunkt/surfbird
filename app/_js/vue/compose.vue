@@ -6,7 +6,12 @@
     <div class="compose">
       <div class="compose-content">
         <div class="compose-header">
-          New Tweet
+          <div class="content">
+            <img class="avatar" :src="user.profile_image_url" />
+          	<span>Tweeting from</span>@{{ user.screen_name }}
+          </div>
+          <div class="gradient"></div>
+          <img :src="user.profile_banner_url" />
         </div>
         <div class="compose-antiscroll">
           {{{ $t('message.hello') }}}
@@ -21,4 +26,7 @@
 </template>
 
 <script>
+export default {
+  props: ['user']
+}
 </script>

@@ -19,7 +19,6 @@ module.exports = function(mainWindow) {
             if (event.target.id_str == current_user) {
                 var ev = {type: event_name, event: event}
                 
-                console.log(event.target_object)
                 mainWindow.webContents.send('linnun:get:interactions', ev);
             }
         })

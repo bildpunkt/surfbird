@@ -8,7 +8,7 @@
 <body id="main">
     <app-header></app-header>
     <div class="app-content is-open">
-    <compose></compose>
+    <compose :user.sync="user"></compose>
         <div class="columns">
             <column title="Home">
                 <loader id="mainloader" message="Establishing Streaming Connection"></loader>

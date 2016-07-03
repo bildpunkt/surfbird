@@ -28,15 +28,16 @@ var vm = new Vue({
     data: {
         tweets: app.tweets,
         interactions: app.interactions,
-        themes: app.themes
+        themes: app.themes,
+        user: app.user
     },
 })
-
 
 const ipcRenderer = require('electron').ipcRenderer;
 
 ipcRenderer.on('linnun:get:user', function(e, user) {
     app.user = user;
+    vm.$set('user', user)
 })
 
 ipcRenderer.on('linnun:get:themes', function(e, theme) {
