@@ -8,4 +8,35 @@
     bottom: 0;
     left: 0;
     right: 0;
+
+    &-link {
+        font-size: 18px;
+        color: #777;
+        cursor: pointer;
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        display: inline-block;
+        padding: 5px;
+
+        &:hover {
+            color: #fff;
+        }
+
+        .large-icon {
+            font-size: 26px;
+        }
+    }
+
+    .bottom-navigation {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        margin-bottom: 5px;
+    }
+}
+
+.settings-dropdown {
+    left: 55px;
 }
