@@ -10,8 +10,8 @@
           <i class="fa fa-cog large-icon"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-right settings-dropdown" aria-labelledby="settingsDropdown">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
+          <li><a href="#">About</a></li>
+          <li><a data-toggle="modal" data-target="#settingsModal">Settings</a></li>
         </ul>  
       </div>    
     </div>  

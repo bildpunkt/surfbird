@@ -18,19 +18,9 @@
                 <loader id="interactionloader" message="Loading Interactions"></loader>
                 <interaction v-for="event in interactions | orderBy 'event.created_at' -1" v-bind:event="event.type" v-bind:content="event.event" v-bind:index="$index"></interaction>
             </column>
-            <column title="Settings">
-                <div class="form-group form-horizontal">
-                    <label for="#theme-select" class="col-sm-3 control-label">Theme</label>
-                    <div class="col-sm-9">
-                        <select id="theme-select" class="form-control">
-                            <option value="#">None</option>
-                            <option v-for="theme in themes" value="{{ theme }}">{{ theme }}</option>
-                        </select>
-                    </div>
-                </div>
-            </column>
         </div>
     </div>
+    <settings-modal></settings-modal>
     <script src="assets/js/main.js" type="text/javascript"></script>
 </body>
 </html>

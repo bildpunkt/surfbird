@@ -22,6 +22,8 @@ Vue.component('tweet-body', require('./vue/tweet/body.vue'))
 Vue.component('tweet-footer', require('./vue/tweet/footer.vue'))
 Vue.component('interaction', require('./vue/interaction.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
+Vue.component('modal', require('./vue/modal/general.vue'))
+Vue.component('settings-modal', require('./vue/modal/settings.vue'))
 
 var vm = new Vue({
     el: "#main",
