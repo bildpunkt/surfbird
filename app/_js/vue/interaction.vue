@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <div class="tweet" data-created-at="{{ content.created_at }}" data-username="{{ content.source.screen_name }}">
+  <div class="tweet" data-created-at="{{ content.created_at }}" data-username="{{ content.source.screen_name }}" v-if="event !== 'mention'">
     <div class="tweet-content">
       <div class="tweet-header">
         <img class="tweet-avatar small" v-bind:src="content.source.profile_image_url"/>
@@ -25,6 +25,7 @@
       </div>  
     </div>
   </div>
+  <stream-item v-bind:content="content" v-bind:index="$index" v-else></stream-item>
 </template>
 
 <script>
