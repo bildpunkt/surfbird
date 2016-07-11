@@ -26,4 +26,7 @@
 </template>
 
 <script>
+export default {
+  props: ['themes']
+}
 </script>
