@@ -119,4 +119,5 @@ $('#theme-select').change(function(){
 })
 
 ipcRenderer.send('surfbird:send:home-timeline', true);
+ipcRenderer.send('surfbird:send:mentions-timeline', true);
 ipcRenderer.send('surfbird:send:user', true);
