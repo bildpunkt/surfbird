@@ -150,16 +150,24 @@ var SurfNotification = function(event, content) {
 
     switch (event.type) {
         case "mention":
-            n = {title: `@${content.user.screen_name} mentioned you`, body: content.text, icon: content.user.profile_image_url}
+            n = {title: `@${content.user.screen_name} mentioned you`, 
+                 body: content.text, 
+                 icon: content.user.profile_image_url}
             break;
         case "retweet":
-            n = {title: `@${content.source.screen_name} retweeted your tweet`, body: content.target_object.text, icon: content.source.profile_image_url}
+            n = {title: `@${content.source.screen_name} retweeted your tweet`, 
+                 body: content.target_object.text, 
+                 icon: content.source.profile_image_url}
             break;
         case "favorite":
-            n = {title: `@${content.source.screen_name} liked your tweet`, body: content.target_object.text, icon: content.source.profile_image_url}
+            n = {title: `@${content.source.screen_name} liked your tweet`, 
+                 body: content.target_object.text, 
+                 icon: content.source.profile_image_url}
             break;
         case "follow":
-            n = {title: `@${content.source.screen_name} followed you`, body: content.source.description, icon: content.source.profile_image_url}
+            n = {title: `@${content.source.screen_name} followed you`, 
+                 body: content.source.description, 
+                 icon: content.source.profile_image_url}
             break;
     }
 
