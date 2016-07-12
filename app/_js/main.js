@@ -43,7 +43,11 @@ ipcRenderer.on('surfbird:get:user', function(e, user) {
 })
 
 ipcRenderer.on('surfbird:get:themes', function(e, theme) {
-    app.themes.push(theme);
+    // the probably most stylish way to check if an array of objects contains a specific object
+    // joking, I actually hate this approach, thank you JS
+    if (!(JSON.stringify(app.themes).indexOf(JSON.stringify(theme)) > 0)) {
+        app.themes.push(theme);
+    }
 })
 
 ipcRenderer.on('surfbird:get:tweets', function(e, tweet) {
@@ -116,6 +120,14 @@ $('#theme-select').change(function(){
     } else {
         $('#theme-tag').attr('href', $('#theme-select option:selected').val())
     }
+})
+
+$(document.body).on('click', '#reloadThemes', function(e) {
+    ipcRenderer.send('surfbird:send:themes', true);
+})
+
+$(document.body).on('click', '#openThemes', function(e) {
+    ipcRenderer.send('surfbird:open:themes', true);
 })
 
 ipcRenderer.send('surfbird:send:home-timeline', true);

@@ -9,13 +9,19 @@
         </div>
         <div class="modal-body">
             <div class="form-group form-horizontal clearfix">
-                <label for="#theme-select" class="col-sm-3 control-label">Theme</label>
-                <div class="col-sm-9">
+                <label for="#theme-select" class="col-sm-2 control-label">Theme</label>
+                <div class="col-sm-10">
                     <select id="theme-select" class="form-control">
                         <option value="#">None</option>
                         <option v-for="theme in themes" value="file:///{{ theme.fullpath }}">{{ theme.name }}</option>
                     </select>
                 </div>
+                <div class="col-sm-5 col-sm-offset-2 input-section">
+                    <a id="reloadThemes" href="#" class="btn btn-primary btn-block">Reload Themes</a>
+                </div>
+                <div class="col-sm-5 input-section">
+                    <a id="openThemes" href="#" class="btn btn-default btn-block">Open Themes Folder</a>
+                </div>        
             </div>
         </div>
         <div class="modal-footer">

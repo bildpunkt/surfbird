@@ -1,4 +1,4 @@
-const { ipcMain } = require('electron');
+const { shell, ipcMain } = require('electron');
 const fs = require('fs');
 
 module.exports = function(app, mainWindow) {
@@ -14,5 +14,9 @@ module.exports = function(app, mainWindow) {
                 })
             }
         })
+    })
+
+    ipcMain.on("surfbird:open:themes", function(e) {
+        shell.openExternal(app.getPath("documents"))
     })
 }
