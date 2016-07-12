@@ -13,7 +13,7 @@
                 <div class="col-sm-9">
                     <select id="theme-select" class="form-control">
                         <option value="#">None</option>
-                        <option v-for="theme in themes" value="{{ theme }}">{{ theme }}</option>
+                        <option v-for="theme in themes" value="file:///{{ theme.fullpath }}">{{ theme.name }}</option>
                     </select>
                 </div>
             </div>

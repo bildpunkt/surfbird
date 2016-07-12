@@ -114,10 +114,11 @@ $('#theme-select').change(function(){
     if ($('#theme-select option:selected').val() == '#') {
         $('#theme-tag').attr('href', $('#theme-select option:selected').val())
     } else {
-        $('#theme-tag').attr('href', 'assets/themes/' + $('#theme-select option:selected').val())
+        $('#theme-tag').attr('href', $('#theme-select option:selected').val())
     }
 })
 
 ipcRenderer.send('surfbird:send:home-timeline', true);
 ipcRenderer.send('surfbird:send:mentions-timeline', true);
+ipcRenderer.send('surfbird:send:themes', true);
 ipcRenderer.send('surfbird:send:user', true);
