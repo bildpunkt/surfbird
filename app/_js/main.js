@@ -171,5 +171,7 @@ var SurfNotification = function(event, content) {
             break;
     }
 
-    new Notification(n.title, {body: n.body, icon: n.icon})
+    if (n.title !== undefined) {
+      new Notification(n.title, {body: n.body, icon: n.icon})
+    }
 }
