@@ -172,7 +172,9 @@ function createAuthWindow() {
                     tokens.set('access_token', accessToken)
                     tokens.set('access_token_secret', accessTokenSecret)
                     authPage.session.clearCache(function() {});
-
+                    
+                    authPage.session.cookies.remove("https://twitter.com", "_twitter_sess", function(e) { /* nothing */})
+                    authPage.session.cookies.remove("https://twitter.com", "auth_token", function(e) { /* nothing */})
                     createWindow()
                     authWindow.close()
                 }
