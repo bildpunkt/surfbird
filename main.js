@@ -4,12 +4,12 @@ const path = require('path');
 const fs = require('fs');
 const { app, BrowserWindow, shell, ipcMain } = require('electron');
 const root = path.join(path.dirname(fs.realpathSync(__filename)));
-const storage = require('./src/storage');
-const current_user = storage.get('access_token').split("-")[0]
+const keys = require('./src/keys');
+const tokens = require('./src/tokens');
 
 let mainWindow, authWindow, rqt, rqts, act, acts, oauth_verifier;
 
-if (storage.get('consumer_key') == 'YOUR_KEYS_HERE') {
+if (keys.get('consumer_key') == 'YOUR_KEYS_HERE') {
     throw new Error('Twitter keys not defined, please add your consumer keys to surfbird.json!')
 }
 
@@ -36,6 +36,7 @@ function createWindow() {
     });
 
     const twitter = require('./src/twitter');
+    const current_user = tokens.get('access_token').split("-")[0]
 
     mainWindow.loadURL('file://' + __dirname + '/app/index.html')
 
@@ -109,22 +110,22 @@ function createAuthWindow() {
         }
     });
 
-    if (storage.get('callback_url') == 'YOUR_URL_HERE') {
+    if (keys.get('callback_url') == 'YOUR_URL_HERE') {
         throw new Error("Callback URL empty, without this the client can't authenticate properly")
     }
 
     const twitterAuth = require('./src/twitter-auth');
 
     /* developer workaround ;) */
-    if(storage.get('pin') !== void 8 && storage.get('callback_url') == 'oob') {
-      var rot = storage.get('pin').split(':');
+    if(keys.get('pin') !== void 8 && keys.get('callback_url') == 'oob') {
+      var rot = keys.get('pin').split(':');
       twitterAuth.getAccessToken(rot[0], rot[1], rot[2], function(error, accessToken, accessTokenSecret, results) {
           if (error) {
               console.log(error);
           } else {
-              storage.set('pin', null);
-              storage.set('access_token', accessToken)
-              storage.set('access_token_secret', accessTokenSecret)
+              tokens.set('pin', null);
+              tokens.set('access_token', accessToken)
+              tokens.set('access_token_secret', accessTokenSecret)
               authPage.session.clearCache(function() {});
 
               createWindow()
@@ -168,8 +169,8 @@ function createAuthWindow() {
                 if (error) {
                     console.log(error);
                 } else {
-                    storage.set('access_token', accessToken)
-                    storage.set('access_token_secret', accessTokenSecret)
+                    tokens.set('access_token', accessToken)
+                    tokens.set('access_token_secret', accessTokenSecret)
                     authPage.session.clearCache(function() {});
 
                     createWindow()
@@ -180,7 +181,7 @@ function createAuthWindow() {
     })
 }
 
-if (storage.get('access_token') == 'YOUR_KEYS_HERE') {
+if (tokens.get('access_token') == undefined) {
     app.on('ready', createAuthWindow);
 } else {
     app.on('ready', function() {

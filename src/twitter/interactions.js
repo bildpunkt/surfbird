@@ -1,9 +1,8 @@
 const { ipcMain } = require('electron');
 const twitter = require('../twitter');
-const storage = require('../storage');
+const tokens = require('../tokens')
 
 var stream = twitter.stream('user', { with: "followings", include_rts: "false"})
-var current_user = storage.get('access_token').split("-")[0]
 var events = ['favorite', 
               'unfavorite', 
               'follow', 

@@ -34,6 +34,7 @@
   "homepage": "https://github.com/pixeldesu/surfbird#readme",
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
+    "electron-config": "^0.2.1",
     "jquery": "^2.2.3",
     "nconf": "^0.8.4",
     "node-twitter-api": "^1.7.2",

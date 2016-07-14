@@ -1,7 +1,5 @@
 {
   "consumer_key": "YOUR_KEYS_HERE",
   "consumer_secret": "YOUR_KEYS_HERE",
-  "callback_url": "YOUR_URL_HERE",
-  "access_token": "YOUR_KEYS_HERE",
-  "access_token_secret": "YOUR_KEYS_HERE"
+  "callback_url": "YOUR_URL_HERE"
 }
