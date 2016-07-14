@@ -94,6 +94,12 @@ function createWindow() {
       })
     });
 
+    ipcMain.on('surfbird:logout', function(e) {
+      tokens.clear()
+      app.relaunch()
+      app.quit()
+    })
+
     require('./src/twitter/actions');
     require('./src/twitter/interactions')(mainWindow);
     require('./src/themes')(app, mainWindow);

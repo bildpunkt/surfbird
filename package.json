@@ -50,7 +50,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
     "electron-packager": "7.0.0",
-    "electron-prebuilt": "1.0.2",
+    "electron-prebuilt": "1.2.7",
     "eslint": "2.9.0",
     "eslint-config-vgno": "6.0.0",
     "font-awesome": "^4.6.3",

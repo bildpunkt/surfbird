@@ -12,6 +12,7 @@
         <ul class="dropdown-menu dropdown-menu-right settings-dropdown" aria-labelledby="settingsDropdown">
           <li><a href="#">About</a></li>
           <li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li>
+          <li><a id="logout" href="#">Logout</a></li>
         </ul>  
       </div>    
     </div>  

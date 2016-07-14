@@ -140,6 +140,10 @@ $(document.body).on('click', '#openThemes', function(e) {
     ipcRenderer.send('surfbird:open:themes', true);
 })
 
+$(document.body).on('click', '#logout', function(e) {
+    ipcRenderer.send('surfbird:logout', true);
+})
+
 ipcRenderer.send('surfbird:send:home-timeline', true);
 ipcRenderer.send('surfbird:send:mentions-timeline', true);
 ipcRenderer.send('surfbird:send:themes', true);
