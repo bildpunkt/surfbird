@@ -3,6 +3,7 @@ const twitter = require('../twitter');
 const tokens = require('../tokens')
 
 var stream = twitter.stream('user', { with: "followings", include_rts: "false"})
+var current_user = tokens.get('access_token').split("-")[0]
 var events = ['favorite', 
               'unfavorite', 
               'follow', 
