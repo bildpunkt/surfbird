@@ -46,6 +46,18 @@
         .action-item {
             margin-right: 13px !important;
             float: left;
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            font-size: 17px;
+            
+            & a {
+                color: #8899a6;
+
+                &:hover {
+                    color: #000;
+                }
+            }
         }
     }
 

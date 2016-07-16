@@ -2,7 +2,7 @@
 </style>
 
 <template>
-<div class="tweet-footer">
+<div class="tweet-footer clearfix">
     <ul class="tweet-actions">
         <li class="action-item">
             <a href="#" class="reply">
