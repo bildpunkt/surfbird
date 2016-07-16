@@ -28,9 +28,14 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('./app/assets/fonts'));
 });
 
+gulp.task('images', function() {
+  return gulp.src('./node_modules/lightbox2/dist/images/*')
+    .pipe(gulp.dest('./app/assets/images'));
+});
+
 gulp.task('watch', function () {
   gulp.watch('./app/_sass/**/*.scss', ['sass']);
   gulp.watch('./app/_js/*.js', ['js']);
 });
 
-gulp.task('assets', ['js', 'sass', 'fonts']);
+gulp.task('assets', ['js', 'sass', 'fonts', 'images']);
