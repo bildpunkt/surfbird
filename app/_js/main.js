@@ -72,7 +72,7 @@ ipcRenderer.on('surfbird:get:interactions', function(e, interaction) {
     }
 
     // skip the first 20 notifications, because we are pulling in 20 mentions from the beginning
-    if (app.interactions.length > 19) {
+    if (app.interactions.length >= 19) {
         interactionsurf = true;
     }
 })
@@ -177,6 +177,7 @@ var SurfNotification = function(event, content) {
     }
 
     if (n.title !== undefined) {
-      new Notification(n.title, {body: n.body, icon: n.icon})
+      new Notification(n.title, {body: n.body, icon: n.icon, silent: true})
+      document.getElementById('notification-tag').play();
     }
 }
