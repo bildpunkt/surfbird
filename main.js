@@ -13,6 +13,7 @@ if (keys.get('consumer_key') == 'YOUR_KEYS_HERE') {
     throw new Error('Twitter keys not defined, please add your consumer keys to surfbird.json!')
 }
 
+// Theme path creation
 var thp = ""
 if (process.platform == "win32") {
     thp = "\\themes\\"
@@ -26,6 +27,22 @@ fs.mkdir(app.getPath("userData") + thp ,function(e) {
     }
 })
 app.setPath("documents", app.getPath("userData") + thp)
+
+// Sounds path creation
+var sp = ""
+if (process.platform == "win32") {
+    sp = "\\sounds\\"
+} else {
+    sp = "/sounds/"
+}
+
+fs.mkdir(app.getPath("userData") + sp ,function(e) {
+    if (e && e.code !== "EEXIST") {
+        console.log(e)
+    }
+})
+app.setPath("music", app.getPath("userData") + sp)
+// TODO: move path creation into seperate file
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -103,6 +120,7 @@ function createWindow() {
     require('./src/twitter/actions');
     require('./src/twitter/interactions')(mainWindow);
     require('./src/themes')(app, mainWindow);
+    require('./src/sounds')(app, mainWindow);
 }
 
 function createAuthWindow() {

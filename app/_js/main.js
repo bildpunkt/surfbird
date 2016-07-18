@@ -9,6 +9,7 @@ app.user = {}
 app.tweets = []
 app.interactions = []
 app.themes = []
+app.sounds = []
 
 Vue.use(VueI18n)
 Vue.config.lang = 'en'
@@ -31,6 +32,7 @@ var vm = new Vue({
     data: {
         tweets: app.tweets,
         interactions: app.interactions,
+        sounds: app.sounds,
         themes: app.themes,
         user: app.user
     },
@@ -49,6 +51,12 @@ ipcRenderer.on('surfbird:get:themes', function(e, theme) {
     // joking, I actually hate this approach, thank you JS
     if (!(JSON.stringify(app.themes).indexOf(JSON.stringify(theme)) > 0)) {
         app.themes.push(theme);
+    }
+})
+
+ipcRenderer.on('surfbird:get:sounds', function(e, sound) {
+    if (!(JSON.stringify(app.sounds).indexOf(JSON.stringify(sound)) > 0)) {
+        app.sounds.push(sound);
     }
 })
 
@@ -72,7 +80,7 @@ ipcRenderer.on('surfbird:get:interactions', function(e, interaction) {
     }
 
     // skip the first 20 notifications, because we are pulling in 20 mentions from the beginning
-    if (app.interactions.length >= 19) {
+    if (app.interactions.length > 19) {
         interactionsurf = true;
     }
 })
@@ -133,12 +141,28 @@ $('#theme-select').change(function(){
     }
 })
 
+$('#sound-select').change(function(){
+    $('#notification-tag').attr('src', $('#sound-select option:selected').val())
+})
+
 $(document.body).on('click', '#reloadThemes', function(e) {
     ipcRenderer.send('surfbird:send:themes', true);
 })
 
 $(document.body).on('click', '#openThemes', function(e) {
     ipcRenderer.send('surfbird:open:themes', true);
+})
+
+$(document.body).on('click', '#reloadSounds', function(e) {
+    ipcRenderer.send('surfbird:send:sounds', true);
+})
+
+$(document.body).on('click', '#openSounds', function(e) {
+    ipcRenderer.send('surfbird:open:sounds', true);
+})
+
+$(document.body).on('click', '#playSounds', function(e) {
+    document.getElementById('notification-tag').play();
 })
 
 $(document.body).on('click', '#logout', function(e) {
@@ -148,6 +172,7 @@ $(document.body).on('click', '#logout', function(e) {
 ipcRenderer.send('surfbird:send:home-timeline', true);
 ipcRenderer.send('surfbird:send:mentions-timeline', true);
 ipcRenderer.send('surfbird:send:themes', true);
+ipcRenderer.send('surfbird:send:sounds', true);
 ipcRenderer.send('surfbird:send:user', true);
 
 var SurfNotification = function(event, content) {

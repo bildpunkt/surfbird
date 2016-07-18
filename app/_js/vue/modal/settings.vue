@@ -21,7 +21,23 @@
                 </div>
                 <div class="col-sm-5 input-section">
                     <a id="openThemes" href="#" class="btn btn-default btn-block">Open Themes Folder</a>
-                </div>        
+                </div>
+                <label for="#sound-select" class="col-sm-2 control-label input-section">Sound</label>
+                <div class="col-sm-10 input-section">
+                    <select id="sound-select" class="form-control">
+                        <option value="assets/sounds/notification.mp3">Default</option>
+                        <option v-for="sound in sounds" value="file:///{{ sound.fullpath }}">{{ sound.name }}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4 col-sm-offset-2 input-section">
+                    <a id="reloadSounds" href="#" class="btn btn-primary btn-block">Reload Sounds</a>
+                </div>
+                <div class="col-sm-4 input-section">
+                    <a id="openSounds" href="#" class="btn btn-default btn-block">Open Sounds Folder</a>
+                </div>
+                <div class="col-sm-2 input-section">
+                    <a id="playSounds" href="#" class="btn btn-default btn-block"><i class="fa fa-play"></i></a>
+                </div>   
             </div>
         </div>
         <div class="modal-footer">
@@ -33,6 +49,6 @@
 
 <script>
 export default {
-  props: ['themes']
+  props: ['themes', 'sounds']
 }
 </script>
