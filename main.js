@@ -3,7 +3,6 @@
 const path = require('path');
 const fs = require('fs');
 const { app, BrowserWindow, shell, ipcMain } = require('electron');
-const root = path.join(path.dirname(fs.realpathSync(__filename)));
 const keys = require('./src/keys');
 const tokens = require('./src/tokens');
 require('./src/path');
