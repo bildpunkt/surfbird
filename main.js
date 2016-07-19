@@ -3,7 +3,7 @@
 const { app, BrowserWindow, shell, ipcMain } = require('electron');
 const keys = require('./src/storage/keys');
 const tokens = require('./src/storage/tokens');
-require('./src/path');
+require('./src/utils/path');
 
 let mainWindow, authWindow, rqt, rqts, act, acts, oauth_verifier;
 
