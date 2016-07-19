@@ -96,42 +96,6 @@ $('#send').on('click', function () {
     $('#tweet').removeAttr('data-tweet-id')
 });
 
-$('#theme-select').change(function(){
-    if ($('#theme-select option:selected').val() == '#') {
-        $('#theme-tag').attr('href', $('#theme-select option:selected').val())
-    } else {
-        $('#theme-tag').attr('href', $('#theme-select option:selected').val())
-    }
-})
-
-$('#sound-select').change(function(){
-    $('#notification-tag').attr('src', $('#sound-select option:selected').val())
-})
-
-$(document.body).on('click', '#reloadThemes', function(e) {
-    ipcRenderer.send('surfbird:send:themes', true);
-})
-
-$(document.body).on('click', '#openThemes', function(e) {
-    ipcRenderer.send('surfbird:open:themes', true);
-})
-
-$(document.body).on('click', '#reloadSounds', function(e) {
-    ipcRenderer.send('surfbird:send:sounds', true);
-})
-
-$(document.body).on('click', '#openSounds', function(e) {
-    ipcRenderer.send('surfbird:open:sounds', true);
-})
-
-$(document.body).on('click', '#playSounds', function(e) {
-    document.getElementById('notification-tag').play();
-})
-
-$(document.body).on('click', '#logout', function(e) {
-    ipcRenderer.send('surfbird:logout', true);
-})
-
 ipcRenderer.send('surfbird:send:home-timeline', true);
 ipcRenderer.send('surfbird:send:mentions-timeline', true);
 ipcRenderer.send('surfbird:send:themes', true);

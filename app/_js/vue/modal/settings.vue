@@ -11,32 +11,32 @@
             <div class="form-group form-horizontal clearfix">
                 <label for="#theme-select" class="col-sm-2 control-label">Theme</label>
                 <div class="col-sm-10">
-                    <select id="theme-select" class="form-control">
+                    <select id="theme-select" class="form-control" @change="themeChange">
                         <option value="#">None</option>
                         <option v-for="theme in themes" value="file:///{{ theme.fullpath }}">{{ theme.name }}</option>
                     </select>
                 </div>
                 <div class="col-sm-5 col-sm-offset-2 input-section">
-                    <a id="reloadThemes" href="#" class="btn btn-primary btn-block">Reload Themes</a>
+                    <a @click="themeReload" href="#" class="btn btn-primary btn-block">Reload Themes</a>
                 </div>
                 <div class="col-sm-5 input-section">
-                    <a id="openThemes" href="#" class="btn btn-default btn-block">Open Themes Folder</a>
+                    <a @click="themeOpen" href="#" class="btn btn-default btn-block">Open Themes Folder</a>
                 </div>
                 <label for="#sound-select" class="col-sm-2 control-label input-section">Sound</label>
                 <div class="col-sm-10 input-section">
-                    <select id="sound-select" class="form-control">
+                    <select id="sound-select" class="form-control" @change="soundChange">
                         <option value="assets/sounds/notification.mp3">Default</option>
                         <option v-for="sound in sounds" value="file:///{{ sound.fullpath }}">{{ sound.name }}</option>
                     </select>
                 </div>
                 <div class="col-sm-4 col-sm-offset-2 input-section">
-                    <a id="reloadSounds" href="#" class="btn btn-primary btn-block">Reload Sounds</a>
+                    <a @click="soundReload" href="#" class="btn btn-primary btn-block">Reload Sounds</a>
                 </div>
                 <div class="col-sm-4 input-section">
-                    <a id="openSounds" href="#" class="btn btn-default btn-block">Open Sounds Folder</a>
+                    <a @click="soundOpen" href="#" class="btn btn-default btn-block">Open Sounds Folder</a>
                 </div>
                 <div class="col-sm-2 input-section">
-                    <a id="playSounds" href="#" class="btn btn-default btn-block"><i class="fa fa-play"></i></a>
+                    <a @click="soundPlay" href="#" class="btn btn-default btn-block"><i class="fa fa-play"></i></a>
                 </div>   
             </div>
         </div>
@@ -48,7 +48,36 @@
 </template>
 
 <script>
+const ipcRenderer = require('electron').ipcRenderer;
+
 export default {
-  props: ['themes', 'sounds']
+  props: ['themes', 'sounds'],
+  methods: {
+    themeChange() {
+      if ($('#theme-select option:selected').val() == '#') {
+        $('#theme-tag').attr('href', $('#theme-select option:selected').val())
+      } else {
+          $('#theme-tag').attr('href', $('#theme-select option:selected').val())
+      }
+    },
+    soundChange() {
+      $('#notification-tag').attr('src', $('#sound-select option:selected').val())
+    },
+    themeReload() {
+      ipcRenderer.send('surfbird:send:themes', true);
+    },
+    soundReload() {
+      ipcRenderer.send('surfbird:send:sounds', true);
+    },
+    themeOpen() {
+      ipcRenderer.send('surfbird:open:themes', true);
+    },
+    soundOpen() {
+      ipcRenderer.send('surfbird:open:sounds', true);
+    },
+    soundPlay() {
+      document.getElementById('notification-tag').play();
+    }
+  }
 }
 </script>
