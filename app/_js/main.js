@@ -1,6 +1,8 @@
 const Vue = require('vue');
 var VueI18n = require('vue-i18n');
 window.$ = window.jQuery = require('jquery');
+const ipcRenderer = require('electron').ipcRenderer;
+var interactionsurf = false;
 require('../../node_modules/lightbox2/dist/js/lightbox.min.js')
 require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 
@@ -37,9 +39,6 @@ var vm = new Vue({
         user: app.user
     },
 })
-
-const ipcRenderer = require('electron').ipcRenderer;
-var interactionsurf = false;
 
 ipcRenderer.on('surfbird:get:user', function(e, user) {
     app.user = user;
@@ -96,42 +95,6 @@ $('#send').on('click', function () {
     $('#tweet').val('')
     $('#tweet').removeAttr('data-tweet-id')
 });
-
-$(document.body).on('click', 'a.retweet', function(e) {
-    e.preventDefault();
-    
-    if ($(this).hasClass('active')) {
-        tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unretweet"}
-        ipcRenderer.send('surfbird:send:retweet', tweet)
-        $(this).removeClass('active')
-    } else {
-        tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "retweet"}
-        ipcRenderer.send('surfbird:send:retweet', tweet)
-        $(this).addClass('active')
-    }
-})
-
-$(document.body).on('click', 'a.favorite', function(e) {
-    e.preventDefault();
-
-    if ($(this).hasClass('active')) {
-        tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "unfavorite"}
-        ipcRenderer.send('surfbird:send:favorite', tweet)
-        $(this).removeClass('active')
-    } else {
-        tweet = {id: $(this).closest('.tweet').data('tweet-id'), type: "favorite"}
-        ipcRenderer.send('surfbird:send:favorite', tweet)
-        $(this).addClass('active')
-    }
-})
-
-$(document.body).on('click', 'a.reply', function(e) {
-    e.preventDefault();
-
-    document.getElementById('tweet').setAttribute('data-tweet-id', $(this).closest('.tweet').data('tweet-id'))
-    $('#tweet').val("@" + $(this).closest('.tweet').data('username') + " ")
-    $('#tweet').focus()
-})
 
 $('#theme-select').change(function(){
     if ($('#theme-select option:selected').val() == '#') {

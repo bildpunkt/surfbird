@@ -9,7 +9,7 @@
         {{ content.user.name }} <small>{{ content.user.screen_name}}</small>
       </div>
       <tweet-body v-bind:tweet="content"></tweet-body>
-      <tweet-footer></tweet-footer>
+      <tweet-footer :content="content"></tweet-footer>
     </div>
   </div>
   <div class="tweet" data-tweet-id="{{ content.id_str }}" data-created-at="{{ content.created_at }}" data-username="{{ content.user.screen_name }}" v-else>
@@ -20,7 +20,7 @@
         {{ content.retweeted_status.user.name }} <small>{{ content.retweeted_status.user.screen_name}}</small>
       </div>
       <tweet-body v-bind:tweet="content.retweeted_status"></tweet-body>
-      <tweet-footer></tweet-footer>
+      <tweet-footer :content="content"></tweet-footer>
     </div>
   </div>
 </template>
