@@ -1,5 +1,5 @@
-const keys = require('./keys')
-const tokens = require('./tokens')
+const keys = require('./storage/keys')
+const tokens = require('./storage/tokens')
 const Twit = require('twit')
 
 T = new Twit({

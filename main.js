@@ -1,8 +1,8 @@
 'use strict';
 
 const { app, BrowserWindow, shell, ipcMain } = require('electron');
-const keys = require('./src/keys');
-const tokens = require('./src/tokens');
+const keys = require('./src/storage/keys');
+const tokens = require('./src/storage/tokens');
 require('./src/path');
 
 let mainWindow, authWindow, rqt, rqts, act, acts, oauth_verifier;
@@ -62,8 +62,8 @@ function createWindow() {
     require('./src/twitter/actions');
     require('./src/twitter/interactions')(mainWindow);
     require('./src/twitter/initial')(mainWindow, current_user);
-    require('./src/themes')(app, mainWindow);
-    require('./src/sounds')(app, mainWindow);
+    require('./src/storage/themes')(app, mainWindow);
+    require('./src/storage/sounds')(app, mainWindow);
 }
 
 function createAuthWindow() {

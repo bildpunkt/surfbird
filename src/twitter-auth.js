@@ -1,4 +1,4 @@
-const keys = require('./keys')
+const keys = require('./storage/keys')
 const twitterAPI = require('node-twitter-api')
 
 const tAuth = new twitterAPI({
