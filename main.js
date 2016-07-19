@@ -6,43 +6,13 @@ const { app, BrowserWindow, shell, ipcMain } = require('electron');
 const root = path.join(path.dirname(fs.realpathSync(__filename)));
 const keys = require('./src/keys');
 const tokens = require('./src/tokens');
+require('./src/path');
 
 let mainWindow, authWindow, rqt, rqts, act, acts, oauth_verifier;
 
 if (keys.get('consumer_key') == 'YOUR_KEYS_HERE') {
     throw new Error('Twitter keys not defined, please add your consumer keys to surfbird.json!')
 }
-
-// Theme path creation
-var thp = ""
-if (process.platform == "win32") {
-    thp = "\\themes\\"
-} else {
-    thp = "/themes/"
-}
-
-fs.mkdir(app.getPath("userData") + thp ,function(e) {
-    if (e && e.code !== "EEXIST") {
-        console.log(e)
-    }
-})
-app.setPath("documents", app.getPath("userData") + thp)
-
-// Sounds path creation
-var sp = ""
-if (process.platform == "win32") {
-    sp = "\\sounds\\"
-} else {
-    sp = "/sounds/"
-}
-
-fs.mkdir(app.getPath("userData") + sp ,function(e) {
-    if (e && e.code !== "EEXIST") {
-        console.log(e)
-    }
-})
-app.setPath("music", app.getPath("userData") + sp)
-// TODO: move path creation into seperate file
 
 function createWindow() {
     mainWindow = new BrowserWindow({
