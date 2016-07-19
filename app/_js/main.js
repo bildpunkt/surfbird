@@ -96,6 +96,10 @@ $('#send').on('click', function () {
     $('#tweet').removeAttr('data-tweet-id')
 });
 
+$(document.body).on('click', '#logout', function(e) {
+    ipcRenderer.send('surfbird:logout', true);
+})
+
 ipcRenderer.send('surfbird:send:home-timeline', true);
 ipcRenderer.send('surfbird:send:mentions-timeline', true);
 ipcRenderer.send('surfbird:send:themes', true);
