@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <div class="loader" id="{{ id }}">
+  <div class="loader">
     <div class="wrapper">
       <div class="la-ball-scale-multiple la-2x">
         <div></div>
@@ -16,6 +16,6 @@
 
 <script>
 export default {
-  props: ['message', 'id']
+  props: ['message']
 }
 </script>

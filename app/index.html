@@ -11,11 +11,9 @@
     <compose :user.sync="user"></compose>
         <div class="columns">
             <column title="Home">
-                <loader id="mainloader" message="Establishing Streaming Connection"></loader>
                 <stream-item v-for="tweet in tweets | orderBy 'id_str' -1" v-bind:content="tweet" v-bind:index="$index"></stream-item>
             </column>
             <column title="Interactions">
-                <loader id="interactionloader" message="Loading Interactions"></loader>
                 <interaction v-for="event in interactions | orderBy 'event.created_at' -1" v-bind:event="event.type" v-bind:content="event.event" v-bind:index="$index"></interaction>
             </column>
         </div>

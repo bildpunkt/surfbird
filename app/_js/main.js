@@ -61,10 +61,6 @@ ipcRenderer.on('surfbird:get:sounds', function(e, sound) {
 
 ipcRenderer.on('surfbird:get:tweets', function(e, tweet) {
   app.tweets.unshift(tweet);
-
-  if (app.tweets.length >= 0 && !$('#mainloader').hasClass('hidden')) {
-    $('#mainloader').addClass('hidden')
-  }
 });
 
 ipcRenderer.on('surfbird:get:interactions', function(e, interaction) {
@@ -72,10 +68,6 @@ ipcRenderer.on('surfbird:get:interactions', function(e, interaction) {
 
     if (interactionsurf) {
         SurfNotification(interaction, interaction.event)
-    }
-
-    if (app.interactions.length >= 0 && !$('#interactionloader').hasClass('hidden')) {
-        $('#interactionloader').addClass('hidden')
     }
 
     // skip the first 20 notifications, because we are pulling in 20 mentions from the beginning

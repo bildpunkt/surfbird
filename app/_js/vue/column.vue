@@ -7,7 +7,9 @@
             <div class="column-header">{{ title }}</div>
             <div class="column-content">
                 <div class="column-scroller">
-                    <slot></slot>    
+                    <slot>
+                      <loader message="Loading..."></loader>
+                    </slot>    
                 </div>
             </div>
         </div>
