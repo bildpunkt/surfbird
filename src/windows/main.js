@@ -9,7 +9,10 @@ module.exports = function() {
         width: 1000,
         height: 900,
         title: 'Surfbird',
-        autoHideMenuBar: true
+        autoHideMenuBar: true,
+        webPreferences: {
+          blinkFeatures: "CSSBackdropFilter"
+        }
     });
 
     const twitter = require('../twitter');
