@@ -1,7 +1,7 @@
 const path = require('path');
-const { app } = require('electron');
+const fs = require('fs');
 
-module.exports = function() {
+module.exports = function(app) {
     // Theme path creation
     var thp = ""
     if (process.platform == "win32") {
