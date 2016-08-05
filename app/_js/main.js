@@ -61,21 +61,21 @@ ipcRenderer.on('surfbird:get:sounds', function(e, sound) {
 })
 
 ipcRenderer.on('surfbird:get:tweets', function(e, tweet) {
-  tweet.text = twitter.autoLink(tweet.text, {'usernameIncludeSymbol':true, 'targetBlank':true})
+  tweet.text_html = twitter.autoLink(tweet.text, {'usernameIncludeSymbol':true, 'targetBlank':true})
 
   if (tweet.retweeted_status !== undefined) {
-      tweet.retweeted_status.text = twitter.autoLink(tweet.retweeted_status.text, {'usernameIncludeSymbol':true, 'targetBlank':true})
+      tweet.retweeted_status.text_html = twitter.autoLink(tweet.retweeted_status.text, {'usernameIncludeSymbol':true, 'targetBlank':true})
   }
   app.tweets.unshift(tweet);
 });
 
 ipcRenderer.on('surfbird:get:interactions', function(e, interaction) {
     if (interaction.event.target_object !== undefined) {
-        interaction.event.target_object.text = twitter.autoLink(interaction.event.target_object.text, {'usernameIncludeSymbol':true, 'targetBlank':true})
+        interaction.event.target_object.text_html = twitter.autoLink(interaction.event.target_object.text, {'usernameIncludeSymbol':true, 'targetBlank':true})
     }
 
     if (interaction.event.text !== undefined) {
-        interaction.event.text = twitter.autoLink(interaction.event.text, {'usernameIncludeSymbol':true, 'targetBlank':true})
+        interaction.event.text_html = twitter.autoLink(interaction.event.text, {'usernameIncludeSymbol':true, 'targetBlank':true})
     }
     
     app.interactions.unshift(interaction);
