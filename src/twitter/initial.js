@@ -38,7 +38,8 @@ module.exports = function (mainWindow, currentUser) {
     twitter.get('users/show', {user_id: currentUser}, function (e, data) {
       mainWindow.webContents.send('surfbird:get:user', data)
 
-      require('./mentions')(mainWindow, data.screen_name)
+      const mStream = require('../stream/mention')(data.screen_name)
+      require('./mentions')(mainWindow, mStream)
     })
   })
 }

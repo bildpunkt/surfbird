@@ -9,15 +9,11 @@
  * and sends it over IPC channels to the client frontend
  *
  * Includes a reference from mainWindow to use IPC channels,
- * and a reference of the username from the inital data call
+ * and a reference of the mention stream to fetch data from it
  *
  */
 
-const twitter = require('../twitter')
-
-module.exports = function (mainWindow, currentUser) {
-  var stream = twitter.stream('statuses/filter', {track: '@' + currentUser})
-
+module.exports = function (mainWindow, stream) {
   stream.on('tweet', function (tweet) {
     var ev = {type: 'mention', event: tweet}
 

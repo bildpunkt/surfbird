@@ -8,14 +8,13 @@
  * This file provides streams of interactions fetched from the API
  * and sends it over IPC channels to the client frontend
  *
- * Includes a reference from mainWindow to use IPC channels
+ * Includes a reference from mainWindow to use IPC channels,
+ * and a reference to the user stream to fetch data from it
  *
  */
 
-const twitter = require('../twitter')
 const tokens = require('../storage/tokens')
 
-var stream = twitter.stream('user', {with: 'followings', include_rts: 'false'})
 var currentUser = tokens.get('access_token').split('-')[0]
 var events = ['favorite',
               'unfavorite',
@@ -26,7 +25,7 @@ var events = ['favorite',
               'retweeted_retweet',
               'favorited_retweet']
 
-module.exports = function (mainWindow) {
+module.exports = function (mainWindow, stream) {
   events.forEach(function (eventName) {
     stream.on(eventName, function (event) {
       if (event.target.id_str === currentUser) {

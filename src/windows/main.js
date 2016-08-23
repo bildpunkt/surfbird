@@ -43,9 +43,11 @@ module.exports = function () {
     app.quit()
   })
 
+  const stream = require('../stream/main')
+
   require('../twitter/actions')
-  require('../twitter/tweet')(mainWindow)
-  require('../twitter/interactions')(mainWindow)
+  require('../twitter/tweet')(mainWindow, stream)
+  require('../twitter/interactions')(mainWindow, stream)
   require('../twitter/initial')(mainWindow, currentUser)
   require('../storage/themes')(app, mainWindow)
   require('../storage/sounds')(app, mainWindow)
