@@ -2,9 +2,6 @@
 
 var gulp = require('gulp')
 var sass = require('gulp-sass')
-var concat = require('gulp-concat')
-var uglify = require('gulp-uglify')
-var add = require('gulp-add-src')
 var browserify = require('browserify')
 var vueify = require('vueify')
 var source = require('vinyl-source-stream')
