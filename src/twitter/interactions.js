@@ -15,8 +15,8 @@
 const twitter = require('../twitter')
 const tokens = require('../storage/tokens')
 
-var stream = twitter.stream('user', { with: 'followings', include_rts: 'false'})
-var current_user = tokens.get('access_token').split('-')[0]
+var stream = twitter.stream('user', {with: 'followings', include_rts: 'false'})
+var currentUser = tokens.get('access_token').split('-')[0]
 var events = ['favorite',
               'unfavorite',
               'follow',
@@ -27,10 +27,10 @@ var events = ['favorite',
               'favorited_retweet']
 
 module.exports = function (mainWindow) {
-  events.forEach(function (event_name) {
-    stream.on(event_name, function (event) {
-      if (event.target.id_str === current_user) {
-        var ev = {type: event_name, event: event}
+  events.forEach(function (eventName) {
+    stream.on(eventName, function (event) {
+      if (event.target.id_str === currentUser) {
+        var ev = {type: eventName, event: event}
 
         mainWindow.webContents.send('surfbird:get:interactions', ev)
       }

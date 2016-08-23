@@ -15,7 +15,7 @@ module.exports = function () {
   })
 
   const twitter = require('../twitter')
-  const current_user = tokens.get('access_token').split('-')[0]
+  const currentUser = tokens.get('access_token').split('-')[0]
 
   mainWindow.loadURL('file://' + __dirname + '/../../app/index.html')
 
@@ -37,7 +37,7 @@ module.exports = function () {
     shell.openExternal(url)
   })
 
-  var stream = twitter.stream('user', { with: 'followings', include_rts: 'false'})
+  var stream = twitter.stream('user', {with: 'followings', include_rts: 'false'})
 
   ipcMain.on('surfbird:logout', function (e) {
     tokens.clear()
@@ -48,7 +48,7 @@ module.exports = function () {
   require('../twitter/actions')
   require('../twitter/tweet')(mainWindow)
   require('../twitter/interactions')(mainWindow)
-  require('../twitter/initial')(mainWindow, current_user)
+  require('../twitter/initial')(mainWindow, currentUser)
   require('../storage/themes')(app, mainWindow)
   require('../storage/sounds')(app, mainWindow)
 }

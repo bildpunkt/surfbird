@@ -67,24 +67,24 @@ module.exports = function () {
   })
 
   authPage.on('will-navigate', function (e, url) {
-		                                          if (url.indexOf('oauth_verifier=') > 0) { // If the callback page is loaded
-			                    authWindow.hide()
-			                    const oauth_verifier = (url.substring(url.indexOf('oauth_verifier='), url.length)).replace('oauth_verifier=', '') // Get the oauthVerifier token
+    if (url.indexOf('oauth_verifier=') > 0) { // If the callback page is loaded
+      authWindow.hide()
+      const oauthVerifier = (url.substring(url.indexOf('oauth_verifier='), url.length)).replace('oauth_verifier=', '') // Get the oauthVerifier token
 
-  twitterAuth.getAccessToken(rqt, rqts, oauth_verifier, function (error, accessToken, accessTokenSecret, results) {
-    if (error) {
-      console.log(error)
-    } else {
-      tokens.set('access_token', accessToken)
-      tokens.set('access_token_secret', accessTokenSecret)
-      authPage.session.clearCache(function () {})
+      twitterAuth.getAccessToken(rqt, rqts, oauthVerifier, function (error, accessToken, accessTokenSecret, results) {
+        if (error) {
+          console.log(error)
+        } else {
+          tokens.set('access_token', accessToken)
+          tokens.set('access_token_secret', accessTokenSecret)
+          authPage.session.clearCache(function () {})
 
-      authPage.session.cookies.remove('https://twitter.com', '_twitter_sess', function (e) { /* nothing */ })
-      authPage.session.cookies.remove('https://twitter.com', 'auth_token', function (e) { /* nothing */ })
-      createWindow()
-      authWindow.close()
+          authPage.session.cookies.remove('https://twitter.com', '_twitter_sess', function (e) { /* nothing */ })
+          authPage.session.cookies.remove('https://twitter.com', 'auth_token', function (e) { /* nothing */ })
+          createWindow()
+          authWindow.close()
+        }
+      })
     }
-  })
-}
   })
 }

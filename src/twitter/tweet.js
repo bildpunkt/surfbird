@@ -15,7 +15,7 @@
 const twitter = require('../twitter')
 
 module.exports = function (mainWindow) {
-  var stream = twitter.stream('user', { with: 'followings', include_rts: 'false'})
+  var stream = twitter.stream('user', {with: 'followings', include_rts: 'false'})
 
   stream.on('tweet', function (tweet) {
     tweet.created_at = tweet.timestamp_ms

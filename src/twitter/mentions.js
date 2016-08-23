@@ -15,8 +15,8 @@
 
 const twitter = require('../twitter')
 
-module.exports = function (mainWindow, current_user) {
-  var stream = twitter.stream('statuses/filter', {track: '@' + current_user})
+module.exports = function (mainWindow, currentUser) {
+  var stream = twitter.stream('statuses/filter', {track: '@' + currentUser})
 
   stream.on('tweet', function (tweet) {
     var ev = {type: 'mention', event: tweet}
