@@ -12,7 +12,9 @@ if (keys.get('consumer_key') === 'YOUR_KEYS_HERE') {
 }
 
 if (tokens.get('access_token') === undefined) {
-  app.on('ready', createAuthWindow)
+  app.on('ready', function () {
+    createAuthWindow()
+  })
 } else {
   app.on('ready', function () {
     createWindow()
@@ -27,7 +29,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
-  if (mainWindow === null) {
+  if (createWindow === null) {
     createWindow()
   }
 })

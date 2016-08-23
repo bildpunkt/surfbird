@@ -1,4 +1,5 @@
-var nconf = require('nconf').file({file: __dirname + '/./../../surfbird.json'})
+var path = require('path')
+var nconf = require('nconf').file({file: path.join(__dirname, '/./../../surfbird.json')})
 
 function set (key, value) {
   nconf.set(key, value)

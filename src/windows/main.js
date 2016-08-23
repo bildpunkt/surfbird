@@ -1,5 +1,6 @@
 const { app, BrowserWindow, shell, ipcMain } = require('electron')
 const tokens = require('../storage/tokens')
+const path = require('path')
 
 let mainWindow
 
@@ -14,10 +15,9 @@ module.exports = function () {
     }
   })
 
-  const twitter = require('../twitter')
   const currentUser = tokens.get('access_token').split('-')[0]
 
-  mainWindow.loadURL('file://' + __dirname + '/../../app/index.html')
+  mainWindow.loadURL(path.join('file://', __dirname, '/../../app/index.html'))
 
   mainWindow.on('closed', () => {
     mainWindow = null
@@ -36,8 +36,6 @@ module.exports = function () {
 
     shell.openExternal(url)
   })
-
-  var stream = twitter.stream('user', {with: 'followings', include_rts: 'false'})
 
   ipcMain.on('surfbird:logout', function (e) {
     tokens.clear()
