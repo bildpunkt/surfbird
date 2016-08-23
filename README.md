@@ -31,6 +31,12 @@ as it can hold get parameters without removing them, the client only needs to be
 
 `npm run build:[windows|linux|osx]`
 
+### Coding Style
+
+Surfbird is following the [Javascript Standard Styleguide](https://github.com/feross/standard)
+
+[![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+
 ## License
 
 Surfbird is licensed under the MIT License

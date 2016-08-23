@@ -1,34 +1,34 @@
-const path = require('path');
-const fs = require('fs');
+const path = require('path')
+const fs = require('fs')
 
-module.exports = function(app) {
+module.exports = function (app) {
     // Theme path creation
-    var thp = ""
-    if (process.platform == "win32") {
-        thp = "\\themes\\"
-    } else {
-        thp = "/themes/"
-    }
+  var thp = ''
+  if (process.platform == 'win32') {
+    thp = '\\themes\\'
+  } else {
+    thp = '/themes/'
+  }
 
-    fs.mkdir(app.getPath("userData") + thp ,function(e) {
-        if (e && e.code !== "EEXIST") {
-            console.log(e)
-        }
-    })
-    app.setPath("documents", app.getPath("userData") + thp)
+  fs.mkdir(app.getPath('userData') + thp, function (e) {
+    if (e && e.code !== 'EEXIST') {
+      console.log(e)
+    }
+  })
+  app.setPath('documents', app.getPath('userData') + thp)
 
     // Sounds path creation
-    var sp = ""
-    if (process.platform == "win32") {
-        sp = "\\sounds\\"
-    } else {
-        sp = "/sounds/"
-    }
+  var sp = ''
+  if (process.platform == 'win32') {
+    sp = '\\sounds\\'
+  } else {
+    sp = '/sounds/'
+  }
 
-    fs.mkdir(app.getPath("userData") + sp ,function(e) {
-        if (e && e.code !== "EEXIST") {
-            console.log(e)
-        }
-    })
-    app.setPath("music", app.getPath("userData") + sp)
+  fs.mkdir(app.getPath('userData') + sp, function (e) {
+    if (e && e.code !== 'EEXIST') {
+      console.log(e)
+    }
+  })
+  app.setPath('music', app.getPath('userData') + sp)
 }

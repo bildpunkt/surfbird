@@ -10,18 +10,18 @@
  *
  * Includes a reference from mainWindow to use IPC channels,
  * and a reference of the username from the inital data call
- * 
+ *
  */
 
-const { ipcMain } = require('electron');
-const twitter = require('../twitter');
+const { ipcMain } = require('electron')
+const twitter = require('../twitter')
 
-module.exports = function(mainWindow, current_user) {
-    var stream = twitter.stream('statuses/filter', {track: "@" + current_user})
+module.exports = function (mainWindow, current_user) {
+  var stream = twitter.stream('statuses/filter', {track: '@' + current_user})
 
-    stream.on('tweet', function (tweet) {
-        var ev = {type: "mention", event: tweet}
+  stream.on('tweet', function (tweet) {
+    var ev = {type: 'mention', event: tweet}
 
-        mainWindow.webContents.send('surfbird:get:interactions', ev);
-    })
+    mainWindow.webContents.send('surfbird:get:interactions', ev)
+  })
 }
