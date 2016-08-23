@@ -19,12 +19,12 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
   if (tweet.id !== undefined) {
         // ..with an ID attached (as reply)
     twitter.post('statuses/update', { status: tweet.text, in_reply_to_status_id: tweet.id }, function (err, data, response) {
-            // do nothing!
+      if (err) return console.log(err);
     })
   } else {
         // ..with no ID attached (as puretweet)
     twitter.post('statuses/update', { status: tweet.text }, function (err, data, response) {
-        // do nothing!
+      if (err) return console.log(err);
     })
   }
 })
@@ -34,11 +34,11 @@ ipcMain.on('surfbird:send:retweet', function (e, tweet) {
     // ..and then post them to Twitter
   if (tweet.type == 'retweet') {
     twitter.post('statuses/retweet/:id', { id: tweet.id }, function (err, data, response) {
-            // do nothing!
+      if (err) return console.log(err);
     })
   } else if (tweet.type == 'unretweet') {
     twitter.post('statuses/unretweet/:id', { id: tweet.id }, function (err, data, response) {
-            // do nothing!
+      if (err) return console.log(err);
     })
   }
 })
@@ -48,11 +48,11 @@ ipcMain.on('surfbird:send:favorite', function (e, tweet) {
     // ..and then post them to Twitter
   if (tweet.type == 'favorite') {
     twitter.post('favorites/create', { id: tweet.id }, function (err, data, response) {
-            // do nothing!
+      if (err) return console.log(err);
     })
   } else if (tweet.type == 'unfavorite') {
     twitter.post('favorites/destroy', { id: tweet.id }, function (err, data, response) {
-            // do nothing!
+      if (err) return console.log(err);
     })
   }
 })

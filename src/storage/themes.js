@@ -4,6 +4,8 @@ const fs = require('fs')
 module.exports = function (app, mainWindow) {
   ipcMain.on('surfbird:send:themes', function (e) {
     fs.readdir(app.getPath('documents'), function (err, files) {
+      if (err) return console.log(err);
+
       if (files !== undefined) {
         files.forEach(function (theme) {
           if (theme.indexOf('.css') > -1) {
