@@ -91,6 +91,8 @@ ipcRenderer.on('surfbird:get:interactions', function (e, interaction) {
 })
 
 $('#send').on('click', function () {
+  var tweet = {}
+
   if ($('#tweet').data('tweet-id') !== undefined) {
     tweet = {text: $('#tweet').val(), id: $('#tweet').data('tweet-id')}
   } else {
