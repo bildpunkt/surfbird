@@ -1,5 +1,4 @@
 const { app, BrowserWindow, shell, ipcMain } = require('electron')
-const keys = require('../storage/keys')
 const tokens = require('../storage/tokens')
 
 let mainWindow

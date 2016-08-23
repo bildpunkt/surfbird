@@ -12,7 +12,6 @@
  *
  */
 
-const { ipcMain } = require('electron')
 const twitter = require('../twitter')
 
 module.exports = function (mainWindow) {

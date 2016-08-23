@@ -1,6 +1,6 @@
 'use strict'
 
-const { app, BrowserWindow, shell, ipcMain } = require('electron')
+const { app } = require('electron')
 const keys = require('./src/storage/keys')
 const tokens = require('./src/storage/tokens')
 const createWindow = require('./src/windows/main')

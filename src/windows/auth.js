@@ -1,9 +1,9 @@
-const { app, BrowserWindow, shell, ipcMain } = require('electron')
+const { BrowserWindow, shell } = require('electron')
 const keys = require('../storage/keys')
 const tokens = require('../storage/tokens')
 const createWindow = require('./main')
 
-let authWindow, rqt, rqts, act, acts, oauth_verifier
+let authWindow, rqt, rqts
 
 module.exports = function () {
   authWindow = new BrowserWindow({

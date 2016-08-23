@@ -12,7 +12,6 @@
  *
  */
 
-const { ipcMain } = require('electron')
 const twitter = require('../twitter')
 const tokens = require('../storage/tokens')
 
