@@ -1,3 +1,18 @@
+/*
+ * initial.js
+ * part of the Surfbird Twitter client
+ *
+ * Author: Andreas N. <git@pixelde.su>
+ * Entrypoint: src/windows/main.js
+ *
+ * This file provides initial data calls (user, home, mentions)
+ * and sends them over IPC channels to the client frontend
+ *
+ * Includes a reference from mainWindow to use IPC channels,
+ * and the current_user id, which is split from the access token
+ * 
+ */
+
 const { ipcMain } = require('electron');
 const twitter = require('../twitter');
 

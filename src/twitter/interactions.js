@@ -1,3 +1,17 @@
+/*
+ * interactions.js
+ * part of the Surfbird Twitter client
+ *
+ * Author: Andreas N. <git@pixelde.su>
+ * Entrypoint: src/windows/main.js
+ *
+ * This file provides streams of interactions fetched from the API
+ * and sends it over IPC channels to the client frontend
+ *
+ * Includes a reference from mainWindow to use IPC channels
+ * 
+ */
+
 const { ipcMain } = require('electron');
 const twitter = require('../twitter');
 const tokens = require('../storage/tokens')

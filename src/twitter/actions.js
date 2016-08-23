@@ -1,3 +1,15 @@
+/*
+ * actions.js
+ * part of the Surfbird Twitter client
+ *
+ * Author: Andreas N. <git@pixelde.su>
+ * Entrypoint: src/windows/main.js
+ *
+ * This file provides actions to the Twitter API, which are
+ * received from the client frontend over IPC channels
+ * 
+ */
+
 const { ipcMain } = require('electron');
 const twitter = require('../twitter');
 
