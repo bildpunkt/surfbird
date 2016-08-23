@@ -16,14 +16,14 @@ module.exports = function () {
     }
   })
 
-  if (keys.get('callback_url') == 'YOUR_URL_HERE') {
+  if (keys.get('callback_url') === 'YOUR_URL_HERE') {
     throw new Error("Callback URL empty, without this the client can't authenticate properly")
   }
 
   const twitterAuth = require('../twitter-auth')
 
     /* developer workaround ;) */
-  if (keys.get('pin') !== void 8 && keys.get('callback_url') == 'oob') {
+  if (keys.get('pin') !== void 8 && keys.get('callback_url') === 'oob') {
     var rot = keys.get('pin').split(':')
     twitterAuth.getAccessToken(rot[0], rot[1], rot[2], function (error, accessToken, accessTokenSecret, results) {
       if (error) {

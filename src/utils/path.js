@@ -3,7 +3,7 @@ const fs = require('fs')
 module.exports = function (app) {
     // Theme path creation
   var thp = ''
-  if (process.platform == 'win32') {
+  if (process.platform === 'win32') {
     thp = '\\themes\\'
   } else {
     thp = '/themes/'
@@ -18,7 +18,7 @@ module.exports = function (app) {
 
     // Sounds path creation
   var sp = ''
-  if (process.platform == 'win32') {
+  if (process.platform === 'win32') {
     sp = '\\sounds\\'
   } else {
     sp = '/sounds/'

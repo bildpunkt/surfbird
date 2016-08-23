@@ -32,11 +32,11 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
 // Let's wait for retweets..
 ipcMain.on('surfbird:send:retweet', function (e, tweet) {
     // ..and then post them to Twitter
-  if (tweet.type == 'retweet') {
+  if (tweet.type === 'retweet') {
     twitter.post('statuses/retweet/:id', { id: tweet.id }, function (err, data, response) {
       if (err) return console.log(err)
     })
-  } else if (tweet.type == 'unretweet') {
+  } else if (tweet.type === 'unretweet') {
     twitter.post('statuses/unretweet/:id', { id: tweet.id }, function (err, data, response) {
       if (err) return console.log(err)
     })
@@ -46,11 +46,11 @@ ipcMain.on('surfbird:send:retweet', function (e, tweet) {
 // Let's wait for favorites..
 ipcMain.on('surfbird:send:favorite', function (e, tweet) {
     // ..and then post them to Twitter
-  if (tweet.type == 'favorite') {
+  if (tweet.type === 'favorite') {
     twitter.post('favorites/create', { id: tweet.id }, function (err, data, response) {
       if (err) return console.log(err)
     })
-  } else if (tweet.type == 'unfavorite') {
+  } else if (tweet.type === 'unfavorite') {
     twitter.post('favorites/destroy', { id: tweet.id }, function (err, data, response) {
       if (err) return console.log(err)
     })

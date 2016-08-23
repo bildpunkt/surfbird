@@ -7,11 +7,11 @@ const createWindow = require('./src/windows/main')
 const createAuthWindow = require('./src/windows/auth')
 require('./src/utils/path')(app)
 
-if (keys.get('consumer_key') == 'YOUR_KEYS_HERE') {
+if (keys.get('consumer_key') === 'YOUR_KEYS_HERE') {
   throw new Error('Twitter keys not defined, please add your consumer keys to surfbird.json!')
 }
 
-if (tokens.get('access_token') == undefined) {
+if (tokens.get('access_token') === undefined) {
   app.on('ready', createAuthWindow)
 } else {
   app.on('ready', function () {

@@ -29,7 +29,7 @@ var events = ['favorite',
 module.exports = function (mainWindow) {
   events.forEach(function (event_name) {
     stream.on(event_name, function (event) {
-      if (event.target.id_str == current_user) {
+      if (event.target.id_str === current_user) {
         var ev = {type: event_name, event: event}
 
         mainWindow.webContents.send('surfbird:get:interactions', ev)
