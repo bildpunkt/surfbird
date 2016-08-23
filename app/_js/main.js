@@ -141,7 +141,7 @@ var SurfNotification = function (event, content) {
   }
 
   if (n.title !== undefined) {
-    Notification(n.title, {body: n.body, icon: n.icon, silent: true})
+    new Notification(n.title, {body: n.body, icon: n.icon, silent: true})
     document.getElementById('notification-tag').play()
   }
 }
