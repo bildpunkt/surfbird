@@ -4,7 +4,7 @@ const fs = require('fs')
 module.exports = function (app, mainWindow) {
   ipcMain.on('surfbird:send:sounds', function (e) {
     fs.readdir(app.getPath('music'), function (err, files) {
-      if (err) return console.log(err);
+      if (err) return console.log(err)
 
       if (files !== undefined) {
         files.forEach(function (sound) {
