@@ -13,5 +13,18 @@
       "retweeted_retweet": "{user} retweeted your Retweet",
       "favorited_retweet": "{user} liked your Retweet"
     }
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": {
+      "title": "Theme",
+      "reload": "Reload Themes",
+      "open": "Open Themes Folder"
+    },
+    "sound": {
+      "title": "Sound",
+      "reload": "Reload Sounds",
+      "open": "Open Sounds Folder"
+    }
   }
 }

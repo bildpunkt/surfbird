@@ -5,11 +5,11 @@
     <modal id="settingsModal" label="settingsModalLabel">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></button>
-            <h4 class="modal-title" id="settingsModalLabel">Settings</h4>
+            <h4 class="modal-title" id="settingsModalLabel">{{ $t('settings.title') }}</h4>
         </div>
         <div class="modal-body">
             <div class="form-group form-horizontal clearfix">
-                <label for="#theme-select" class="col-sm-2 control-label">Theme</label>
+                <label for="#theme-select" class="col-sm-2 control-label">{{ $t('settings.theme.title') }}</label>
                 <div class="col-sm-10">
                     <select id="theme-select" class="form-control" @change="themeChange">
                         <option value="#">None</option>
@@ -17,12 +17,12 @@
                     </select>
                 </div>
                 <div class="col-sm-5 col-sm-offset-2 input-section">
-                    <a @click="themeReload" href="#" class="btn btn-primary btn-block">Reload Themes</a>
+                    <a @click="themeReload" href="#" class="btn btn-primary btn-block">{{ $t('settings.theme.reload') }}</a>
                 </div>
                 <div class="col-sm-5 input-section">
-                    <a @click="themeOpen" href="#" class="btn btn-default btn-block">Open Themes Folder</a>
+                    <a @click="themeOpen" href="#" class="btn btn-default btn-block">{{ $t('settings.theme.open') }}</a>
                 </div>
-                <label for="#sound-select" class="col-sm-2 control-label input-section">Sound</label>
+                <label for="#sound-select" class="col-sm-2 control-label input-section">{{ $t('settings.sound.title') }}</label>
                 <div class="col-sm-10 input-section">
                     <select id="sound-select" class="form-control" @change="soundChange">
                         <option value="assets/sounds/notification.mp3">Default</option>
@@ -30,10 +30,10 @@
                     </select>
                 </div>
                 <div class="col-sm-4 col-sm-offset-2 input-section">
-                    <a @click="soundReload" href="#" class="btn btn-primary btn-block">Reload Sounds</a>
+                    <a @click="soundReload" href="#" class="btn btn-primary btn-block">{{ $t('settings.sound.reload') }}</a>
                 </div>
                 <div class="col-sm-4 input-section">
-                    <a @click="soundOpen" href="#" class="btn btn-default btn-block">Open Sounds Folder</a>
+                    <a @click="soundOpen" href="#" class="btn btn-default btn-block">{{ $t('settings.sound.open') }}</a>
                 </div>
                 <div class="col-sm-2 input-section">
                     <a @click="soundPlay" href="#" class="btn btn-default btn-block"><i class="fa fa-play"></i></a>
