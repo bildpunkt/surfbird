@@ -1,5 +1,17 @@
 {
-  message: {
-    hello: 'hello world'
+  "message": {
+    "hello": "hello world"
+  },
+  "interaction": {
+    "event": {
+      "favorite": "{user} liked your tweet",
+      "unfavorite": "{user} un-liked your tweet",
+      "follow": "{user} followed you",
+      "list_member_added": "{user} added you to list",
+      "list_member_removed": "{user} removed you from list",
+      "quoted_tweet": "{user} quoted your tweet",
+      "retweeted_retweet": "{user} retweeted your Retweet",
+      "favorited_retweet": "{user} liked your Retweet"
+    }
   }
 }

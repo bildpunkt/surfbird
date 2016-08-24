@@ -6,10 +6,7 @@
     <div class="tweet-content">
       <div class="tweet-header">
         <img class="tweet-avatar small" v-bind:src="content.source.profile_image_url"/>
-        {{ content.source.name }}
-        <span v-if="event == 'favorite'">favorited your tweet</span>
-        <span v-if="event == 'unfavorite'">unfavorited your tweet</span>
-        <span v-if="event == 'follow'">followed you</span>
+        {{ $t('interaction.event.' + event, {user: content.source.name}) }}
       </div>
       <div class="tweet-body contextual" v-if="content.target_object !== undefined">
         <div class="tweet-header">
