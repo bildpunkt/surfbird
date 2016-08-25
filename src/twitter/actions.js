@@ -28,7 +28,7 @@ var postTweetChain = function postTweetChain (tweets, lastId, sender) {
     if (err) {
       return console.error(err);
     }
-    postTweetChain(tweets, data.id_str);
+    postTweetChain(tweets, data.id_str, sender);
   });
 }
 
