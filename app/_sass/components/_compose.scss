@@ -66,8 +66,8 @@
                 font-weight: normal;
 
                 &:after {
-                    content:"\A"; 
-                    white-space:pre; 
+                    content:"\A";
+                    white-space:pre;
                 }
             }
 
@@ -104,5 +104,10 @@
 
 .js-remaining-character-count {
   color: #fff;
+}
+
+.js-chained-tweets {
+  color: #fff;
+  display: none;
   margin-right: 10px;
 }

@@ -100,10 +100,14 @@ $('#send').on('click', function () {
   }
 
   ipcRenderer.send('surfbird:send:tweet', tweet)
+});
+
+ipcRenderer.on('surfird:hook:success:tweet', function () {
   $('#tweet').val('')
   $('#tweet').removeAttr('data-tweet-id')
   $('.js-remaining-character-count').text(140)
-})
+  $('.js-chained-tweets').css('display', 'none')
+});
 
 $(document.body).on('click', '#logout', function (e) {
   ipcRenderer.send('surfbird:logout', true)
