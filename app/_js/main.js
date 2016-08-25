@@ -102,6 +102,7 @@ $('#send').on('click', function () {
   ipcRenderer.send('surfbird:send:tweet', tweet)
   $('#tweet').val('')
   $('#tweet').removeAttr('data-tweet-id')
+  $('.js-remaining-character-count').text(140)
 })
 
 $(document.body).on('click', '#logout', function (e) {

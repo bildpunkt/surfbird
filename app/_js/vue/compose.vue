@@ -18,9 +18,10 @@
             {{{ $t('message.hello') }}}
             <form action="/" method="HEAD" onsubmit="return false;">
               <div class="compose-input-container">
-                <textarea id="tweet" class="compose-input" placeholder="Tweet here bby"></textarea>
+                <textarea id="tweet" class="compose-input" placeholder="Tweet here bby" @input="characterCount"></textarea>
               </div>
               <div class="pull-right compose-actions">
+                <span class="js-remaining-character-count">140</span> 
                 <input type="submit" class="btn btn-primary" id="send" value="Send">
               </div>
             </form>
@@ -32,7 +33,15 @@
 </template>
 
 <script>
+const twitter = require('twitter-text')
+
 export default {
-  props: ['user']
+  props: ['user'],
+  methods: {
+    characterCount (e) {
+      var remain = 140 - twitter.getTweetLength($('#tweet').val())
+      $('.js-remaining-character-count').text(remain)
+    }
+  }
 }
 </script>
