@@ -99,6 +99,7 @@ $('#send').on('click', function () {
     tweet = {text: $('#tweet').val()}
   }
 
+  $('#send').attr('disabled', true)
   ipcRenderer.send('surfbird:send:tweet', tweet)
 });
 
@@ -107,6 +108,11 @@ ipcRenderer.on('surfird:hook:success:tweet', function () {
   $('#tweet').removeAttr('data-tweet-id')
   $('.js-remaining-character-count').text(140)
   $('.js-chained-tweets').css('display', 'none')
+  $('#send').attr('disabled', false)
+});
+
+ipcRenderer.on('surfird:hook:fail:tweet', function () {
+  $('#send').attr('disabled', false)
 });
 
 $(document.body).on('click', '#logout', function (e) {
