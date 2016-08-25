@@ -41,6 +41,12 @@ export default {
     characterCount (e) {
       var remain = 140 - twitter.getTweetLength($('#tweet').val())
       $('.js-remaining-character-count').text(remain)
+ 
+      if (remain <= 0) {
+        $('#send').prop('disabled', true)
+      } else {
+        $('#send').prop('disabled', false)
+      }
     }
   }
 }
