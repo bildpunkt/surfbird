@@ -4,7 +4,7 @@
 <template>
   <div class="app-header">
     <div class="top-navigation">
-      <a class="app-header-link" @click="showDrawer"><i class="fa fa-send"></a>
+      <a class="app-header-link" @click="showDrawer"><i class="fa fa-send"></i></a>
     </div>
     <div class="bottom-navigation">
       <div class="dropup">
