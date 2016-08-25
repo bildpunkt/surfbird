@@ -19,16 +19,15 @@ var postTweetChain = function postTweetChain (tweets, lastId, sender) {
     sender.send('surfird:hook:success:tweet');
     return;
   }
-  var payload = {status: tweets.shift()};
-  if (lastId !== void 8) {
-    payload.in_reply_to_status_id = lastId;
-  }
+
+  var payload = {status: tweets.shift(), in_reply_to_status_id: lastId};
 
   twitter.post('statuses/update', payload, function (err, data, response) {
     if (err) {
+      e.sender.send('surfird:hook:fail:tweet');
       return console.error(err);
     }
-    postTweetChain(tweets, data.id_str);
+    postTweetChain(tweets, data.id_str, sender);
   });
 }
 
@@ -36,7 +35,8 @@ var postTweetChain = function postTweetChain (tweets, lastId, sender) {
 ipcMain.on('surfbird:send:tweet', function (e, tweet) {
   var tweetLength = twittxt.getTweetLength(tweet.text);
   if (tweetLength > 140) {
-    var tweets = [];
+    var tweetid = tweet.id;
+    var tweets  = [];
 
     // split the tweet into chunks
     var chunks  = tweet.text.split(' ').filter(function (it) {
@@ -56,24 +56,18 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
         break;
       }
     }
-    mentionsLength += mentions.length - 1;
     if (chunks.length == 0) { // only has mentions???
       mentions       = chunks;
       mentions       = [];
       mentionsLength = 0;
     } else if (mentionsLength > 140) {
+      e.sender.send('surfird:hook:fail:tweet');
       return console.error('Too many mentions!');
     }
 
     // map urls
     var urls = twittxt.extractUrls(tweet.text, {extractUrlsWithoutProtocol: false}).map(function (it) {
       return it.toLowerCase();
-    });
-
-    // strip empty spaces
-    tweetLength = chunks.length - 1;
-    chunks.forEach(function (it) {
-      tweetLength += it.length;
     });
 
     while (chunks.length > 0) {
@@ -89,23 +83,21 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
         // chunk if overflow
         if (tweet.length + textLength + mentionsLength + length > 140) {
           // word is too long, split it up.
-          if (tweetLength == 0) {
+          if (textLength == 0) {
             if (urls.indexOf(chunk.toLowerCase()) > -1) {
+              e.sender.send('surfird:hook:fail:tweet');
               return console.error('Error! Can\'t segment URL!');
             } else {
-              var length = 140 - (tweet.length + textLength + mentionsLength);
-              var chunkA = chunk.substr(0, length);
-              var chunkB = chunk.substr(length);
-
-              tweet.push(chunkA);
+              length = 140 - (tweet.length + textLength + 1 + mentionsLength);
+              chunks.unshift(chunk.substr(length));
+              tweet.push(chunk.substr(0, length));
               textLength += length;
-
-              chunks.unshift(chunkB);
+              break;
             }
           } else { // push it to the next tweet
             chunks.unshift(chunk);
+            break;
           }
-          break;
         }
         tweet.push(chunk);
         textLength += length;
@@ -113,19 +105,25 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
       tweets.push(tweet.join(' '));
     }
 
-    postTweetChain(tweets, tweet.id, e.sender)
+    return postTweetChain(tweets, tweetid, e.sender);
   } else {
     // ..and then post them to Twitter..
     if (tweet.id !== undefined) {
       // ..with an ID attached (as reply)
       twitter.post('statuses/update', { status: tweet.text, in_reply_to_status_id: tweet.id }, function (err, data, response) {
-        if (err) return console.log(err)
+        if (err) {
+          e.sender.send('surfird:hook:fail:tweet');
+          return console.log(err)
+        }
         e.sender.send('surfird:hook:success:tweet');
       })
     } else {
       // ..with no ID attached (as puretweet)
       twitter.post('statuses/update', { status: tweet.text }, function (err, data, response) {
-        if (err) return console.log(err)
+        if (err) {
+          e.sender.send('surfird:hook:fail:tweet');
+          return console.log(err)
+        }
         e.sender.send('surfird:hook:success:tweet');
       })
     }
