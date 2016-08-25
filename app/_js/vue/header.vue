@@ -3,7 +3,9 @@
 
 <template>
   <div class="app-header">
-    <a class="btn btn-lg btn-primary btn-block">T</a>
+    <div class="top-navigation">
+      <a class="app-header-link" @click="showDrawer"><i class="fa fa-send"></a>
+    </div>
     <div class="bottom-navigation">
       <div class="dropup">
         <a class="app-header-link" href="#" id="settingsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -20,4 +22,11 @@
 </template>
 
 <script>
+export default {
+  methods: {
+    showDrawer (e) {
+      $('.app-content').toggleClass('is-open')
+    }
+  }
+}
 </script>
