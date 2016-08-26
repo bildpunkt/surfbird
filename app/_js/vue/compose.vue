@@ -62,8 +62,8 @@ export default {
       ipcRenderer.send('surfbird:send:tweet', tweet)
     },
     characterCount (e) {
-      var remain = 140 - (twitter.getTweetLength($('#tweet').val()) % 140)
-      var chains = Math.floor(twitter.getTweetLength($('#tweet').val()) / 140)
+      var remain = 140 - (twitter.getTweetLength($('.js-compose-tweet').val()) % 140)
+      var chains = Math.floor(twitter.getTweetLength($('.js-compose-tweet').val()) / 140)
       $('.js-remaining-character-count').text(remain).css('marginLeft', (chains > 0 ? 0 : '10px'))
       if(chains > 0) {
         $('.js-chained-tweets').text('(' + chains.toString() + ')').css('display', 'inline')
