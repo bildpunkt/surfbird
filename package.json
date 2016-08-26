@@ -42,7 +42,8 @@
     "twit": "^2.2.4",
     "twitter-text": "^1.14.0",
     "vue": "^1.0.24",
-    "vue-i18n": "^4.0.0"
+    "vue-i18n": "^4.0.0",
+    "vueify-insert-css": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.8.0",

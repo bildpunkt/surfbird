@@ -100,6 +100,20 @@
             width: 100%;
         }
     }
+
+    .nav-tabs.nav-justified > li > a {
+      border: none;
+      border-radius: 0;
+      background-color: #fff;
+      color: #2b7bb9;
+    }
+
+    .nav-tabs.nav-justified > .active > a {
+      border: none;
+      border-radius: 0;
+      background-color: #2b7bb9;
+      color: #fff;
+    }
 }
 
 .js-remaining-character-count {

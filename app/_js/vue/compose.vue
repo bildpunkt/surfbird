@@ -14,18 +14,27 @@
           <img :src="user.profile_banner_url" />
         </div>
         <div class="compose-antiscroll">
-          <div class="compose-container">
-            {{{ $t('message.hello') }}}
-            <form action="/" method="HEAD" onsubmit="return false;">
-              <div class="compose-input-container">
-                <textarea id="tweet" class="compose-input" placeholder="Tweet here bby" @input="characterCount"></textarea>
-              </div>
-              <div class="pull-right compose-actions">
-                <span class="js-remaining-character-count">140</span>
-                <span class="js-chained-tweets">0</span>
-                <input type="submit" class="btn btn-primary" id="send" value="Send">
-              </div>
-            </form>
+          <ul class="nav nav-tabs nav-justified">
+            <li role="presentation" class="active"><a href="#composeTweet" aria-controls="composeTweet" role="tab" data-toggle="tab">Tweet</a></li>
+            <li role="presentation"><a href="#composeDirectMessage" aria-controls="composeDirectMessage" role="tab" data-toggle="tab">Direct Message</a></li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane compose-container fade in active" id="composeTweet">
+              {{{ $t('message.hello') }}}
+              <form action="/" method="HEAD" onsubmit="return false;">
+                <div class="compose-input-container">
+                  <textarea id="tweet" class="compose-input" placeholder="Tweet here bby" @input="characterCount"></textarea>
+                </div>
+                <div class="pull-right compose-actions">
+                  <span class="js-remaining-character-count">140</span>
+                  <span class="js-chained-tweets">0</span>
+                  <input type="submit" class="btn btn-primary" id="send" value="Send">
+                </div>
+              </form>
+            </div>
+            <div role="tabpanel" class="tab-pane compose-container fade" id="composeDirectMessage">
+              <p>Coming Soon</p>
+            </div>
           </div>
         </div>
       </div>
