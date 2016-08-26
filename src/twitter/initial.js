@@ -28,7 +28,8 @@ module.exports = function (mainWindow, currentUser) {
   ipcMain.on('surfbird:send:mentions-timeline', function (e) {
     twitter.get('statuses/mentions_timeline', function (e, tweets) {
       tweets.forEach(function (tweet) {
-        var ev = { type: 'mention', event: tweet }
+        var time = new Date()
+        var ev = { type: 'mention', event: tweet, created_at: time.getTime() }
         mainWindow.webContents.send('surfbird:get:interactions', ev)
       })
     })

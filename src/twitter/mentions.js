@@ -15,7 +15,8 @@
 
 module.exports = function (mainWindow, stream) {
   stream.on('tweet', function (tweet) {
-    var ev = {type: 'mention', event: tweet}
+    var time = new Date()
+    var ev = {type: 'mention', event: tweet, created_at: time.getTime() }
 
     mainWindow.webContents.send('surfbird:get:interactions', ev)
   })

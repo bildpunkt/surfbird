@@ -29,7 +29,8 @@ module.exports = function (mainWindow, stream) {
   events.forEach(function (eventName) {
     stream.on(eventName, function (event) {
       if (event.target.id_str === currentUser) {
-        var ev = {type: eventName, event: event}
+        var time = new Date()
+        var ev = {type: eventName, event: event, created_at: time.getTime() }
 
         mainWindow.webContents.send('surfbird:get:interactions', ev)
       }
