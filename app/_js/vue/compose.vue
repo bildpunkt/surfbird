@@ -20,7 +20,6 @@
           </ul>
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane compose-container fade in active" id="composeTweet">
-              {{{ $t('message.hello') }}}
               <form action="/" method="HEAD" onsubmit="return false;">
                 <div class="compose-input-container">
                   <textarea class="compose-input js-compose-tweet" placeholder="Tweet here bby" @input="characterCount"></textarea>
