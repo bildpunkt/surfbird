@@ -43,4 +43,18 @@ module.exports = function (mainWindow, currentUser) {
       require('./mentions')(mainWindow, mStream)
     })
   })
+
+  ipcMain.on('surfbird:send:direct-messages', function (e) {
+    twitter.get('direct_messages', function (e, messages) {
+      messages.forEach(function (message) {
+        mainWindow.webContents.send('surfbird:get:direct-messages', message)
+      })
+    })
+
+    twitter.get('direct_messages/sent', function (e, messages) {
+      messages.forEach(function (message) {
+        mainWindow.webContents.send('surfbird:get:direct-messages', message)
+      })
+    })
+  })
 }

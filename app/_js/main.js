@@ -11,6 +11,7 @@ window.app = {}
 app.user = {}
 app.tweets = []
 app.interactions = []
+app.direct_messages = []
 app.themes = []
 app.sounds = []
 
@@ -26,6 +27,7 @@ Vue.component('stream-item', require('./vue/tweet/general.vue'))
 Vue.component('tweet-body', require('./vue/tweet/body.vue'))
 Vue.component('tweet-footer', require('./vue/tweet/footer.vue'))
 Vue.component('interaction', require('./vue/interaction.vue'))
+Vue.component('direct-message', require('./vue/direct_message.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
 Vue.component('modal', require('./vue/modal/general.vue'))
 Vue.component('settings-modal', require('./vue/modal/settings.vue'))
@@ -35,6 +37,7 @@ var vm = new Vue({
   data: {
     tweets: app.tweets,
     interactions: app.interactions,
+    direct_messages: app.direct_messages,
     sounds: app.sounds,
     themes: app.themes,
     user: app.user
@@ -90,6 +93,15 @@ ipcRenderer.on('surfbird:get:interactions', function (e, interaction) {
   }
 })
 
+ipcRenderer.on('surfbird:get:direct-messages', function (e, message) {
+  console.log("direct message received")
+  message.text_html = twitter.autoLink(message.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
+
+  if (!(JSON.stringify(app.direct_messages).indexOf(JSON.stringify(message)) > 0)) {
+    app.direct_messages.unshift(message)
+  }
+})
+
 $('#send').on('click', function () {
   var tweet = {}
 
@@ -121,6 +133,7 @@ $(document.body).on('click', '#logout', function (e) {
 
 ipcRenderer.send('surfbird:send:home-timeline', true)
 ipcRenderer.send('surfbird:send:mentions-timeline', true)
+ipcRenderer.send('surfbird:send:direct-messages', true)
 ipcRenderer.send('surfbird:send:themes', true)
 ipcRenderer.send('surfbird:send:sounds', true)
 ipcRenderer.send('surfbird:send:user', true)

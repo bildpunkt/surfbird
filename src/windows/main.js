@@ -48,6 +48,7 @@ module.exports = function () {
   require('../twitter/actions')
   require('../twitter/tweet')(mainWindow, stream)
   require('../twitter/interactions')(mainWindow, stream)
+  require('../twitter/direct_messages')(mainWindow, stream)
   require('../twitter/initial')(mainWindow, currentUser)
   require('../storage/themes')(app, mainWindow)
   require('../storage/sounds')(app, mainWindow)

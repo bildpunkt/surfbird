@@ -67,6 +67,10 @@
     "vueify-insert-css": "^1.0.0"
   },
   "standard": {
-    "globals": [ "app", "$", "Notification" ]
+    "globals": [
+      "app",
+      "$",
+      "Notification"
+    ]
   }
 }

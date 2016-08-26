@@ -16,6 +16,9 @@
             <column title="Interactions">
                 <interaction v-for="event in interactions | orderBy 'created_at' -1" v-bind:event="event.type" v-bind:content="event.event" v-bind:index="$index"></interaction>
             </column>
+            <column title="Direct Messages">
+                <direct-message v-for="message in direct_messages | orderBy 'id_str' -1" v-bind:content="message" v-bind:index="$index"></direct-message>
+            </column>
         </div>
     </div>
     <settings-modal :themes.sync="themes" :sounds.sync="sounds"></settings-modal>
