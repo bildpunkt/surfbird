@@ -23,12 +23,10 @@
               {{{ $t('message.hello') }}}
               <form action="/" method="HEAD" onsubmit="return false;">
                 <div class="compose-input-container">
-                  <textarea id="tweet" class="compose-input" placeholder="Tweet here bby" @input="characterCount"></textarea>
                 </div>
                 <div class="pull-right compose-actions">
                   <span class="js-remaining-character-count">140</span>
                   <span class="js-chained-tweets">0</span>
-                  <input type="submit" class="btn btn-primary" id="send" value="Send">
                 </div>
               </form>
             </div>
@@ -44,10 +42,23 @@
 
 <script>
 const twitter = require('twitter-text')
+const ipcRenderer = require('electron').ipcRenderer
 
 export default {
   props: ['user'],
   methods: {
+    sendTweet (e) {
+      var tweet = {}
+
+      if ($('.js-compose-tweet').data('tweet-id') !== undefined) {
+        tweet = {text: $('.js-compose-tweet').val(), id: $('.js-compose-tweet').data('tweet-id')}
+      } else {
+        tweet = {text: $('.js-compose-tweet').val()}
+      }
+
+      $('js-compose-tweet-btn').attr('disabled', true)
+      ipcRenderer.send('surfbird:send:tweet', tweet)
+    },
     characterCount (e) {
       var remain = 140 - (twitter.getTweetLength($('#tweet').val()) % 140)
       var chains = Math.floor(twitter.getTweetLength($('#tweet').val()) / 140)

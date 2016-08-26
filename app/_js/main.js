@@ -108,29 +108,16 @@ ipcRenderer.on('surfbird:get:direct-messages', function (e, message) {
   }
 })
 
-$('#send').on('click', function () {
-  var tweet = {}
-
-  if ($('#tweet').data('tweet-id') !== undefined) {
-    tweet = {text: $('#tweet').val(), id: $('#tweet').data('tweet-id')}
-  } else {
-    tweet = {text: $('#tweet').val()}
-  }
-
-  $('#send').attr('disabled', true)
-  ipcRenderer.send('surfbird:send:tweet', tweet)
-});
-
 ipcRenderer.on('surfird:hook:success:tweet', function () {
-  $('#tweet').val('')
-  $('#tweet').removeAttr('data-tweet-id')
+  $('.js-compose-tweet').val('')
+  $('.js-compose-tweet').removeAttr('data-tweet-id')
   $('.js-remaining-character-count').text(140)
   $('.js-chained-tweets').css('display', 'none')
-  $('#send').attr('disabled', false)
+  $('.js-compose-tweet-btn').attr('disabled', false)
 });
 
 ipcRenderer.on('surfird:hook:fail:tweet', function () {
-  $('#send').attr('disabled', false)
+  $('.js-compose-tweet-btn').attr('disabled', false)
 });
 
 $(document.body).on('click', '#logout', function (e) {
