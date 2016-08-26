@@ -23,10 +23,12 @@
               {{{ $t('message.hello') }}}
               <form action="/" method="HEAD" onsubmit="return false;">
                 <div class="compose-input-container">
+                  <textarea class="compose-input js-compose-tweet" placeholder="Tweet here bby" @input="characterCount"></textarea>
                 </div>
                 <div class="pull-right compose-actions">
                   <span class="js-remaining-character-count">140</span>
                   <span class="js-chained-tweets">0</span>
+                  <input type="submit" class="btn btn-primary js-compose-tweet-btn" value="Send" @click="sendTweet">
                 </div>
               </form>
             </div>

@@ -32,9 +32,11 @@ export default {
   props: ['content'],
   methods: {
     reply (e) {
-      document.getElementById('tweet').setAttribute('data-tweet-id', this.content.id_str)
-      $('#tweet').val("@" + this.content.user.screen_name + " ")
-      $('#tweet').focus()
+      $('.js-compose-tweet').attr('data-tweet-id', this.content.id_str)
+      $('[href="#composeTweet"]').tab('show')
+
+      $('.js-compose-tweet').val("@" + this.content.user.screen_name + " ")
+      $('.js-compose-tweet').focus()
     },
     retweet (e) {
       if ($(e.target).hasClass('active')) {
