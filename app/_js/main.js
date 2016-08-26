@@ -31,6 +31,7 @@ Vue.component('direct-message', require('./vue/direct_message.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
 Vue.component('modal', require('./vue/modal/general.vue'))
 Vue.component('settings-modal', require('./vue/modal/settings.vue'))
+Vue.component('about-modal', require('./vue/modal/about.vue'))
 
 var vm = new Vue({
   el: '#main',

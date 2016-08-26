@@ -12,7 +12,7 @@
           <i class="fa fa-cog large-icon"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-right settings-dropdown" aria-labelledby="settingsDropdown">
-          <li><a href="#">About</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
           <li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li>
           <li><a id="logout" href="#">Logout</a></li>
         </ul>  
