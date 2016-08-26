@@ -96,6 +96,11 @@ ipcRenderer.on('surfbird:get:interactions', function (e, interaction) {
 
 ipcRenderer.on('surfbird:get:direct-messages', function (e, message) {
   console.log("direct message received")
+
+  if (message.direct_message != undefined) {
+    message = message.direct_message
+  }
+
   message.text_html = twitter.autoLink(message.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
 
   if (!(JSON.stringify(app.direct_messages).indexOf(JSON.stringify(message)) > 0)) {
