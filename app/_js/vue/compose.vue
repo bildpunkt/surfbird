@@ -21,18 +21,31 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane compose-container fade in active" id="composeTweet">
               <form action="/" method="HEAD" onsubmit="return false;">
+                <p class="compose-text-title">Tweet</p>
                 <div class="compose-input-container">
-                  <textarea class="compose-input js-compose-tweet" placeholder="Tweet here bby" @input="characterCount"></textarea>
+                  <textarea class="compose-input js-compose-tweet" @input="characterCount"></textarea>
                 </div>
                 <div class="pull-right compose-actions">
                   <span class="js-remaining-character-count">140</span>
                   <span class="js-chained-tweets">0</span>
-                  <input type="submit" class="btn btn-primary js-compose-tweet-btn" value="Send" @click="sendTweet">
+                  <input type="submit" class="btn btn-primary js-compose-tweet-btn" disabled value="Tweet" @click="sendTweet">
                 </div>
               </form>
             </div>
             <div role="tabpanel" class="tab-pane compose-container fade" id="composeDirectMessage">
-              <p>Coming Soon</p>
+              <form action="/" method="HEAD" onsubmit="return false;">
+                <p class="compose-text-title">Recipient</p>
+                <div class="compose-recipient-container">
+                  <input type="text" class="compose-recipient js-compose-recipient"></input>
+                </div>
+                <p class="compose-text-title">Message</p>
+                <div class="compose-message-container">
+                  <textarea class="compose-message js-compose-message"></textarea>
+                </div>
+                <div class="pull-right compose-actions">
+                  <input type="submit" class="btn btn-primary js-compose-tweet-btn" value="Message" @click="sendMessage">
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -63,12 +76,22 @@ export default {
     characterCount (e) {
       var remain = 140 - (twitter.getTweetLength($('.js-compose-tweet').val()) % 140)
       var chains = Math.floor(twitter.getTweetLength($('.js-compose-tweet').val()) / 140)
+
+      if ($('.js-compose-tweet').val().length > 0) {
+        $('.js-compose-tweet-btn').attr('disabled', false)
+      } else {
+        $('.js-compose-tweet-btn').attr('disabled', true)
+      }
+
       $('.js-remaining-character-count').text(remain).css('marginLeft', (chains > 0 ? 0 : '10px'))
       if(chains > 0) {
         $('.js-chained-tweets').text('(' + chains.toString() + ')').css('display', 'inline')
       } else {
         $('.js-chained-tweets').css('display', 'none')
       }
+    },
+    sendMessage (e) {
+
     }
   }
 }
