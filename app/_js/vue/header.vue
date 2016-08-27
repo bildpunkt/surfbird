@@ -14,6 +14,10 @@
         <ul class="dropdown-menu dropdown-menu-right settings-dropdown" aria-labelledby="settingsDropdown">
           <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
           <li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li>
+          <li class="divider"></li>
+          <li class="dropdown-header">Debug</li>
+          <li><a href="#" @click="devTools">Developer Tools</a></li>
+          <li class="divider"></li>
           <li><a href="#" @click="logout">Logout</a></li>
         </ul>  
       </div>    
@@ -31,6 +35,9 @@ export default {
     },
     logout (e) {
       ipcRenderer.send('surfbird:logout', true)
+    },
+    devTools (e) {
+      ipcRenderer.send('surfbird:send:devtools', true)
     }
   }
 }

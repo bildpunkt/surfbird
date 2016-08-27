@@ -41,6 +41,10 @@ module.exports = function () {
     app.quit()
   })
 
+  ipcMain.on('surfbird:send:devtools', function (e) {
+    mainWindow.openDevTools()
+  })
+
   const stream = require('../stream/main')
 
   require('../twitter/actions')
