@@ -95,9 +95,7 @@ ipcRenderer.on('surfbird:get:interactions', function (e, interaction) {
 })
 
 ipcRenderer.on('surfbird:get:direct-messages', function (e, message) {
-  console.log("direct message received")
-
-  if (message.direct_message != undefined) {
+  if (message.direct_message !== undefined) {
     message = message.direct_message
   }
 
@@ -114,21 +112,21 @@ ipcRenderer.on('surfird:hook:success:tweet', function () {
   $('.js-remaining-character-count').text(140)
   $('.js-chained-tweets').css('display', 'none')
   $('.js-compose-tweet-btn').attr('disabled', false)
-});
+})
 
 ipcRenderer.on('surfird:hook:fail:tweet', function () {
   $('.js-compose-tweet-btn').attr('disabled', false)
-});
+})
 
 ipcRenderer.on('surfird:hook:success:direct-message', function () {
   $('.js-compose-recipient').val('')
   $('.js-compose-message').val('')
   $('.js-compose-message-btn').attr('disabled', false)
-});
+})
 
 ipcRenderer.on('surfird:hook:fail:direct-message', function () {
   $('.js-compose-message-btn').attr('disabled', false)
-});
+})
 
 $(document.body).on('click', '#logout', function (e) {
   ipcRenderer.send('surfbird:logout', true)

@@ -25,8 +25,6 @@ module.exports = function () {
 
   const page = mainWindow.webContents
 
-  mainWindow.openDevTools()
-
   page.on('dom-ready', () => {
     mainWindow.show()
   })
@@ -46,7 +44,7 @@ module.exports = function () {
   const stream = require('../stream/main')
 
   require('../twitter/actions')
-  require('../twitter/tweet')(mainWindow, stream)
+  require('../twitter/tweets')(mainWindow, stream)
   require('../twitter/interactions')(mainWindow, stream)
   require('../twitter/direct_messages')(mainWindow, stream)
   require('../twitter/initial')(mainWindow, currentUser)

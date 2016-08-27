@@ -1,5 +1,5 @@
 /*
- * tweet.js
+ * tweets.js
  * part of the Surfbird Twitter client
  *
  * Author: Andreas N. <git@pixelde.su>

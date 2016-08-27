@@ -16,115 +16,115 @@ const twittxt = require('twitter-text')
 
 var postTweetChain = function postTweetChain (tweets, lastId, sender) {
   if (tweets.length == 0) {
-    sender.send('surfird:hook:success:tweet');
-    return;
+    sender.send('surfird:hook:success:tweet')
+    return
   }
 
-  var payload = {status: tweets.shift(), in_reply_to_status_id: lastId};
+  var payload = {status: tweets.shift(), in_reply_to_status_id: lastId}
 
   twitter.post('statuses/update', payload, function (err, data, response) {
     if (err) {
-      e.sender.send('surfird:hook:fail:tweet');
-      return console.error(err);
+      e.sender.send('surfird:hook:fail:tweet')
+      return console.error(err)
     }
-    postTweetChain(tweets, data.id_str, sender);
-  });
+    postTweetChain(tweets, data.id_str, sender)
+  })
 }
 
 // Let's wait for sent tweets..
 ipcMain.on('surfbird:send:tweet', function (e, tweet) {
-  var tweetLength = twittxt.getTweetLength(tweet.text);
+  var tweetLength = twittxt.getTweetLength(tweet.text)
   if (tweetLength > 140) {
-    var tweetid = tweet.id;
-    var tweets  = [];
+    var tweetid = tweet.id
+    var tweets = []
 
     // split the tweet into chunks
-    var chunks  = tweet.text.split(' ').filter(function (it) {
-      return it.length > 0;
-    });
+    var chunks = tweet.text.split(' ').filter(function (it) {
+      return it.length > 0
+    })
 
     // calculate mentions
-    var mentionsLength = 0;
-    var mentions       = []; // NOTE: Not using twitter-text function because we only want leading tweets.
+    var mentionsLength = 0
+    var mentions = [] // NOTE: Not using twitter-text function because we only want leading tweets.
     while (chunks.length) {
       var chunk = chunks.shift()
       if (chunk.substr(0, 1) == '@') {
         mentions.push(chunk)
-        mentionsLength += chunk.length;
+        mentionsLength += chunk.length
       } else {
-        chunks.unshift(chunk);
-        break;
+        chunks.unshift(chunk)
+        break
       }
     }
     if (chunks.length == 0) { // only has mentions???
-      mentions       = chunks;
-      mentions       = [];
-      mentionsLength = 0;
+      mentions = chunks
+      mentions = []
+      mentionsLength = 0
     } else if (mentionsLength > 140) {
-      e.sender.send('surfird:hook:fail:tweet');
-      return console.error('Too many mentions!');
+      e.sender.send('surfird:hook:fail:tweet')
+      return console.error('Too many mentions!')
     }
 
     // map urls
     var urls = twittxt.extractUrls(tweet.text, {extractUrlsWithoutProtocol: false}).map(function (it) {
-      return it.toLowerCase();
-    });
+      return it.toLowerCase()
+    })
 
     while (chunks.length > 0) {
-      var tweet      = [].concat(mentions);
-      var textLength = 0;
+      var tweet = [].concat(mentions)
+      var textLength = 0
       while (tweet.length + textLength + mentionsLength - 1 < 140 && chunks.length > 0) {
-        var chunk  = chunks.shift();
-        var length = chunk.length;
+        var chunk = chunks.shift()
+        var length = chunk.length
         // check if it's a url
         if (urls.indexOf(chunk.toLowerCase()) > -1) {
-          length = chunk.match(twittxt.regexen.urlHasHttps) ? 23 : 23; // TODO: Use configuration.
+          length = chunk.match(twittxt.regexen.urlHasHttps) ? 23 : 23 // TODO: Use configuration.
         }
         // chunk if overflow
         if (tweet.length + textLength + mentionsLength + length > 140) {
           // word is too long, split it up.
           if (textLength == 0) {
             if (urls.indexOf(chunk.toLowerCase()) > -1) {
-              e.sender.send('surfird:hook:fail:tweet');
-              return console.error('Error! Can\'t segment URL!');
+              e.sender.send('surfird:hook:fail:tweet')
+              return console.error('Error! Can\'t segment URL!')
             } else {
-              length = 140 - (tweet.length + textLength + 1 + mentionsLength);
-              chunks.unshift(chunk.substr(length));
-              tweet.push(chunk.substr(0, length));
-              textLength += length;
-              break;
+              length = 140 - (tweet.length + textLength + 1 + mentionsLength)
+              chunks.unshift(chunk.substr(length))
+              tweet.push(chunk.substr(0, length))
+              textLength += length
+              break
             }
           } else { // push it to the next tweet
-            chunks.unshift(chunk);
-            break;
+            chunks.unshift(chunk)
+            break
           }
         }
-        tweet.push(chunk);
-        textLength += length;
+        tweet.push(chunk)
+        textLength += length
       }
-      tweets.push(tweet.join(' '));
+      tweets.push(tweet.join(' '))
     }
 
-    return postTweetChain(tweets, tweetid, e.sender);
+    return postTweetChain(tweets, tweetid, e.sender)
   } else {
     // ..and then post them to Twitter..
     if (tweet.id !== undefined) {
       // ..with an ID attached (as reply)
       twitter.post('statuses/update', { status: tweet.text, in_reply_to_status_id: tweet.id }, function (err, data, response) {
         if (err) {
-          e.sender.send('surfird:hook:fail:tweet');
+          e.sender.send('surfird:hook:fail:tweet')
           return console.log(err)
         }
-        e.sender.send('surfird:hook:success:tweet');
+        e.sender.send('surfird:hook:success:tweet')
       })
     } else {
       // ..with no ID attached (as puretweet)
       twitter.post('statuses/update', { status: tweet.text }, function (err, data, response) {
         if (err) {
-          e.sender.send('surfird:hook:fail:tweet');
+          e.sender.send('surfird:hook:fail:tweet')
           return console.log(err)
         }
-        e.sender.send('surfird:hook:success:tweet');
+        e.sender.send('surfird:hook:success:tweet')
       })
     }
   }
@@ -161,9 +161,9 @@ ipcMain.on('surfbird:send:favorite', function (e, tweet) {
 ipcMain.on('surfbird:send:direct-message', function (e, message) {
   twitter.post('direct_messages/new', {screen_name: message.recipient, text: message.text}, function (err, data, response) {
     if (err) {
-      e.sender.send('surfird:hook:fail:direct-message');
+      e.sender.send('surfird:hook:fail:direct-message')
       return console.log(err)
     }
-    e.sender.send('surfird:hook:success:direct-message');
+    e.sender.send('surfird:hook:success:direct-message')
   })
 })
