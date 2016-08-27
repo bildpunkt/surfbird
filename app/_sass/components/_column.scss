@@ -1,3 +1,11 @@
+$column-bg: #fff;
+$column-width: 310px;
+
+$column-header-bg: #eaeaea;
+$column-header-color: #292f33;
+$column-header-border: 1px solid #ddd;
+$column-header-height: 50px;
+
 .columns {
     height: 100%;
     box-sizing: border-box;
@@ -16,7 +24,7 @@
     overflow: hidden;
     width: 310px;
     height: 100%;
-    background-color: #fff;
+    background-color: $column-bg;
     white-space: normal;
 
     &-panel {
@@ -29,17 +37,17 @@
     &-header {
         box-sizing: border-box;
         position: relative;
-        height: 50px;
+        height: $column-header-height;
         padding: 0 10px;
-        color: #292f33;
-        background-color: #eaeaea;
-        line-height: 50px;
-        border-bottom: 1px solid #ddd;
+        color: $column-header-color;
+        background-color: $column-header-bg;
+        line-height: $column-header-height;
+        border-bottom: $column-header-border;
     }
 
     &-content {
         position: absolute;
-        top: 50px;
+        top: $column-header-height;
         left: 0;
         bottom: 0;
         width: 100%;

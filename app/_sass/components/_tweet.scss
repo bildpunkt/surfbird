@@ -1,9 +1,24 @@
+$tweet-border: 1px solid #eee;
+
+$tweet-context-color: #8899a6;
+
+$tweet-action-color: $tweet-context-color;
+$tweet-action-hover: #000;
+
+$tweet-avatar-offset: 58px;
+$tweet-avatar-size: 48px;
+$tweet-avatar-margin: 10px;
+$tweet-avatar-radius: 3px;
+
+$tweet-avatar-small-size: 24px;
+$tweet-avatar-small-offset: 36px;
+
 .tweet {
     padding: 8px 10px;
-    border-bottom: 1px solid #eee;
+    border-bottom: $tweet-border;
 
     &-context {
-        color: #8899a6;
+        color: $tweet-context-color;
         padding-bottom: 4px;
     }
 
@@ -13,7 +28,7 @@
 
         small {
             font-weight: normal;
-            color: #a0a0a0;
+            color: $tweet-context-color;
         }
 
         span {
@@ -52,10 +67,10 @@
             font-size: 17px;
             
             & a {
-                color: #8899a6;
+                color: $tweet-action-color;
 
                 &:hover {
-                    color: #000;
+                    color: $tweet-action-hover;
                 }
             }
         }
@@ -68,7 +83,7 @@
 
     &-body {
         &.contextual {
-            color: #a0a0a0;
+            color: $tweet-context-color;
 
             .tweet-header {
                 padding-bottom: 0;
@@ -77,22 +92,22 @@
     }
 
     &-avatar {
-        margin-left: -58px;
+        margin-left: -$tweet-avatar-offset;
         float: left;
-        margin-right: 10px;
-        width: 48px;
-        height: 48px;
-        border-radius: 3px;
+        margin-right: $tweet-avatar-margin;
+        width: $tweet-avatar-size;
+        height: $tweet-avatar-size;
+        border-radius: $tweet-avatar-radius;
 
         &.small {
-            width: 24px;
-            height: 24px;
-            margin-left: -36px;
+            width: $tweet-avatar-small-size;
+            height: $tweet-avatar-small-size;
+            margin-left: $tweet-avatar-small-offset;
         }
     }
 
     &-content {
-        padding-left: 58px;
+        padding-left: $tweet-avatar-offset;
 
         &:before, &:after {
             display: block;

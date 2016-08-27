@@ -1,14 +1,25 @@
+$drawer-width: 270px;
+
+$compose-bg: #2b7bb9;
+$compose-bg-active: #fff;
+$compose-input-bg: #fff;
+$compose-input-text: #111;
+$compose-title: #88c9f9;
+$compose-color: #fff;
+
+$compose-header-height: 90px;
+
 .drawer {
     position: absolute;
-    width: 270px;
+    width: $drawer-width;
     top: 0;
-    left: -270px;
+    left: -$drawer-width;
     height: 100%;
     margin-right: 0;
 }
 
 .compose {
-    background-color: #2b7bb9;
+    background-color: $compose-bg;
     height: 100%;
     overflow: hidden;
 
@@ -24,7 +35,7 @@
 
     &-antiscroll {
         position: absolute;
-        top: 90px;
+        top: $compose-header-height;
         bottom: 0;
         left: 0;
         right: 0;
@@ -40,7 +51,7 @@
         font-size: 14px;
 
         &-container, .compose-message-container {
-            background-color: #fff;
+            background-color: $compose-input-bg;
             font-size: 0;
         }
     }
@@ -50,13 +61,13 @@
         height: 32px;
         resize: none;
         border: none;
-        color: #111;
+        color: $compose-input-text;
         padding: 4px 8px;
         font-size: 14px;
         border-radius: 0;
 
         &-container {
-            background-color: #fff;
+            background-color: $compose-input-bg;
             font-size: 0;
             margin-bottom: 9px;
         }
@@ -69,8 +80,8 @@
     &-header {
         box-sizing: border-box;
         position: relative;
-        height: 90px;
-        max-height: 90px;
+        height: $compose-header-height;
+        max-height: $compose-header-height;
 
         & .content {
             position: absolute !important;
@@ -120,7 +131,7 @@
     }
 
     &-text-title {
-        color: #88c9f9;
+        color: $compose-title;
         margin-bottom: 0;
         padding-bottom: 9px;
     }
@@ -128,24 +139,24 @@
     .nav-tabs.nav-justified > li > a {
       border: none;
       border-radius: 0;
-      background-color: #fff;
-      color: #2b7bb9;
+      background-color: $compose-bg-active;
+      color: $compose-bg;
     }
 
     .nav-tabs.nav-justified > .active > a {
       border: none;
       border-radius: 0;
-      background-color: #2b7bb9;
-      color: #fff;
+      background-color: $compose-bg;
+      color: $compose-bg-active;
     }
 }
 
 .js-remaining-character-count {
-  color: #fff;
+  color: $compose-color;
 }
 
 .js-chained-tweets {
-  color: #fff;
+  color: $compose-color;
   display: none;
   margin-right: 10px;
 }

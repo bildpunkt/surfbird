@@ -1,7 +1,13 @@
+$app-header-bg: #292f33;
+$app-header-width: 50px;
+
+$app-header-link-color: #777;
+$app-header-link-hover: #fff;
+
 .app-header {
-    background-color: #292f33;
+    background-color: $app-header-bg;
     z-index: 200;
-    width: 50px;
+    width: $app-header-width;
     padding: 4px 4px 0 4px;
     position: absolute;
     top: 0;
@@ -11,7 +17,7 @@
 
     &-link {
         font-size: 18px;
-        color: #777;
+        color: $app-header-link-color;
         cursor: pointer;
         text-decoration: none;
         width: 100%;
@@ -20,7 +26,7 @@
         padding: 5px;
 
         &:hover {
-            color: #fff;
+            color: $app-header-link-hover;
         }
 
         .large-icon {

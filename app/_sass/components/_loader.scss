@@ -1,3 +1,6 @@
+$loader-bg: rgba(255,255,255, 0.8);
+$loader-color: #2196F3;
+
 .loader {
     display: table;
     position: absolute;
@@ -5,7 +8,7 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(255,255,255, 0.8);
+    background-color: $loader-bg;
     z-index: 100;
 
     .wrapper {
@@ -18,7 +21,7 @@
         }
 
         .la-ball-scale-multiple {
-            color: #2196F3;
+            color: $loader-color;
             margin: 0 auto;
         }
     }
