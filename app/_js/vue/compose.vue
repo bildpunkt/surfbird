@@ -36,14 +36,14 @@
               <form action="/" method="HEAD" onsubmit="return false;">
                 <p class="compose-text-title">Recipient</p>
                 <div class="compose-recipient-container">
-                  <input type="text" class="compose-recipient js-compose-recipient"></input>
+                  <input type="text" class="compose-recipient js-compose-recipient" @input="checkRecipient"></input>
                 </div>
                 <p class="compose-text-title">Message</p>
                 <div class="compose-message-container">
-                  <textarea class="compose-message js-compose-message"></textarea>
+                  <textarea class="compose-message js-compose-message" @input="checkMessage"></textarea>
                 </div>
                 <div class="pull-right compose-actions">
-                  <input type="submit" class="btn btn-primary js-compose-tweet-btn" value="Message" @click="sendMessage">
+                  <input type="submit" class="btn btn-primary js-compose-message-btn" disabled value="Message" @click="sendMessage">
                 </div>
               </form>
             </div>
@@ -91,7 +91,26 @@ export default {
       }
     },
     sendMessage (e) {
+      var dm = {}
+      
+      dm = {text: $('.js-compose-message').val(), recipient: $('.js-compose-recipient').val()}
 
+      ipcRenderer.send('surfbird:send:direct-message', dm)
+      $('.js-compose-message-btn').attr('disabled', true)
+    },
+    checkRecipient (e) {
+      if ($('.js-compose-recipient').val().length > 0 && $('.js-compose-message').val().length > 0) {
+        $('.js-compose-message-btn').attr('disabled', false)
+      } else {
+        $('.js-compose-message-btn').attr('disabled', true)
+      }
+    },
+    checkMessage (e) {
+      if ($('.js-compose-message').val().length > 0 && $('.js-compose-recipient').val().length > 0) {
+        $('.js-compose-message-btn').attr('disabled', false)
+      } else {
+        $('.js-compose-message-btn').attr('disabled', true)
+      }
     }
   }
 }

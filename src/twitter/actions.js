@@ -157,3 +157,13 @@ ipcMain.on('surfbird:send:favorite', function (e, tweet) {
     })
   }
 })
+
+ipcMain.on('surfbird:send:direct-message', function (e, message) {
+  twitter.post('direct_messages/new', {screen_name: message.recipient, text: message.text}, function (err, data, response) {
+    if (err) {
+      e.sender.send('surfird:hook:fail:direct-message');
+      return console.log(err)
+    }
+    e.sender.send('surfird:hook:success:direct-message');
+  })
+})

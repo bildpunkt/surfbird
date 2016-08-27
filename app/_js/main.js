@@ -120,6 +120,16 @@ ipcRenderer.on('surfird:hook:fail:tweet', function () {
   $('.js-compose-tweet-btn').attr('disabled', false)
 });
 
+ipcRenderer.on('surfird:hook:success:direct-message', function () {
+  $('.js-compose-recipient').val('')
+  $('.js-compose-message').val('')
+  $('.js-compose-message-btn').attr('disabled', false)
+});
+
+ipcRenderer.on('surfird:hook:fail:direct-message', function () {
+  $('.js-compose-message-btn').attr('disabled', false)
+});
+
 $(document.body).on('click', '#logout', function (e) {
   ipcRenderer.send('surfbird:logout', true)
 })
