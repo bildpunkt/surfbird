@@ -128,10 +128,6 @@ ipcRenderer.on('surfird:hook:fail:direct-message', function () {
   $('.js-compose-message-btn').attr('disabled', false)
 })
 
-$(document.body).on('click', '#logout', function (e) {
-  ipcRenderer.send('surfbird:logout', true)
-})
-
 ipcRenderer.send('surfbird:send:home-timeline', true)
 ipcRenderer.send('surfbird:send:mentions-timeline', true)
 ipcRenderer.send('surfbird:send:direct-messages', true)

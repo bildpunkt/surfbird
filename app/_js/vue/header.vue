@@ -14,7 +14,7 @@
         <ul class="dropdown-menu dropdown-menu-right settings-dropdown" aria-labelledby="settingsDropdown">
           <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
           <li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li>
-          <li><a id="logout" href="#">Logout</a></li>
+          <li><a href="#" @click="logout">Logout</a></li>
         </ul>  
       </div>    
     </div>  
@@ -22,10 +22,15 @@
 </template>
 
 <script>
+const ipcRenderer = require('electron').ipcRenderer
+
 export default {
   methods: {
     showDrawer (e) {
       $('.app-content').toggleClass('is-open')
+    },
+    logout (e) {
+      ipcRenderer.send('surfbird:logout', true)
     }
   }
 }
