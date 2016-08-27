@@ -10,12 +10,12 @@
             </a>
         </li>
         <li class="action-item">
-            <a href="#" class="retweet" @click="retweet">
+            <a href="#" class="retweet" rel="retweet" @click="retweet">
                 <i class="fa fa-retweet"></i>
             </a>
         </li>
         <li class="action-item">
-            <a href="#" class="favorite" @click="favorite">
+            <a href="#" class="favorite" rel="favorite" @click="favorite">
                 <i class="fa fa-heart"></i>
             </a>
         </li>
