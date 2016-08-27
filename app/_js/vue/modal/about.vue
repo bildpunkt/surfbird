@@ -14,12 +14,12 @@
             <p>
                 Please be aware of many features missing or probably breaking in this version. This is the first open
                 release after roughly 4 months of work. If you found any bugs, you can report them on the 
-                <a href="https://github.com/surfbirdapp/surfbird/issues">Github repository</a> or mention us on Twitter
-                <a href="https://twitter.com/surfbirdapp">@surfbirdapp</a>
+                <a href="https://github.com/surfbirdapp/surfbird/issues" target="_blank">Github repository</a> or mention us on Twitter
+                <a href="https://twitter.com/surfbirdapp" target="_blank">@surfbirdapp</a>
             </p>
 
             <p>
-                Thanks for taking your time to test the client and helping us to create a new (and hopefully good) Twitter
+                Thanks for taking your time to test the client and helping us to create a new <br/>(and hopefully good) Twitter
                 experience for desktops!
             </p>
         </div>
