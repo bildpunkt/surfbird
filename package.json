@@ -9,7 +9,7 @@
     "lint": "standard",
     "build": "npm run build:linux && npm run build:windows",
     "build:linux": "electron-packager . --ignore='^node_modules$' --overwrite --asar --out=dist --prune --platform=linux --arch=x64 --app-bundle-id=com.pixeldesu.surfbird --app-version=0.1.0",
-    "build:windows": "electron-packager . --ignore='^node_modules$' --overwrite --asar --out=dist --platform=win32 --arch=ia32 --version-string.ProductName='Surfbird' --app-version=0.1.0",
+    "build:windows": "electron-packager . --ignore='^node_modules$' --overwrite --asar --out=dist --platform=win32 --arch=ia32 --version-string.ProductName=Surfbird --app-version=0.1.0",
     "build:osx": "electron-packager . --ignore='^node_modules$' --overwrite --asar --out=dist --prune --platform=darwin --arch=x64 --icon=media/Icon.icns --app-bundle-id=com.pixeldesu.surfbird --app-version=0.1.0"
   },
   "repository": {
