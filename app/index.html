@@ -11,7 +11,7 @@
     <compose :user.sync="user"></compose>
         <div class="columns">
             <column title="Home">
-                <stream-item v-for="tweet in tweets | orderBy 'id_str' -1 | limitBy 200" v-bind:content="tweet" v-bind:index="$index"></stream-item>
+                <stream-item v-for="tweet in tweets | orderBy 'id_str' -1 | limitBy 200" v-bind:id="tweet" v-bind:index="$index"></stream-item>
             </column>
             <column title="Interactions">
                 <interaction v-for="event in interactions | orderBy 'created_at' -1 | limitBy 200" v-bind:event="event.type" v-bind:content="event.event" v-bind:index="$index"></interaction>

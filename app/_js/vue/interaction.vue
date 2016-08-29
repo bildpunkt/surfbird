@@ -22,7 +22,7 @@
       </div>  
     </div>
   </div>
-  <stream-item v-bind:content="content" v-bind:index="$index" v-else></stream-item>
+  <stream-item v-bind:id="content.id_str" v-bind:index="$index" v-else></stream-item>
 </template>
 
 <script>

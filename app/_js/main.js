@@ -10,6 +10,7 @@ require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 window.app = {}
 app.user = {}
 app.tweets = []
+app.tweetStorage = {}
 app.interactions = []
 app.direct_messages = []
 app.themes = []
@@ -37,6 +38,7 @@ var vm = new Vue({
   el: '#main',
   data: {
     tweets: app.tweets,
+    tweetStorage: app.tweetStorage,
     interactions: app.interactions,
     direct_messages: app.direct_messages,
     sounds: app.sounds,
@@ -70,7 +72,10 @@ ipcRenderer.on('surfbird:get:tweets', function (e, tweet) {
   if (tweet.retweeted_status !== undefined) {
     tweet.retweeted_status.text_html = twitter.autoLink(tweet.retweeted_status.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
   }
-  app.tweets.unshift(tweet)
+
+  app.tweetStorage[tweet.id_str] = tweet
+  vm.$set('tweetStorage', app.tweetStorage)
+  app.tweets.unshift(tweet.id_str)
 })
 
 ipcRenderer.on('surfbird:get:interactions', function (e, interaction) {
@@ -80,6 +85,11 @@ ipcRenderer.on('surfbird:get:interactions', function (e, interaction) {
 
   if (interaction.event.text !== undefined) {
     interaction.event.text_html = twitter.autoLink(interaction.event.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
+  }
+
+  if (interaction.type === 'mention') {
+    app.tweetStorage[interaction.event.id_str] = interaction.event
+    vm.$set('tweetStorage', app.tweetStorage)
   }
 
   app.interactions.unshift(interaction)

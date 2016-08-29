@@ -27,6 +27,11 @@
 
 <script>
 export default {
-  props: ['content', 'index']
+  props: ['id', 'index'],
+  computed: {
+    content: function () {
+      return this.$root.tweetStorage[this.id]
+    }
+  }
 }
 </script>
