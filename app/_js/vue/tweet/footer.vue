@@ -32,10 +32,25 @@ export default {
   props: ['content'],
   methods: {
     reply (e) {
-      $('.js-compose-tweet').attr('data-tweet-id', this.content.id_str)
-      $('[href="#composeTweet"]').tab('show')
+      // get reply from storage and set it
+      var reply = this.$root.tweetStorage[this.content.id_str]
+      this.$root.$set('reply', reply)
 
-      $('.js-compose-tweet').val("@" + this.content.user.screen_name + " ")
+      // show Tweet tab if it's not visible yet
+      $('[href="#composeTweet"]').tab('show')
+      
+      // prepare and add mentions
+      var mentions = `@${this.content.user.screen_name} `
+      var currentUser = this.$root.user
+
+      reply.entities.user_mentions.forEach(function (user) {
+        if (user.screen_name !== currentUser.screen_name) {
+          mentions += `@${user.screen_name} `
+        }
+      })
+
+      $('js-compose-tweet-btn').attr('disabled', false)
+      $('.js-compose-tweet').val(mentions)
       $('.js-compose-tweet').focus()
     },
     retweet (e) {

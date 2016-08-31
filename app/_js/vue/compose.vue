@@ -23,6 +23,13 @@
               <form action="/" method="HEAD" onsubmit="return false;">
                 <p class="compose-text-title">Tweet</p>
                 <div class="compose-input-container">
+                  <div class="compose-reply" v-if="reply !== undefined">
+                    <div class="tweet-header">
+                      <img class="tweet-avatar small" v-bind:src="reply.user.profile_image_url"/>
+        {{ reply.user.name }} <small>{{ reply.user.screen_name}}</small>
+                    </div>
+                    <div class="tweet-text">{{{ reply.text_html }}}</div>
+                  </div>
                   <textarea class="compose-input js-compose-tweet" @input="characterCount"></textarea>
                 </div>
                 <div class="pull-right compose-actions">
@@ -59,13 +66,13 @@ const twitter = require('twitter-text')
 const ipcRenderer = require('electron').ipcRenderer
 
 export default {
-  props: ['user'],
+  props: ['user', 'reply'],
   methods: {
     sendTweet (e) {
       var tweet = {}
 
-      if ($('.js-compose-tweet').data('tweet-id') !== undefined) {
-        tweet = {text: $('.js-compose-tweet').val(), id: $('.js-compose-tweet').data('tweet-id')}
+      if (this.reply !== undefined) {
+        tweet = {text: $('.js-compose-tweet').val(), id: this.reply.id_str}
       } else {
         tweet = {text: $('.js-compose-tweet').val()}
       }

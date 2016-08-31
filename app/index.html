@@ -8,7 +8,7 @@
 <body id="main">
     <app-header></app-header>
     <div class="app-content is-open">
-    <compose :user.sync="user"></compose>
+    <compose :user.sync="user" :reply.sync="reply"></compose>
         <div class="columns">
             <column title="Home">
                 <stream-item v-for="tweet in tweets | orderBy 'id_str' -1 | limitBy 200" v-bind:id="tweet" v-bind:index="$index"></stream-item>

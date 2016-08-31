@@ -43,7 +43,8 @@ var vm = new Vue({
     direct_messages: app.direct_messages,
     sounds: app.sounds,
     themes: app.themes,
-    user: app.user
+    user: app.user,
+    reply: undefined
   }
 })
 
@@ -118,7 +119,7 @@ ipcRenderer.on('surfbird:get:direct-messages', function (e, message) {
 
 ipcRenderer.on('surfird:hook:success:tweet', function () {
   $('.js-compose-tweet').val('')
-  $('.js-compose-tweet').removeAttr('data-tweet-id')
+  vm.$set('reply', undefined)
   $('.js-remaining-character-count').text(140)
   $('.js-chained-tweets').css('display', 'none')
   $('.js-compose-tweet-btn').attr('disabled', false)
