@@ -24,6 +24,7 @@
                 <p class="compose-text-title">Tweet</p>
                 <div class="compose-input-container">
                   <div class="compose-reply" v-if="reply !== undefined">
+                    <button type="button" class="close" aria-label="Close" @click="clearReply"><i class="fa fa-close"></i></button>
                     <div class="tweet-header">
                       <img class="tweet-avatar small" v-bind:src="reply.user.profile_image_url"/>
         {{ reply.user.name }} <small>{{ reply.user.screen_name}}</small>
@@ -118,6 +119,11 @@ export default {
       } else {
         $('.js-compose-message-btn').attr('disabled', true)
       }
+    },
+    clearReply (e) {
+      this.$root.$set('reply', undefined)
+      $('.js-compose-tweet').val('')
+      $('.js-compose-tweet-btn').attr('disabled', true)
     }
   }
 }
