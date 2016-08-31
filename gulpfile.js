@@ -30,9 +30,15 @@ gulp.task('images', function () {
     .pipe(gulp.dest('./app/assets/images'))
 })
 
+gulp.task('emoji', function () {
+  return gulp.src('./node_modules/twemoji/2/svg/*')
+    .pipe(gulp.dest('./app/assets/images/emoji'))
+})
+
+
 gulp.task('watch', function () {
   gulp.watch('./app/_sass/**/*.scss', ['sass'])
   gulp.watch('./app/_js/*.js', ['js'])
 })
 
-gulp.task('assets', ['js', 'sass', 'fonts', 'images'])
+gulp.task('assets', ['js', 'sass', 'fonts', 'images', 'emoji'])

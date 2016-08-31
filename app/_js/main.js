@@ -4,6 +4,7 @@ window.$ = window.jQuery = require('jquery')
 const ipcRenderer = require('electron').ipcRenderer
 var interactionsurf = false
 var twitter = require('twitter-text')
+var twemoji = require('twemoji')
 require('../../node_modules/lightbox2/dist/js/lightbox.min.js')
 require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 
@@ -69,9 +70,19 @@ ipcRenderer.on('surfbird:get:sounds', function (e, sound) {
 
 ipcRenderer.on('surfbird:get:tweets', function (e, tweet) {
   tweet.text_html = twitter.autoLink(tweet.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
+  tweet.text_html = twemoji.parse(tweet.text_html,
+    function(icon, options, variant) {
+      return 'assets/images/emoji/' + icon + '.svg'
+    }
+  )
 
   if (tweet.retweeted_status !== undefined) {
     tweet.retweeted_status.text_html = twitter.autoLink(tweet.retweeted_status.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
+    tweet.retweeted_status.text_html = twemoji.parse(tweet.retweeted_status.text_html,
+      function(icon, options, variant) {
+        return 'assets/images/emoji/' + icon + '.svg'
+      }
+    )
   }
 
   app.tweetStorage[tweet.id_str] = tweet
@@ -82,10 +93,20 @@ ipcRenderer.on('surfbird:get:tweets', function (e, tweet) {
 ipcRenderer.on('surfbird:get:interactions', function (e, interaction) {
   if (interaction.event.target_object !== undefined) {
     interaction.event.target_object.text_html = twitter.autoLink(interaction.event.target_object.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
+    interaction.event.target_object.text_html = twemoji.parse(interaction.event.target_object.text_html,
+      function(icon, options, variant) {
+        return 'assets/images/emoji/' + icon + '.svg'
+      }
+    )
   }
 
   if (interaction.event.text !== undefined) {
     interaction.event.text_html = twitter.autoLink(interaction.event.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
+    interaction.event.text_html = twemoji.parse(interaction.event.text_html,
+      function(icon, options, variant) {
+        return 'assets/images/emoji/' + icon + '.svg'
+      }
+    )
   }
 
   if (interaction.type === 'mention') {
@@ -111,6 +132,11 @@ ipcRenderer.on('surfbird:get:direct-messages', function (e, message) {
   }
 
   message.text_html = twitter.autoLink(message.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
+  message.text_html = twemoji.parse(message.text_html,
+    function(icon, options, variant) {
+      return 'assets/images/emoji/' + icon + '.svg'
+    }
+  )
 
   if (!(JSON.stringify(app.direct_messages).indexOf(JSON.stringify(message)) > 0)) {
     app.direct_messages.unshift(message)

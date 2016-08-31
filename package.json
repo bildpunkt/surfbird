@@ -39,6 +39,7 @@
     "lightbox2": "^2.8.2",
     "nconf": "^0.8.4",
     "node-twitter-api": "^1.7.2",
+    "twemoji": "^2.1.5",
     "twit": "^2.2.4",
     "twitter-text": "^1.14.0",
     "vue": "^1.0.24",
