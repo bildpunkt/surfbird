@@ -2,9 +2,6 @@ const Vue = require('vue')
 var VueI18n = require('vue-i18n')
 window.$ = window.jQuery = require('jquery')
 const ipcRenderer = require('electron').ipcRenderer
-var interactionsurf = false
-var twitter = require('twitter-text')
-var twemoji = require('twemoji')
 require('../../node_modules/lightbox2/dist/js/lightbox.min.js')
 require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 
@@ -49,96 +46,12 @@ var vm = new Vue({
   }
 })
 
-ipcRenderer.on('surfbird:get:user', function (e, user) {
-  app.user = user
-  vm.$set('user', user)
-})
-
-ipcRenderer.on('surfbird:get:themes', function (e, theme) {
-    // the probably most stylish way to check if an array of objects contains a specific object
-    // joking, I actually hate this approach, thank you JS
-  if (!(JSON.stringify(app.themes).indexOf(JSON.stringify(theme)) > 0)) {
-    app.themes.push(theme)
-  }
-})
-
-ipcRenderer.on('surfbird:get:sounds', function (e, sound) {
-  if (!(JSON.stringify(app.sounds).indexOf(JSON.stringify(sound)) > 0)) {
-    app.sounds.push(sound)
-  }
-})
-
-ipcRenderer.on('surfbird:get:tweets', function (e, tweet) {
-  tweet.text_html = prepareText(tweet.text)
-
-  if (tweet.retweeted_status !== undefined) {
-    tweet.retweeted_status.text_html = prepareText(tweet.retweeted_status.text)
-  }
-
-  app.tweetStorage[tweet.id_str] = tweet
-  vm.$set('tweetStorage', app.tweetStorage)
-  app.tweets.unshift(tweet.id_str)
-})
-
-ipcRenderer.on('surfbird:get:interactions', function (e, interaction) {
-  if (interaction.event.target_object !== undefined) {
-    interaction.event.target_object.text_html = prepareText(interaction.event.target_object.text)
-  }
-
-  if (interaction.event.text !== undefined) {
-    interaction.event.text_html = prepareText(interaction.event.text)
-  }
-
-  if (interaction.type === 'mention') {
-    app.tweetStorage[interaction.event.id_str] = interaction.event
-    vm.$set('tweetStorage', app.tweetStorage)
-  }
-
-  app.interactions.unshift(interaction)
-
-  if (interactionsurf) {
-    SurfNotification(interaction, interaction.event)
-  }
-
-    // skip the first 20 notifications, because we are pulling in 20 mentions from the beginning
-  if (app.interactions.length > 19) {
-    interactionsurf = true
-  }
-})
-
-ipcRenderer.on('surfbird:get:direct-messages', function (e, message) {
-  if (message.direct_message !== undefined) {
-    message = message.direct_message
-  }
-
-  message.text_html = prepareText(message.text)
-
-  if (!(JSON.stringify(app.direct_messages).indexOf(JSON.stringify(message)) > 0)) {
-    app.direct_messages.unshift(message)
-  }
-})
-
-ipcRenderer.on('surfird:hook:success:tweet', function () {
-  $('.js-compose-tweet').val('')
-  vm.$set('reply', undefined)
-  $('.js-remaining-character-count').text(140)
-  $('.js-chained-tweets').css('display', 'none')
-  $('.js-compose-tweet-btn').attr('disabled', false)
-})
-
-ipcRenderer.on('surfird:hook:fail:tweet', function () {
-  $('.js-compose-tweet-btn').attr('disabled', false)
-})
-
-ipcRenderer.on('surfird:hook:success:direct-message', function () {
-  $('.js-compose-recipient').val('')
-  $('.js-compose-message').val('')
-  $('.js-compose-message-btn').attr('disabled', false)
-})
-
-ipcRenderer.on('surfird:hook:fail:direct-message', function () {
-  $('.js-compose-message-btn').attr('disabled', false)
-})
+require('./data/user.js')(vm, app)
+require('./data/themes.js')(app)
+require('./data/sounds.js')(app)
+require('./data/tweets.js')(vm, app)
+require('./data/interactions.js')(vm, app)
+require('./data/direct_messages.js')(app)
 
 ipcRenderer.send('surfbird:send:home-timeline', true)
 ipcRenderer.send('surfbird:send:mentions-timeline', true)
@@ -146,45 +59,3 @@ ipcRenderer.send('surfbird:send:direct-messages', true)
 ipcRenderer.send('surfbird:send:themes', true)
 ipcRenderer.send('surfbird:send:sounds', true)
 ipcRenderer.send('surfbird:send:user', true)
-
-var SurfNotification = function (event, content) {
-  var n = {}
-
-  switch (event.type) {
-    case 'mention':
-      n = {title: `@${content.user.screen_name} mentioned you`,
-                 body: content.text,
-                 icon: content.user.profile_image_url}
-      break
-    case 'retweet':
-      n = {title: `@${content.source.screen_name} retweeted your tweet`,
-                 body: content.target_object.text,
-                 icon: content.source.profile_image_url}
-      break
-    case 'favorite':
-      n = {title: `@${content.source.screen_name} liked your tweet`,
-                 body: content.target_object.text,
-                 icon: content.source.profile_image_url}
-      break
-    case 'follow':
-      n = {title: `@${content.source.screen_name} followed you`,
-                 body: content.source.description,
-                 icon: content.source.profile_image_url}
-      break
-  }
-
-  if (n.title !== undefined) {
-    new Notification(n.title, {body: n.body, icon: n.icon, silent: true})
-    document.getElementById('notification-tag').play()
-  }
-}
-
-var prepareText = function (text) {
-  text = twitter.autoLink(text, {'usernameIncludeSymbol': true, 'targetBlank': true})
-  text = twemoji.parse(text,
-    function(icon, options, variant) {
-      return 'assets/images/emoji/' + icon + '.svg'
-    })
-    
-  return text
-}
