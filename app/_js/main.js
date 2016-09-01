@@ -69,20 +69,10 @@ ipcRenderer.on('surfbird:get:sounds', function (e, sound) {
 })
 
 ipcRenderer.on('surfbird:get:tweets', function (e, tweet) {
-  tweet.text_html = twitter.autoLink(tweet.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
-  tweet.text_html = twemoji.parse(tweet.text_html,
-    function(icon, options, variant) {
-      return 'assets/images/emoji/' + icon + '.svg'
-    }
-  )
+  tweet.text_html = prepareText(tweet.text)
 
   if (tweet.retweeted_status !== undefined) {
-    tweet.retweeted_status.text_html = twitter.autoLink(tweet.retweeted_status.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
-    tweet.retweeted_status.text_html = twemoji.parse(tweet.retweeted_status.text_html,
-      function(icon, options, variant) {
-        return 'assets/images/emoji/' + icon + '.svg'
-      }
-    )
+    tweet.retweeted_status.text_html = prepareText(tweet.retweeted_status.text)
   }
 
   app.tweetStorage[tweet.id_str] = tweet
@@ -92,21 +82,11 @@ ipcRenderer.on('surfbird:get:tweets', function (e, tweet) {
 
 ipcRenderer.on('surfbird:get:interactions', function (e, interaction) {
   if (interaction.event.target_object !== undefined) {
-    interaction.event.target_object.text_html = twitter.autoLink(interaction.event.target_object.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
-    interaction.event.target_object.text_html = twemoji.parse(interaction.event.target_object.text_html,
-      function(icon, options, variant) {
-        return 'assets/images/emoji/' + icon + '.svg'
-      }
-    )
+    interaction.event.target_object.text_html = prepareText(interaction.event.target_object.text)
   }
 
   if (interaction.event.text !== undefined) {
-    interaction.event.text_html = twitter.autoLink(interaction.event.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
-    interaction.event.text_html = twemoji.parse(interaction.event.text_html,
-      function(icon, options, variant) {
-        return 'assets/images/emoji/' + icon + '.svg'
-      }
-    )
+    interaction.event.text_html = prepareText(interaction.event.text)
   }
 
   if (interaction.type === 'mention') {
@@ -131,12 +111,7 @@ ipcRenderer.on('surfbird:get:direct-messages', function (e, message) {
     message = message.direct_message
   }
 
-  message.text_html = twitter.autoLink(message.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
-  message.text_html = twemoji.parse(message.text_html,
-    function(icon, options, variant) {
-      return 'assets/images/emoji/' + icon + '.svg'
-    }
-  )
+  message.text_html = prepareText(message.text)
 
   if (!(JSON.stringify(app.direct_messages).indexOf(JSON.stringify(message)) > 0)) {
     app.direct_messages.unshift(message)
@@ -202,4 +177,14 @@ var SurfNotification = function (event, content) {
     new Notification(n.title, {body: n.body, icon: n.icon, silent: true})
     document.getElementById('notification-tag').play()
   }
+}
+
+var prepareText = function (text) {
+  text = twitter.autoLink(text, {'usernameIncludeSymbol': true, 'targetBlank': true})
+  text = twemoji.parse(text,
+    function(icon, options, variant) {
+      return 'assets/images/emoji/' + icon + '.svg'
+    })
+    
+  return text
 }
