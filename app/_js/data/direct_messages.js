@@ -1,5 +1,6 @@
 const ipcRenderer = require('electron').ipcRenderer
 const prepareText = require('../utils/prepare_text')
+const toast = require('../utils/toast')
 
 module.exports = function (app) {
   ipcRenderer.on('surfbird:get:direct-messages', function (e, message) {
@@ -18,9 +19,13 @@ module.exports = function (app) {
     $('.js-compose-recipient').val('')
     $('.js-compose-message').val('')
     $('.js-compose-message-btn').attr('disabled', false)
+
+    toast("Direct message was sent successfully!", "Success!", "success")
   })
 
   ipcRenderer.on('surfird:hook:fail:direct-message', function () {
     $('.js-compose-message-btn').attr('disabled', false)
+
+    toast("An error occurred while sending your direct message", "Whoops!", "error")
   })
 }
