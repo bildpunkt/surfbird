@@ -34,14 +34,18 @@ export default {
     reply (e) {
       // get reply from storage and set it
       var reply = this.$root.tweetStorage[this.content.id_str]
+      var currentUser = this.$root.user
       this.$root.$set('reply', reply)
 
       // show Tweet tab if it's not visible yet
       $('[href="#composeTweet"]').tab('show')
       
       // prepare and add mentions
-      var mentions = `@${this.content.user.screen_name} `
-      var currentUser = this.$root.user
+      var mentions = ''
+
+      if (this.content.user.screen_name !== currentUser.screen_name) {
+        mentions = `@${this.content.user.screen_name} `
+      }
 
       reply.entities.user_mentions.forEach(function (user) {
         if (user.screen_name !== currentUser.screen_name) {
