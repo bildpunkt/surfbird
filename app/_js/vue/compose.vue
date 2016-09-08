@@ -26,7 +26,7 @@
                   <div class="compose-reply" v-if="reply !== undefined">
                     <button type="button" class="close" aria-label="Close" @click="clearReply"><i class="fa fa-close"></i></button>
                     <div class="tweet-header">
-                      <img class="tweet-avatar small" v-bind:src="reply.user.profile_image_url"/>
+                      <img class="tweet-avatar small" :src="reply.user.profile_image_url"/>
         {{ reply.user.name }} <small>{{ reply.user.screen_name}}</small>
                     </div>
                     <div class="tweet-text">{{{ reply.text_html }}}</div>

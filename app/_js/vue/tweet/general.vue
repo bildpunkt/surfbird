@@ -13,7 +13,7 @@
     <div class="tweet-content">
       <div class="tweet-context">{{ content.user.name }} retweeted</div>
       <tweet-header :user="content.retweeted_status.user"></tweet-header>
-      <tweet-body v-bind:tweet="content.retweeted_status"></tweet-body>
+      <tweet-body :tweet="content.retweeted_status"></tweet-body>
       <tweet-footer :content="content"></tweet-footer>
     </div>
   </div>

@@ -5,7 +5,7 @@
   <div class="tweet" data-created-at="{{ content.created_at }}" data-username="{{ content.source.screen_name }}" v-if="event !== 'mention'">
     <div class="tweet-content">
       <div class="tweet-header">
-        <img class="tweet-avatar small" v-bind:src="content.source.profile_image_url"/>
+        <img class="tweet-avatar small" :src="content.source.profile_image_url"/>
         {{ $t('interaction.event.' + event, {user: content.source.name}) }}
       </div>
       <div class="tweet-body contextual" v-if="content.target_object !== undefined">
@@ -20,7 +20,7 @@
       </div>  
     </div>
   </div>
-  <stream-item v-bind:id="content.id_str" v-bind:index="$index" v-else></stream-item>
+  <stream-item :id="content.id_str" :index="$index" v-else></stream-item>
 </template>
 
 <script>
