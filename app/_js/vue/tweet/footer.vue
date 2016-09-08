@@ -11,12 +11,12 @@
         </li>
         <li class="action-item">
             <a href="#" class="retweet" rel="retweet" @click="retweet">
-                <i class="fa fa-retweet"></i>
+                <i class="fa fa-retweet" :class="{ 'active': content.retweeted }"></i>
             </a>
         </li>
         <li class="action-item">
             <a href="#" class="favorite" rel="favorite" @click="favorite">
-                <i class="fa fa-heart"></i>
+                <i class="fa fa-heart" :class="{ 'active': content.favorited }"></i>
             </a>
         </li>
     </ul>  
