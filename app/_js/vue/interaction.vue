@@ -9,12 +9,7 @@
         {{ $t('interaction.event.' + event, {user: content.source.name}) }}
       </div>
       <div class="tweet-body contextual" v-if="content.target_object !== undefined">
-        <div class="tweet-header">
-          {{ content.target_object.user.name }} 
-          <small>
-            {{ content.target_object.user.screen_name }}
-          </small>  
-        </div>  
+        <tweet-header :user="content.target_object.user" :hidden="true"></tweet-header>
         <div class="tweet-text">{{{ content.target_object.text_html }}}</div>
         <tweet-media :media="content.target_object.extended_entities.media" :tweet="content.target_object" v-if="content.target_object.extended_entities !== undefined"></tweet-media>
       </div>  

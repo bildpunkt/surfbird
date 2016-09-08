@@ -3,13 +3,26 @@
 
 <template>
   <div class="tweet-header">
-    <img class="tweet-avatar" v-bind:src="user.profile_image_url"/>
+    <img class="tweet-avatar" :class="{ 'small': small, 'hidden': hidden }" :src="user.profile_image_url"/>
     {{ user.name }} <small>{{ user.screen_name}}</small>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['user']
+  props: {
+    user: {
+      type: Object,
+      required: true
+    },
+    small: {
+      type: Boolean,
+      required: false
+    },
+    hidden: {
+      type: Boolean,
+      required: false
+    }
+  }
 }
 </script>
