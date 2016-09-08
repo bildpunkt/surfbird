@@ -16,9 +16,7 @@
           </small>  
         </div>  
         <div class="tweet-text">{{{ content.target_object.text_html }}}</div>
-        <div class="tweet-media-wrapper media-{{ content.target_object.extended_entities.media.length }}" v-if="content.target_object.extended_entities !== undefined">
-          <a v-for="media in content.target_object.extended_entities.media" class="media-image" v-bind:href="media.media_url_https" v-bind:data-lightbox="content.target_object.id_str + content.created_at" v-bind:title="content.target_object.text" v-bind:style="{ backgroundImage: 'url(' + media.media_url_https + ')' }"></a>
-        </div>
+        <tweet-media :media="content.target_object.extended_entities.media" :tweet="content.target_object" v-if="content.target_object.extended_entities !== undefined"></tweet-media>
       </div>  
     </div>
   </div>
