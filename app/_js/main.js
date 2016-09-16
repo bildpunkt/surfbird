@@ -13,6 +13,7 @@ app.interactions = []
 app.direct_messages = []
 app.themes = []
 app.sounds = []
+app.hidden = []
 
 Vue.use(VueI18n)
 Vue.config.lang = 'en'
@@ -23,6 +24,7 @@ Vue.component('app-header', require('./vue/header.vue'))
 Vue.component('compose', require('./vue/compose.vue'))
 Vue.component('column', require('./vue/column.vue'))
 Vue.component('stream-item', require('./vue/tweet/general.vue'))
+Vue.component('hidden-tweet', require('./vue/tweet/hidden.vue'))
 Vue.component('tweet-header', require('./vue/tweet/header.vue'))
 Vue.component('tweet-body', require('./vue/tweet/body.vue'))
 Vue.component('tweet-footer', require('./vue/tweet/footer.vue'))
@@ -33,6 +35,7 @@ Vue.component('loader', require('./vue/loader.vue'))
 Vue.component('modal', require('./vue/modal/general.vue'))
 Vue.component('settings-modal', require('./vue/modal/settings.vue'))
 Vue.component('about-modal', require('./vue/modal/about.vue'))
+Vue.component('hidden-modal', require('./vue/modal/hidden.vue'))
 
 var vm = new Vue({
   el: '#main',
@@ -44,7 +47,8 @@ var vm = new Vue({
     sounds: app.sounds,
     themes: app.themes,
     user: app.user,
-    reply: undefined
+    reply: undefined,
+    hidden: app.hidden
   }
 })
 

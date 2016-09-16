@@ -1,4 +1,9 @@
 <style>
+.tweet-dropdown {
+    left: unset;
+    right: 35%;
+    float: right;
+}
 </style>
 
 <template>
@@ -18,6 +23,14 @@
             <a href="#" class="favorite" rel="favorite" @click="favorite">
                 <i class="fa fa-heart" :class="{ 'active': content.favorited }"></i>
             </a>
+        </li>
+        <li class="action-item dropdown">
+            <a href="#" class="more" rel="more" id="moreDropdown{{ content.id_str }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-h"></i>
+            </a>
+            <ul class="dropdown-menu tweet-dropdown" aria-labelledby="moreDropdown{{ content.id_str }}">
+                <li><a href="#" @click="hide">Hide Tweet</a></li>
+            </ul>    
         </li>
     </ul>  
 </div>
@@ -78,6 +91,10 @@ export default {
           ipcRenderer.send('surfbird:send:favorite', tweet)
           $(e.target).addClass('active')
       }
+    },
+    hide (e) {
+        this.$parent.hidden = true
+        this.$root.hidden.push(this.content.id_str)
     }
   }
 }

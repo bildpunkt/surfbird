@@ -15,6 +15,9 @@
           <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
           <li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li>
           <li class="divider"></li>
+          <li class="dropdown-header">Filtering</li>
+          <li><a href="#" data-toggle="modal" data-target="#hiddenModal">Hidden Tweets</a></li>
+          <li class="divider"></li>
           <li class="dropdown-header">Debug</li>
           <li><a href="#" @click="devTools">Developer Tools</a></li>
           <li class="divider"></li>
