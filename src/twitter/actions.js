@@ -167,3 +167,13 @@ ipcMain.on('surfbird:send:direct-message', function (e, message) {
     e.sender.send('surfird:hook:success:direct-message')
   })
 })
+
+ipcMain.on('surfbird:send:delete', function (e, id) {
+  twitter.post('statuses/destroy', {id: id}, function (err, data, response) {
+    if (err) {
+      e.sender.send('surfird:hook:fail:delete')
+      return console.log(err)
+    }
+    e.sender.send('surfird:hook:success:delete', data)
+  })
+})

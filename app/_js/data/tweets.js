@@ -33,4 +33,22 @@ module.exports = function (vm, app) {
 
     toast('An error occurred while sending your tweet', 'Whoops!', 'error')
   })
+
+  ipcRenderer.on('surfird:hook:success:delete', function (e, data) {
+    // delete ID reference
+    var index = app.tweets.indexOf(data.id_str)
+    if (index > -1) {
+      app.tweets.splice(index, 1);
+    }
+
+    // delete actual tweet
+    delete app.storage.tweets[data.id_str]
+    vm.$set('storage.tweets', app.storage.tweets)
+
+    toast('Tweet was deleted successfully!', 'Success!', 'success')
+  })
+
+  ipcRenderer.on('surfird:hook:fail:delete', function () {
+    toast('An error occurred while deleting your tweet', 'Whoops!', 'error')
+  })
 }

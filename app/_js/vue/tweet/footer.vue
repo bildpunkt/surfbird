@@ -30,6 +30,8 @@
             </a>
             <ul class="dropdown-menu tweet-dropdown" aria-labelledby="moreDropdown{{ content.id_str }}">
                 <li><a href="#" @click="hide">Hide Tweet</a></li>
+                <li class="divider"></li>
+                <li v-if="this.$root.user.screen_name == content.user.screen_name"><a href="#" @click="deleteTweet">Delete Tweet</a></li>
             </ul>    
         </li>
     </ul>  
@@ -95,6 +97,9 @@ export default {
     hide (e) {
         this.$parent.hidden = true
         this.$root.storage.hidden.push(this.content.id_str)
+    },
+    deleteTweet (e) {
+        ipcRenderer.send('surfbird:send:delete', this.content.id_str)
     }
   }
 }
