@@ -10,8 +10,11 @@ module.exports = function (vm, app) {
       tweet.retweeted_status.text_html = prepareText(tweet.retweeted_status.text)
     }
 
-    app.tweetStorage[tweet.id_str] = tweet
-    vm.$set('tweetStorage', app.tweetStorage)
+    app.storage.users[tweet.user.id] = tweet.user
+    vm.$set('storage.users', app.storage.users)
+
+    app.storage.tweets[tweet.id_str] = tweet
+    vm.$set('storage.tweets', app.storage.tweets)
     app.tweets.unshift(tweet.id_str)
   })
 

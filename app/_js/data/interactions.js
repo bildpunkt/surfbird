@@ -14,8 +14,8 @@ module.exports = function (vm, app) {
     }
 
     if (interaction.type === 'mention') {
-      app.tweetStorage[interaction.event.id_str] = interaction.event
-      vm.$set('tweetStorage', app.tweetStorage)
+      app.storage.tweets[interaction.event.id_str] = interaction.event
+      vm.$set('storage.tweets', app.storage.tweets)
     }
 
     app.interactions.unshift(interaction)

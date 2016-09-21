@@ -18,12 +18,12 @@ export default {
     props: ['id', 'index'],
     computed: {
         content: function () {
-            return this.$root.tweetStorage[this.id]
+            return this.$root.storage.tweets[this.id]
         }
     },
     methods: {
         pop (e) {
-            this.$root.hidden.splice(this.index, 1)
+            this.$root.storage.hidden.splice(this.index, 1)
             this.$destroy
         }
     }

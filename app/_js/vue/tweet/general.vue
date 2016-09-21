@@ -37,14 +37,16 @@ export default {
   },
   computed: {
     content: function () {
-      return this.$root.tweetStorage[this.id]
+      return this.$root.storage.tweets[this.id]
     },
     hidden: function () {
-      if (this.$root.hidden.includes(this.content.id_str)) {
+      var hiddenStorage = this.$root.storage.hidden
+      
+      if (hiddenStorage.includes(this.content.id_str)) {
         return true
-      } else if (this.$root.hidden.includes(this.content.in_reply_to_status_id_str)) {
+      } else if (hiddenStorage.includes(this.content.in_reply_to_status_id_str)) {
         return true
-      } else if (this.content.retweeted_status !== undefined && this.$root.hidden.includes(this.content.retweeted_status.id_str)) {
+      } else if (this.content.retweeted_status !== undefined && hiddenStorage.includes(this.content.retweeted_status.id_str)) {
         return true
       } else {
         return false

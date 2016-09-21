@@ -8,12 +8,16 @@ require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 window.app = {}
 app.user = {}
 app.tweets = []
-app.tweetStorage = {}
 app.interactions = []
 app.direct_messages = []
 app.themes = []
 app.sounds = []
 app.hidden = []
+
+app.storage = {}
+app.storage.tweets = {}
+app.storage.users = {}
+app.storage.hidden = []
 
 Vue.use(VueI18n)
 Vue.config.lang = 'en'
@@ -41,14 +45,18 @@ var vm = new Vue({
   el: '#main',
   data: {
     tweets: app.tweets,
-    tweetStorage: app.tweetStorage,
     interactions: app.interactions,
     direct_messages: app.direct_messages,
     sounds: app.sounds,
     themes: app.themes,
     user: app.user,
     reply: undefined,
-    hidden: app.hidden
+    hidden: app.hidden,
+    storage: {
+      tweets: app.storage.tweets,
+      users: app.storage.users,
+      hidden: app.storage.hidden
+    }
   }
 })
 

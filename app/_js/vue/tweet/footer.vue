@@ -46,7 +46,7 @@ export default {
   methods: {
     reply (e) {
       // get reply from storage and set it
-      var reply = this.$root.tweetStorage[this.content.id_str]
+      var reply = this.$root.storage.tweets[this.content.id_str]
       var currentUser = this.$root.user
       this.$root.$set('reply', reply)
 
@@ -94,7 +94,7 @@ export default {
     },
     hide (e) {
         this.$parent.hidden = true
-        this.$root.hidden.push(this.content.id_str)
+        this.$root.storage.hidden.push(this.content.id_str)
     }
   }
 }
