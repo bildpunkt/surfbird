@@ -147,11 +147,11 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
           })
         })
       })
-      mediaEmitter.on('tweet', function() {
+      mediaEmitter.once('tweet', function() {
         twitter.post('statuses/update', params, function (err, data, response) {
           if (err) {
             e.sender.send('surfird:hook:fail:tweet')
-            return console.log(err)
+            return console.log(i + ":" + err)
           }
           e.sender.send('surfird:hook:success:tweet')
           params = {}

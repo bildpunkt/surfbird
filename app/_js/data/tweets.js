@@ -24,7 +24,6 @@ module.exports = function (vm, app) {
     vm.$set('temp.media', [])
     $('.js-remaining-character-count').text(140)
     $('.js-chained-tweets').css('display', 'none')
-    $('.js-compose-tweet-btn').attr('disabled', false)
     $('.js-add-picture-btn').attr('disabled', false)
 
     toast('Tweet was sent successfully!', 'Success!', 'success')
