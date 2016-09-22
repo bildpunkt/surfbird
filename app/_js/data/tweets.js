@@ -39,7 +39,7 @@ module.exports = function (vm, app) {
     // delete ID reference
     var index = app.tweets.indexOf(data.id_str)
     if (index > -1) {
-      app.tweets.splice(index, 1);
+      app.tweets.splice(index, 1)
     }
 
     // delete actual tweet

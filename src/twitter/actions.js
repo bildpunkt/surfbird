@@ -14,7 +14,7 @@ const { ipcMain } = require('electron')
 const twitter = require('../twitter')
 const twittxt = require('twitter-text')
 const fs = require('fs')
-const mediaEmitter = new (require('events').EventEmitter);
+const mediaEmitter = new (require('events').EventEmitter)
 
 var postTweetChain = function postTweetChain (tweets, lastId, sender) {
   if (tweets.length == 0) {
@@ -118,9 +118,9 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
     var i = 1
 
     if (tweet.media.length > 0) {
-      tweet.media.forEach(function(media) {
+      tweet.media.forEach(function (media) {
         var b64content = fs.readFileSync(media, { encoding: 'base64' })
-        
+
         twitter.post('media/upload', { media_data: b64content }, function (err, data, response) {
           // now we can assign alt text to the media, for use by screen readers and
           // other text-based presentations and interpreters
@@ -130,7 +130,6 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
 
           twitter.post('media/metadata/create', meta_params, function (err, data, response) {
             if (!err) {
-
               // now we can reference the media and post a tweet (media will attach to the tweet)
               if (tweet.id !== undefined) {
                 params = { status: tweet.text, media_ids: mediaIDs, in_reply_to_status_id: tweet.id }
@@ -147,11 +146,11 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
           })
         })
       })
-      mediaEmitter.once('tweet', function() {
+      mediaEmitter.once('tweet', function () {
         twitter.post('statuses/update', params, function (err, data, response) {
           if (err) {
             e.sender.send('surfbird:hook:fail:tweet')
-            return console.log(i + ":" + err)
+            return console.log(i + ':' + err)
           }
           e.sender.send('surfbird:hook:success:tweet')
           params = {}
