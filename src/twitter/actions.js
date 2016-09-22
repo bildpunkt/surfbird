@@ -18,7 +18,7 @@ const mediaEmitter = new (require('events').EventEmitter);
 
 var postTweetChain = function postTweetChain (tweets, lastId, sender) {
   if (tweets.length == 0) {
-    sender.send('surfird:hook:success:tweet')
+    sender.send('surfbird:hook:success:tweet')
     return
   }
 
@@ -26,7 +26,7 @@ var postTweetChain = function postTweetChain (tweets, lastId, sender) {
 
   twitter.post('statuses/update', payload, function (err, data, response) {
     if (err) {
-      e.sender.send('surfird:hook:fail:tweet')
+      e.sender.send('surfbird:hook:fail:tweet')
       return console.error(err)
     }
     postTweetChain(tweets, data.id_str, sender)
@@ -37,7 +37,7 @@ var postTweetChain = function postTweetChain (tweets, lastId, sender) {
 ipcMain.on('surfbird:send:tweet', function (e, tweet) {
   var tweetLength = twittxt.getTweetLength(tweet.text)
   if (tweetLength > 140 && tweet.media.length > 0) {
-    e.sender.send('surfird:hook:nosup:tweet')
+    e.sender.send('surfbird:hook:nosup:tweet')
   }
   else if (tweetLength > 140) {
     var tweetid = tweet.id
@@ -66,7 +66,7 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
       mentions = []
       mentionsLength = 0
     } else if (mentionsLength > 140) {
-      e.sender.send('surfird:hook:fail:tweet')
+      e.sender.send('surfbird:hook:fail:tweet')
       return console.error('Too many mentions!')
     }
 
@@ -90,7 +90,7 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
           // word is too long, split it up.
           if (textLength == 0) {
             if (urls.indexOf(chunk.toLowerCase()) > -1) {
-              e.sender.send('surfird:hook:fail:tweet')
+              e.sender.send('surfbird:hook:fail:tweet')
               return console.error('Error! Can\'t segment URL!')
             } else {
               length = 140 - (tweet.length + textLength + 1 + mentionsLength)
@@ -150,10 +150,10 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
       mediaEmitter.once('tweet', function() {
         twitter.post('statuses/update', params, function (err, data, response) {
           if (err) {
-            e.sender.send('surfird:hook:fail:tweet')
+            e.sender.send('surfbird:hook:fail:tweet')
             return console.log(i + ":" + err)
           }
-          e.sender.send('surfird:hook:success:tweet')
+          e.sender.send('surfbird:hook:success:tweet')
           params = {}
           mediaIDs = []
           i = 1
@@ -163,19 +163,19 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
       // ..with an ID attached (as reply)
       twitter.post('statuses/update', { status: tweet.text, in_reply_to_status_id: tweet.id }, function (err, data, response) {
         if (err) {
-          e.sender.send('surfird:hook:fail:tweet')
+          e.sender.send('surfbird:hook:fail:tweet')
           return console.log(err)
         }
-        e.sender.send('surfird:hook:success:tweet')
+        e.sender.send('surfbird:hook:success:tweet')
       })
     } else {
       // ..with no ID attached (as puretweet)
       twitter.post('statuses/update', { status: tweet.text }, function (err, data, response) {
         if (err) {
-          e.sender.send('surfird:hook:fail:tweet')
+          e.sender.send('surfbird:hook:fail:tweet')
           return console.log(err)
         }
-        e.sender.send('surfird:hook:success:tweet')
+        e.sender.send('surfbird:hook:success:tweet')
       })
     }
   }
@@ -212,19 +212,19 @@ ipcMain.on('surfbird:send:favorite', function (e, tweet) {
 ipcMain.on('surfbird:send:direct-message', function (e, message) {
   twitter.post('direct_messages/new', {screen_name: message.recipient, text: message.text}, function (err, data, response) {
     if (err) {
-      e.sender.send('surfird:hook:fail:direct-message')
+      e.sender.send('surfbird:hook:fail:direct-message')
       return console.log(err)
     }
-    e.sender.send('surfird:hook:success:direct-message')
+    e.sender.send('surfbird:hook:success:direct-message')
   })
 })
 
 ipcMain.on('surfbird:send:delete', function (e, id) {
   twitter.post('statuses/destroy', {id: id}, function (err, data, response) {
     if (err) {
-      e.sender.send('surfird:hook:fail:delete')
+      e.sender.send('surfbird:hook:fail:delete')
       return console.log(err)
     }
-    e.sender.send('surfird:hook:success:delete', data)
+    e.sender.send('surfbird:hook:success:delete', data)
   })
 })

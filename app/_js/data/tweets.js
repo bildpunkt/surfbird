@@ -18,7 +18,7 @@ module.exports = function (vm, app) {
     app.tweets.unshift(tweet.id_str)
   })
 
-  ipcRenderer.on('surfird:hook:success:tweet', function () {
+  ipcRenderer.on('surfbird:hook:success:tweet', function () {
     $('.js-compose-tweet').val('')
     vm.$set('reply', undefined)
     vm.$set('temp.media', [])
@@ -29,13 +29,13 @@ module.exports = function (vm, app) {
     toast('Tweet was sent successfully!', 'Success!', 'success')
   })
 
-  ipcRenderer.on('surfird:hook:fail:tweet', function () {
+  ipcRenderer.on('surfbird:hook:fail:tweet', function () {
     $('.js-compose-tweet-btn').attr('disabled', false)
 
     toast('An error occurred while sending your tweet', 'Whoops!', 'error')
   })
 
-  ipcRenderer.on('surfird:hook:success:delete', function (e, data) {
+  ipcRenderer.on('surfbird:hook:success:delete', function (e, data) {
     // delete ID reference
     var index = app.tweets.indexOf(data.id_str)
     if (index > -1) {
@@ -49,11 +49,11 @@ module.exports = function (vm, app) {
     toast('Tweet was deleted successfully!', 'Success!', 'success')
   })
 
-  ipcRenderer.on('surfird:hook:fail:delete', function () {
+  ipcRenderer.on('surfbird:hook:fail:delete', function () {
     toast('An error occurred while deleting your tweet', 'Whoops!', 'error')
   })
 
-  ipcRenderer.on('surfird:hook:nosup:tweet', function () {
+  ipcRenderer.on('surfbird:hook:nosup:tweet', function () {
     toast("Chained tweets currently don't support media attachments, please shorten your tweet!", 'Whoops!', 'info')
   })
 }

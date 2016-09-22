@@ -15,7 +15,7 @@ module.exports = function (app) {
     }
   })
 
-  ipcRenderer.on('surfird:hook:success:direct-message', function () {
+  ipcRenderer.on('surfbird:hook:success:direct-message', function () {
     $('.js-compose-recipient').val('')
     $('.js-compose-message').val('')
     $('.js-compose-message-btn').attr('disabled', false)
@@ -23,7 +23,7 @@ module.exports = function (app) {
     toast('Direct message was sent successfully!', 'Success!', 'success')
   })
 
-  ipcRenderer.on('surfird:hook:fail:direct-message', function () {
+  ipcRenderer.on('surfbird:hook:fail:direct-message', function () {
     $('.js-compose-message-btn').attr('disabled', false)
 
     toast('An error occurred while sending your direct message', 'Whoops!', 'error')
