@@ -29,11 +29,15 @@
                     <div class="tweet-text">{{{ reply.text_html }}}</div>
                   </div>
                   <textarea class="compose-input js-compose-tweet" @input="characterCount"></textarea>
+                  <compose-media :media.sync="media"></compose-media>
                 </div>
                 <div class="pull-right compose-actions">
                   <span class="js-remaining-character-count">140</span>
                   <span class="js-chained-tweets">0</span>
                   <input type="submit" class="btn btn-primary js-compose-tweet-btn" disabled value="Tweet" @click="sendTweet">
+                </div>
+                <div class="pull-left compose-actions">
+                  <a href="#" class="btn btn-primary js-add-picture-btn" @click="addPictures">Add pictures</a>
                 </div>
               </form>
             </div>
@@ -62,20 +66,22 @@
 <script>
 const twitter = require('twitter-text')
 const ipcRenderer = require('electron').ipcRenderer
+const toast = require('../utils/toast')
+const fs = require('fs')
 
 export default {
-  props: ['user', 'reply'],
+  props: ['user', 'reply', 'media'],
   methods: {
     sendTweet (e) {
       var tweet = {}
 
       if (this.reply !== undefined) {
-        tweet = {text: $('.js-compose-tweet').val(), id: this.reply.id_str}
+        tweet = {text: $('.js-compose-tweet').val(), id: this.reply.id_str, media: this.$root.temp.media}
       } else {
-        tweet = {text: $('.js-compose-tweet').val()}
+        tweet = {text: $('.js-compose-tweet').val(), media: this.$root.temp.media}
       }
 
-      $('js-compose-tweet-btn').attr('disabled', true)
+      $('.js-compose-tweet-btn').attr('disabled', true)
       ipcRenderer.send('surfbird:send:tweet', tweet)
     },
     characterCount (e) {
@@ -121,6 +127,37 @@ export default {
       this.$root.$set('reply', undefined)
       $('.js-compose-tweet').val('')
       $('.js-compose-tweet-btn').attr('disabled', true)
+    },
+    addPictures (e) {
+      var tempMedia = this.$root.temp.media
+      var fileDialog = document.createElement("input")
+      fileDialog.setAttribute('accept', ".gif,.png,.jpg,.mp4")
+      fileDialog.setAttribute('multiple', "")
+      fileDialog.setAttribute('type', "file")
+
+      fileDialog.addEventListener("change", function() {
+        var selectedFiles = fileDialog.files
+        for (var i = 0; i < selectedFiles.length; i++) {
+          var file = selectedFiles.item(i);
+          if (tempMedia.length == 4) {
+            toast('You can only add up to 4 items!', 'Whoops!', 'error')
+            $('.js-add-picture-btn').attr('disabled', true)
+
+            return false
+          }
+
+          if(fs.statSync(file.path)["size"] > 15728640) {
+            toast(file + ' is too large!', 'Whoops!', 'error')
+
+            return false
+          }
+
+          console.log(file.path)
+          tempMedia.push(file.path)
+        }
+      })
+
+      fileDialog.click()
     }
   }
 }

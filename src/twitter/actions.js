@@ -13,6 +13,8 @@
 const { ipcMain } = require('electron')
 const twitter = require('../twitter')
 const twittxt = require('twitter-text')
+const fs = require('fs')
+const mediaEmitter = new (require('events').EventEmitter);
 
 var postTweetChain = function postTweetChain (tweets, lastId, sender) {
   if (tweets.length == 0) {
@@ -34,7 +36,10 @@ var postTweetChain = function postTweetChain (tweets, lastId, sender) {
 // Let's wait for sent tweets..
 ipcMain.on('surfbird:send:tweet', function (e, tweet) {
   var tweetLength = twittxt.getTweetLength(tweet.text)
-  if (tweetLength > 140) {
+  if (tweetLength > 140 && tweet.media.length > 0) {
+    e.sender.send('surfird:hook:nosup:tweet')
+  }
+  else if (tweetLength > 140) {
     var tweetid = tweet.id
     var tweets = []
 
@@ -107,8 +112,54 @@ ipcMain.on('surfbird:send:tweet', function (e, tweet) {
 
     return postTweetChain(tweets, tweetid, e.sender)
   } else {
-    // ..and then post them to Twitter..
-    if (tweet.id !== undefined) {
+    var mediaIDs = []
+    var params = {}
+
+    var i = 1
+
+    if (tweet.media.length > 0) {
+      tweet.media.forEach(function(media) {
+        var b64content = fs.readFileSync(media, { encoding: 'base64' })
+        
+        twitter.post('media/upload', { media_data: b64content }, function (err, data, response) {
+          // now we can assign alt text to the media, for use by screen readers and
+          // other text-based presentations and interpreters
+          mediaIDs.push(data.media_id_string)
+
+          var meta_params = { media_id: data.media_id_string, alt_text: { text: tweet.text } }
+
+          twitter.post('media/metadata/create', meta_params, function (err, data, response) {
+            if (!err) {
+
+              // now we can reference the media and post a tweet (media will attach to the tweet)
+              if (tweet.id !== undefined) {
+                params = { status: tweet.text, media_ids: mediaIDs, in_reply_to_status_id: tweet.id }
+              } else {
+                params = { status: tweet.text, media_ids: mediaIDs }
+              }
+
+              if (i == tweet.media.length) {
+                mediaEmitter.emit('tweet')
+              } else {
+                i++
+              }
+            }
+          })
+        })
+      })
+      mediaEmitter.on('tweet', function() {
+        twitter.post('statuses/update', params, function (err, data, response) {
+          if (err) {
+            e.sender.send('surfird:hook:fail:tweet')
+            return console.log(err)
+          }
+          e.sender.send('surfird:hook:success:tweet')
+          params = {}
+          mediaIDs = []
+          i = 1
+        })
+      })
+    } else if (tweet.id !== undefined) {
       // ..with an ID attached (as reply)
       twitter.post('statuses/update', { status: tweet.text, in_reply_to_status_id: tweet.id }, function (err, data, response) {
         if (err) {

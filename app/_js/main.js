@@ -26,13 +26,14 @@ Vue.locale('en', require('./locales/en.json'))
 
 Vue.component('app-header', require('./vue/header.vue'))
 Vue.component('compose', require('./vue/compose.vue'))
+Vue.component('compose-media', require('./vue/media/compose.vue'))
 Vue.component('column', require('./vue/column.vue'))
 Vue.component('stream-item', require('./vue/tweet/general.vue'))
 Vue.component('hidden-tweet', require('./vue/tweet/hidden.vue'))
 Vue.component('tweet-header', require('./vue/tweet/header.vue'))
 Vue.component('tweet-body', require('./vue/tweet/body.vue'))
 Vue.component('tweet-footer', require('./vue/tweet/footer.vue'))
-Vue.component('tweet-media', require('./vue/tweet/media.vue'))
+Vue.component('tweet-media', require('./vue/media/tweet.vue'))
 Vue.component('interaction', require('./vue/interaction.vue'))
 Vue.component('direct-message', require('./vue/direct_message.vue'))
 Vue.component('loader', require('./vue/loader.vue'))
@@ -40,6 +41,7 @@ Vue.component('modal', require('./vue/modal/general.vue'))
 Vue.component('settings-modal', require('./vue/modal/settings.vue'))
 Vue.component('about-modal', require('./vue/modal/about.vue'))
 Vue.component('hidden-modal', require('./vue/modal/hidden.vue'))
+Vue.component('media-item', require('./vue/media/item.vue'))
 
 var vm = new Vue({
   el: '#main',
@@ -56,6 +58,9 @@ var vm = new Vue({
       tweets: app.storage.tweets,
       users: app.storage.users,
       hidden: app.storage.hidden
+    },
+    temp: {
+      media: []
     }
   }
 })

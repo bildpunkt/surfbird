@@ -21,9 +21,11 @@ module.exports = function (vm, app) {
   ipcRenderer.on('surfird:hook:success:tweet', function () {
     $('.js-compose-tweet').val('')
     vm.$set('reply', undefined)
+    vm.$set('temp.media', [])
     $('.js-remaining-character-count').text(140)
     $('.js-chained-tweets').css('display', 'none')
     $('.js-compose-tweet-btn').attr('disabled', false)
+    $('.js-add-picture-btn').attr('disabled', false)
 
     toast('Tweet was sent successfully!', 'Success!', 'success')
   })
@@ -50,5 +52,9 @@ module.exports = function (vm, app) {
 
   ipcRenderer.on('surfird:hook:fail:delete', function () {
     toast('An error occurred while deleting your tweet', 'Whoops!', 'error')
+  })
+
+  ipcRenderer.on('surfird:hook:nosup:tweet', function () {
+    toast("Chained tweets currently don't support media attachments, please shorten your tweet!", 'Whoops!', 'info')
   })
 }
