@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <div class="tweet" :class="{ 'hidden': hidden }" data-tweet-id="{{ content.id_str }}" data-created-at="{{ content.created_at }}" data-username="{{ content.user.screen_name }}" v-if="content.retweeted_status === undefined">
+  <div class="tweet" :class="{ 'hidden': hidden, 'hidden': muted }" data-tweet-id="{{ content.id_str }}" data-created-at="{{ content.created_at }}" data-username="{{ content.user.screen_name }}" v-if="content.retweeted_status === undefined">
     <div class="tweet-content">
       <tweet-header :user="content.user"></tweet-header>
       <tweet-body :tweet="content"></tweet-body>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+const matcher = require('../../utils/matcher')
 export default {
   props: {
     id: {
@@ -50,6 +51,33 @@ export default {
         return true
       } else {
         return false
+      }
+    },
+    muted: function () {
+      var userMutes = this.$root.mutes.users
+      var keywordMutes = this.$root.mutes.keywords
+      var sourceMutes = this.$root.mutes.sources
+
+      if (userMutes.length !== 0 ) {
+        if (matcher(this.content.user.screen_name, userMutes)) {
+          return true
+        }
+
+        if (matcher(this.content.text, userMutes)) {
+          return true
+        }
+      }
+
+      if (keywordMutes.length !== 0 ) {
+        if (matcher(this.content.text, keywordMutes)) {
+          return true
+        }
+      }
+
+      if (sourceMutes.length !== 0 ) {
+        if (matcher(this.content.source, sourceMutes)) {
+          return true
+        }
       }
     }
   }

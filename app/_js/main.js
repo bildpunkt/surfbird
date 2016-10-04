@@ -46,6 +46,7 @@ Vue.component('modal', require('./vue/modal/general.vue'))
 Vue.component('settings-modal', require('./vue/modal/settings.vue'))
 Vue.component('about-modal', require('./vue/modal/about.vue'))
 Vue.component('hidden-modal', require('./vue/modal/hidden.vue'))
+Vue.component('mutes-modal', require('./vue/modal/mutes.vue'))
 Vue.component('media-item', require('./vue/media/item.vue'))
 
 var vm = new Vue({
