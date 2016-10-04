@@ -57,4 +57,12 @@ module.exports = function (mainWindow, currentUser) {
       })
     })
   })
+
+  ipcMain.on('surfbird:send:mutes', function (e) {
+    twitter.get('mutes/users/list', function (e, mutes) {
+      mutes.users.forEach(function (user) {
+        mainWindow.webContents.send('surfbird:get:mutes', user)
+      })
+    })
+  })
 }

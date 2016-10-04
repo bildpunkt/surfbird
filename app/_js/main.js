@@ -19,6 +19,11 @@ app.storage.tweets = {}
 app.storage.users = {}
 app.storage.hidden = []
 
+app.mutes = {}
+app.mutes.users = []
+app.mutes.keywords = []
+app.mutes.sources = []
+
 Vue.use(VueI18n)
 Vue.config.lang = 'en'
 
@@ -61,6 +66,11 @@ var vm = new Vue({
     },
     temp: {
       media: []
+    },
+    mutes: {
+      users: app.mutes.users,
+      keywords: app.mutes.keywords,
+      sources: app.mutes.sources
     }
   }
 })
@@ -71,10 +81,12 @@ require('./data/sounds.js')(app)
 require('./data/tweets.js')(vm, app)
 require('./data/interactions.js')(vm, app)
 require('./data/direct_messages.js')(app)
+require('./data/mutes.js')(app)
 
 ipcRenderer.send('surfbird:send:home-timeline', true)
 ipcRenderer.send('surfbird:send:mentions-timeline', true)
 ipcRenderer.send('surfbird:send:direct-messages', true)
 ipcRenderer.send('surfbird:send:themes', true)
 ipcRenderer.send('surfbird:send:sounds', true)
+ipcRenderer.send('surfbird:send:mutes', true)
 ipcRenderer.send('surfbird:send:user', true)
