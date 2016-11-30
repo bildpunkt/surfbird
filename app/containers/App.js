@@ -1,16 +1,12 @@
-// @flow
+import { connect } from 'react-redux';
 import React, { Component, PropTypes } from 'react';
+import Home from '../components/home';
 
-export default class App extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired
-  };
 
-  render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
+const mapStateToProps = (state) => {
+  return {
+    children: PropTypes.element.isRequired,
   }
 }
+
+export default connect(mapStateToProps)(Home);
