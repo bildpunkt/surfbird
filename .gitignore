@@ -1,7 +1,6 @@
 # Logs
 logs
 *.log
-npm-debug.log*
 
 # Runtime data
 pids
@@ -21,22 +20,24 @@ coverage
 .lock-wscript
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-dist
+build/Release
 
 # Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+app/node_modules
 
-# Optional npm cache directory
-.npm
+# OSX
+.DS_Store
 
-# Optional REPL history
-.node_repl_history
-
-# Compiled assets
-app/assets/js/main.js
-app/assets/css/style.css
-app/assets/fonts/
-app/assets/images/
-
-# Configuration
-surfbird.json
+# App packaged
+release
+app/main.js
+app/main.js.map
+app/bundle.js
+app/bundle.js.map
+app/style.css
+app/style.css.map
+dist
+main.js
+main.js.map
