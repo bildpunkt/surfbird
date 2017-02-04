@@ -1,0 +1,65 @@
+{
+  "name": "surfbird",
+  "version": "0.0.1",
+  "description": "A Twitter client built on Electron",
+  "main": "app.js",
+  "scripts": {
+    "commit": "./node_modules/.bin/git-cz",
+    "start": "electron app.js",
+    "style": "standard",
+    "style-fix": "standard --fix",
+    "assets": "node .\\node_modules\\gulp\\bin\\gulp.js assets",
+    "watch": "node .\\node_modules\\gulp\\bin\\gulp.js watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surfbirdapp/surfbird.git"
+  },
+  "keywords": [
+    "electron",
+    "vuejs",
+    "twitter",
+    "twitter-api",
+    "twitter-client"
+  ],
+  "author": "Andreas Nedbal <andy@pixelde.su>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/surfbirdapp/surfbird/issues"
+  },
+  "homepage": "https://github.com/surfbirdapp/surfbird#readme",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "browserify": "^14.0.0",
+    "commitizen": "^2.9.5",
+    "cz-conventional-changelog": "^1.2.0",
+    "devtron": "^1.4.0",
+    "electron": "^1.4.15",
+    "electron-packager": "^8.5.1",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.0",
+    "gulp-uglify": "^2.0.1",
+    "gulp-util": "^3.0.8",
+    "node-sass": "^4.5.0",
+    "standard": "^8.6.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vinyl-transform": "^1.0.0",
+    "vueify": "^9.4.0",
+    "vueify-insert-css": "^1.0.0"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "normalize.css": "^5.0.0",
+    "vue": "^2.1.10"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
