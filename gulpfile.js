@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 var browserify = require('browserify')
 var gulp = require('gulp')
@@ -15,14 +15,14 @@ gulp.task('js', function () {
     entries: './app/_js/main.js',
     debug: true,
     transform: [vueify]
-  });
+  })
 
   return b.bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
-        .on('error', gutil.log)
+      .pipe(uglify())
+      .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./app/assets/js/'))
 })
@@ -34,9 +34,9 @@ gulp.task('sass', function () {
 })
 
 gulp.task('watch', function () {
-    gulp.watch('./app/_sass/**/*.scss', ['sass'])
-    gulp.watch('./app/_js/**/*.js', ['js'])
-    gulp.watch('./app/_js/**/*.vue', ['js'])
+  gulp.watch('./app/_sass/**/*.scss', ['sass'])
+  gulp.watch('./app/_js/**/*.js', ['js'])
+  gulp.watch('./app/_js/**/*.vue', ['js'])
 })
 
 gulp.task('assets', ['js', 'sass'])
