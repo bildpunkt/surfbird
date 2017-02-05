@@ -1,0 +1,11 @@
+$drawer-background-color: #37474f;
+
+.l-drawer {
+  background-color: $drawer-background-color;
+  position: absolute;
+  height: 120px;
+  bottom: -120px;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
