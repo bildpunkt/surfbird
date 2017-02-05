@@ -1,0 +1,75 @@
+.c-column {
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+  overflow: hidden;
+  width: 433px;
+  height: 100%;
+  background-color: #fff;
+  font-size: 1rem;
+  white-space: normal;
+
+  &__holder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &__panel {
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  &__header {
+    box-sizing: border-box;
+    position: relative;
+    height: 50px;
+    padding: 0 10px;
+    line-height: 50px;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+
+    &-attribution {
+      font-size: 16px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    position: relative;
+    height: 100%;
+    flex: 1 1 auto;
+    min-width: 1px;
+    min-height: 1px;
+    -webkit-box-flex: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+  }
+
+  &__scroller {
+    position: relative;
+    height: 100%;
+    flex: 1 1 auto;
+    min-width: 1px;
+    min-height: 1px;
+    overflow-x: hidden;
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow-y: auto;
+  }
+}

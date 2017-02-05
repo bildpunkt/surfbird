@@ -1,0 +1,208 @@
+.c-tweet {
+  display: block;
+
+  &__content {
+    position: relative;
+    padding: 8px 10px;
+  }
+
+  &__inner {
+    padding-left: 58px;
+    line-height: 1.28578em;
+    word-break: break-word;
+    word-wrap: break-word;
+
+    &:before, &:after {
+      display: block;
+      content: " ";
+    }
+
+    &:after {
+      clear: both;
+    }
+  }
+
+  &__header {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-align: baseline;
+    align-items: baseline;
+  }
+
+  &__account-link {
+    display: block;
+    max-width: 100%;
+    color: #000;
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    min-width: 1px;
+    min-height: 1px;
+  }
+
+  &__image {
+    position: relative;
+    margin-left: -58px;
+    float: left;
+    margin-right: 10px;
+  }
+
+  &__avatar {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 10%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__account-name {
+    overflow: hidden;
+    word-break: break-word;
+    word-wrap: break-word;
+
+    &--inline {
+      box-sizing: border-box;
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      vertical-align: bottom;
+      overflow: hidden;
+      white-space: nowrap;
+      word-wrap: normal;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__account-fullname, &__account-username {
+    line-height: 1;
+  }
+
+  &__account-username {
+    color: #b0bec5;
+  }
+
+  &__timestamp {
+    margin-bottom: 2px;
+    line-height: 1;
+    color: #b0bec5;
+
+    &-link {
+      color: #b0bec5;
+      text-decoration: none;
+    }
+  }
+
+  &__body {
+    min-height: 35px;
+  }
+
+  &__text {
+    margin: 0;
+    white-space: pre-wrap;
+    overflow: hidden;
+  }
+
+  &__footer {
+    display: block;
+    margin-top: 3px;
+
+    &:before {
+      display: block;
+      content: " ";
+    }
+
+    &:after {
+      clear: both;
+    }
+  }
+
+  &__actions {
+    width: 100%;
+    float: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__action {
+    color: #c1ccd1;
+    float: left;
+    margin-right: 13px !important;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__media {
+    position: relative;
+    height: 120px;
+    width: 100%;
+    margin: 8px 0px;
+
+    &-image {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background-position: 50% 50%;
+      background-size: cover;
+      background-color: #c1ccd1;
+
+      &:nth-child(2) {
+        left: 3px;
+      }
+
+      &:nth-child(3) {
+        top: 3px;
+      }
+
+      &:nth-child(4) {
+        top: 3px;
+        left: 3px;
+      }
+    }
+
+    &[data-media-count="1"] {
+      .c-tweet__media-image {
+        height: 100%;
+      }
+    }
+
+    &[data-media-count="2"] {
+      .c-tweet__media-image {
+        width: 50%;
+      }
+    }
+
+    &[data-media-count="3"] {
+      .c-tweet__media-image {
+        padding: 0;
+        width: 50%;
+        height: 50%;
+        float: left;
+
+        &:first-child {
+          height: 100%;
+        }
+
+        &:nth-child(3) {
+          left: 3px;
+          height: calc(50% - 3px);
+        }
+      }
+    }
+
+    &[data-media-count="4"] {
+      .c-tweet__media-image {
+        padding: 0;
+        width: 50%;
+        height: 50%;
+        float: left;
+      }
+    }
+  }
+}
