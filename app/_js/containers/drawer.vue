@@ -3,6 +3,7 @@
 
 <template>
   <div class="l-drawer">
+    <composer></composer>
   </div>
 </template>
 

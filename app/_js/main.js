@@ -23,6 +23,8 @@ Vue.component('tweet-action-like', require('./components/tweet/actions/like.vue'
 Vue.component('tweet-action-retweet', require('./components/tweet/actions/retweet.vue'))
 Vue.component('tweet-action-more', require('./components/tweet/actions/more.vue'))
 
+Vue.component('composer', require('./components/composer/base.vue'))
+
 var app = new Vue({
   el: '#app'
 })
