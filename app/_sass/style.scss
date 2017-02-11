@@ -1,6 +1,9 @@
 // Vendor
 @import "../../node_modules/normalize.css/normalize";
 
+// Settings
+@import "settings/fonts";
+
 // Layouts
 @import 'layouts/application';
 @import 'layouts/content';

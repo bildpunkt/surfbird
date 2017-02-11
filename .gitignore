@@ -43,5 +43,8 @@ app/assets/js/app.js
 app/assets/js/app.js.map
 !app/assets/js/.keep
 
+app/assets/fonts/*
+!app/assets/fonts/.keep
+
 # Configuration
 surfbird.json
