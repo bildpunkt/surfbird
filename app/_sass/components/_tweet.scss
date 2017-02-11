@@ -127,14 +127,38 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    user-select: none;
   }
 
   &__action {
     color: #c1ccd1;
+    cursor: pointer;
     float: left;
     margin-right: 13px !important;
     padding: 0;
     margin: 0;
+    font-family: Batch;
+    font-size: 18px;
+
+    &-reply:hover,
+    &-reply.c-tweet__action-reply--active {
+      color: #199ff4;
+    }
+
+    &-like:hover,
+    &-like.c-tweet__action-like--active {
+      color: #e91e63;
+    }
+
+    &-retweet:hover,
+    &-retweet.c-tweet__action-retweet--active {
+      color: #4caf50;
+    }
+
+    &-more:hover,
+    &-more.c-tweet__action-more--active {
+      color: #202020;
+    }
   }
 
   &__media {

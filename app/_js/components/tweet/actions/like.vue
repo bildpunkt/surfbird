@@ -2,8 +2,8 @@
 </style>
 
 <template>
-  <li class="c-tweet__action">
-    Like
+  <li class="c-tweet__action c-tweet__action-like">
+    
   </li>
 </template>
 
