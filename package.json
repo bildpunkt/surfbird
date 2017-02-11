@@ -38,6 +38,7 @@
     "cz-conventional-changelog": "^1.2.0",
     "devtron": "^1.4.0",
     "electron": "^1.4.15",
+    "electron-devtools-installer": "^2.1.0",
     "electron-packager": "^8.5.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^3.1.0",

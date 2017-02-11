@@ -1,4 +1,5 @@
 const {app, BrowserWindow} = require('electron')
+const installExtension = require('electron-devtools-installer')
 const path = require('path')
 const url = require('url')
 
@@ -11,6 +12,9 @@ function createWindow () {
     title: 'Surfbird',
     autoHideMenuBar: true
   })
+
+  installExtension.default(installExtension.VUEJS_DEVTOOLS)
+    .catch((err) => console.log('An error occurred: ', err))
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'app', 'index.html'),
