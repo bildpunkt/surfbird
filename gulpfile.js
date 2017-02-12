@@ -14,6 +14,10 @@ gulp.task('js', function () {
   var b = browserify({
     entries: './app/_js/main.js',
     debug: true,
+    bundleExternal: false,
+    builtins: false,
+    commondir: false,
+    insertGlobals: 'global',
     transform: [vueify]
   })
 

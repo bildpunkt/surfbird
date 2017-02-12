@@ -1,5 +1,6 @@
 const Vue = require('vue/dist/vue.js')
 
+Vue.component('window', require('./containers/window.vue'))
 Vue.component('app', require('./containers/app.vue'))
 Vue.component('sidebar', require('./containers/sidebar.vue'))
 Vue.component('app-content', require('./containers/content.vue'))
@@ -24,6 +25,12 @@ Vue.component('tweet-action-retweet', require('./components/tweet/actions/retwee
 Vue.component('tweet-action-more', require('./components/tweet/actions/more.vue'))
 
 Vue.component('composer', require('./components/composer/base.vue'))
+
+Vue.component('window-dragarea', require('./components/window/dragarea.vue'))
+Vue.component('window-controls', require('./components/window/controls.vue'))
+Vue.component('window-control-close', require('./components/window/controls/close.vue'))
+Vue.component('window-control-maximize', require('./components/window/controls/maximize.vue'))
+Vue.component('window-control-minimize', require('./components/window/controls/minimize.vue'))
 
 var app = new Vue({
   el: '#app'
