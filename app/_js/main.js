@@ -1,4 +1,5 @@
-const Vue = require('vue/dist/vue.js')
+import Vue from 'vue/dist/vue.js'
+import store from './store'
 
 Vue.component('window', require('./containers/window.vue'))
 Vue.component('app', require('./containers/app.vue'))
@@ -33,5 +34,6 @@ Vue.component('window-control-maximize', require('./components/window/controls/m
 Vue.component('window-control-minimize', require('./components/window/controls/minimize.vue'))
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  store
 })

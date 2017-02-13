@@ -5,7 +5,7 @@
   <section class="c-column">
     <div class="c-column__holder">
       <div class="c-column__panel">
-        <column-header></column-header>
+        <column-header :data="data.header"></column-header>
         <column-content></column-content>
       </div>
     </div>
@@ -14,5 +14,6 @@
 
 <script>
 export default {
+  props: ['data']
 }
 </script>

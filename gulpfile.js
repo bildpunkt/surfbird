@@ -1,5 +1,6 @@
 'use strict'
 
+var babelify = require('babelify')
 var browserify = require('browserify')
 var gulp = require('gulp')
 var sass = require('gulp-sass')
@@ -18,7 +19,7 @@ gulp.task('js', function () {
     builtins: false,
     commondir: false,
     insertGlobals: 'global',
-    transform: [vueify]
+    transform: [vueify, babelify]
   })
 
   return b.bundle()

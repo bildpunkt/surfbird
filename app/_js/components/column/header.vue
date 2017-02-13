@@ -4,9 +4,9 @@
 <template>
   <header class="c-column__header">
     <h1 class="c-column__title">
-      Column 1
+      {{ data.name }}
       <span class="c-column__title-attribution">
-        @username
+        @{{ data.username }}
       </span>
     </h1>
   </header>
@@ -14,5 +14,6 @@
 
 <script>
 export default {
+  props: ['data']
 }
 </script>
