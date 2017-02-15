@@ -14,6 +14,9 @@
 
 <script>
 export default {
-  props: ['data']
+  props: ['data', 'index'],
+  created: function() {
+    this.$store.dispatch('startStreaming', this.index)
+  }
 }
 </script>

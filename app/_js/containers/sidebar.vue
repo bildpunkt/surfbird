@@ -13,7 +13,7 @@
 export default {
   methods: {
     addColumn(e) {
-      this.$store.dispatch('addColumn', {header: {name: "Test Column", username: "test"}})
+      this.$store.dispatch('addColumn', {header: {name: "Test Column", username: "test"}, tweets: []})
     }
   }
 }

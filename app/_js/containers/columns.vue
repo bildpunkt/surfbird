@@ -3,7 +3,7 @@
 
 <template>
   <div class="l-columns">
-    <column v-for="c in columns" :data="c"></column>
+    <column v-for="(c, index) in columns" :data="c" :index="index"></column>
   </div>
 </template>
 
