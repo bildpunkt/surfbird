@@ -8,8 +8,8 @@
     "start": "electron app.js",
     "style": "standard",
     "style-fix": "standard --fix",
-    "assets": "node .\\node_modules\\gulp\\bin\\gulp.js assets",
-    "watch": "node .\\node_modules\\gulp\\bin\\gulp.js watch",
+    "assets": "node ./node_modules/gulp/bin/gulp.js assets",
+    "watch": "node ./node_modules/gulp/bin/gulp.js watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
