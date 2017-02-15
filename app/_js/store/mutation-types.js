@@ -1,1 +1,3 @@
 export const ADD_COLUMN = 'ADD_COLUMN'
+export const START_STREAMING = 'START_STREAMING'
+export const ADD_TWEET_TO_COLUMN = 'ADD_TWEET_TO_COLUMN'
