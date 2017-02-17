@@ -13,7 +13,7 @@
 export default {
   computed: {
     tweets: function() {
-      return this.$store.state.columns[this.$parent.index].tweets
+      return this.$store.state.profiles.all[this.$store.state.profiles.activeProfile].columns[this.$parent.index].tweetStorage.ids
     }
   }
 }

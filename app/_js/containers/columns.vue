@@ -12,8 +12,10 @@ import { mapGetters } from 'vuex'
 
 
 export default {
-  computed: mapGetters({
-    columns: 'allColumns'
-  })
+  computed: {
+    columns: function() {
+      return this.$store.state.profiles.all[this.$store.state.profiles.activeProfile].columns
+    }
+  }
 }
 </script>
