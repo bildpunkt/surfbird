@@ -11,5 +11,8 @@
 
 <script>
 export default {
+  created: function() {
+    this.$store.dispatch('addProfile', 'test')
+  }
 }
 </script>

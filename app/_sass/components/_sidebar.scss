@@ -8,3 +8,18 @@
   user-select: none;
   cursor: pointer;
 }
+
+.c-sidebar__profile {
+  position: relative;
+  padding: 0 10px;
+  margin-top: 10px;
+  font-size: 24px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+  color: #fff;
+
+  &--active {
+    color: red;
+  }
+}

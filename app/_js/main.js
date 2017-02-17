@@ -33,6 +33,9 @@ Vue.component('window-control-close', require('./components/window/controls/clos
 Vue.component('window-control-maximize', require('./components/window/controls/maximize.vue'))
 Vue.component('window-control-minimize', require('./components/window/controls/minimize.vue'))
 
+Vue.component('sidebar-button', require('./components/sidebar/button.vue'))
+Vue.component('sidebar-profile', require('./components/sidebar/profile.vue'))
+
 var app = new Vue({
   el: '#app',
   store

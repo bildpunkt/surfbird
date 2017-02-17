@@ -5,7 +5,7 @@
   <section class="c-column">
     <div class="c-column__holder">
       <div class="c-column__panel">
-        <column-header :data="data.header"></column-header>
+        <column-header :data="data"></column-header>
         <column-content></column-content>
       </div>
     </div>
@@ -16,7 +16,8 @@
 export default {
   props: ['data', 'index'],
   created: function() {
-    this.$store.dispatch('startStreaming', this.index)
+    let payload = {index: this.index, profile: this.$store.state.profiles.activeProfile}
+    this.$store.dispatch('startStreaming', payload)
   }
 }
 </script>
