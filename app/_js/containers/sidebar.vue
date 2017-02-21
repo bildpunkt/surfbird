@@ -18,7 +18,7 @@ export default {
   }),
   methods: {
     addColumn(e) {
-      this.$store.dispatch('addColumn', {name: "Test Column", type: "Home", owner: "username"})
+      this.$store.dispatch('addColumn', {name: "Test Column", type: "Home", owner: this.$store.state.accounts.activeAccount})
     },
     addProfile(e) {
       this.$store.dispatch('addProfile', 'Test')
