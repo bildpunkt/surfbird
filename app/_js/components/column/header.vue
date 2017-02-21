@@ -6,7 +6,7 @@
     <h1 class="c-column__title">
       {{ data.name }}
       <span class="c-column__title-attribution">
-        @{{ data.owner }}
+        @{{ user.screenname }}
       </span>
     </h1>
   </header>
@@ -14,6 +14,11 @@
 
 <script>
 export default {
-  props: ['data']
+  props: ['data'],
+  computed: {
+    user: function() {
+      return this.$store.state.accounts.all[this.data.owner].user
+    }
+  }
 }
 </script>
