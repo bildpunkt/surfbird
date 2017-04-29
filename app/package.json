@@ -7,6 +7,7 @@
     "babel-runtime": "^6.23.0",
     "batch-webfont": "^0.1.0",
     "glob": "^7.1.1",
+    "node-twitter-api": "^1.8.0",
     "normalize.css": "^6.0.0",
     "vue": "^2.1.10",
     "vue-electron": "^1.0.6",
