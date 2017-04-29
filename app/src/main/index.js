@@ -1,6 +1,7 @@
 'use strict'
 
 import { app, BrowserWindow, ipcMain } from 'electron'
+import Authentication from './authentication'
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
@@ -40,6 +41,11 @@ function createWindow () {
 
   ipcMain.on('surfbird:window:minimize', function (e) {
     mainWindow.minimize()
+  })
+
+  // eslint-disable-next-line no-new
+  new Authentication('twitter', (tokens) => {
+    console.log(tokens)
   })
 }
 
