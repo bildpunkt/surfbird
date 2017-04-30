@@ -4,8 +4,8 @@
       <div class="c-tweet__inner">
         <tweet-header></tweet-header>
         <div class="c-tweet__body">
-          <p class="c-tweet__text">This is some scrollable column content</p>
-          <tweet-media></tweet-media>
+          <p class="c-tweet__text">{{ data.text }}</p>
+          <tweet-media v-if="data.extended_entities !== undefined"></tweet-media>
           <tweet-footer></tweet-footer>
         </div>
       </div>
@@ -19,10 +19,16 @@ import TweetFooter from './Tweet/Footer'
 import TweetMedia from './Tweet/Media'
 
 export default {
+  props: ['id', 'colindex'],
   components: {
     TweetHeader,
     TweetFooter,
     TweetMedia
+  },
+  computed: {
+    data: function () {
+      return this.$store.state.profiles.all[this.$store.state.profiles.activeProfile].columns[this.colindex].tweetStorage.tweets[this.id]
+    }
   },
   name: 'tweet'
 }

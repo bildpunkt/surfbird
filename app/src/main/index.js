@@ -20,6 +20,13 @@ function createWindow () {
     frame: false
   })
 
+  let installExtension = require('electron-devtools-installer')
+  installExtension.default(installExtension.VUEJS_DEVTOOLS)
+    .then(() => {})
+    .catch(err => {
+      console.log('Unable to install `vue-devtools`: \n', err)
+  })
+
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {

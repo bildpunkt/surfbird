@@ -16,7 +16,7 @@ import ColumnContent from './Column/Content'
 export default {
   props: ['data', 'index'],
   created: function () {
-    let payload = {index: this.index, profile: this.$store.state.profiles.activeProfile}
+    let payload = {index: this.index, profile: this.$store.state.profiles.activeProfile, owner: this.data.owner}
     this.$store.dispatch('startStreaming', payload)
   },
   components: {

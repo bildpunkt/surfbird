@@ -1,7 +1,7 @@
 <template>
   <div class="c-column__content">
     <div class="c-column__scroller">
-      <tweet v-for="tweet in tweets"></tweet>
+      <tweet v-for="tweet in tweets" :id="tweet" :colindex="columnindex"></tweet>
     </div>
   </div>
 </template>
@@ -13,6 +13,9 @@ export default {
   computed: {
     tweets: function () {
       return this.$store.state.profiles.all[this.$store.state.profiles.activeProfile].columns[this.$parent.index].tweetStorage.ids
+    },
+    columnindex: function () {
+      return this.$parent.index
     }
   },
   components: {
