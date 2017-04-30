@@ -21,12 +21,11 @@ const actions = {
   addColumn ({ commit, state }, column) {
     commit(types.ADD_COLUMN, { column })
   },
-  startStreaming ({ commit, state }, payload) {
-    // TODO: Replace this with the function call to retrieve data from a Twitter stream
-    setInterval(function (payload) {
-      // let p = {tweet: '1', index: payload.index, profile: payload.profile}
+  startStreaming ({ commit, state, rootState }, payload) {
+    rootState.accounts.all[payload.owner].client.startStreaming('user', (tweet) => {
+      payload.tweet = tweet
       commit(types.ADD_TWEET_TO_COLUMN, { payload })
-    }.bind(null, payload), 3000)
+    })
   }
 }
 
@@ -41,7 +40,8 @@ const mutations = {
     state.all[state.activeProfile].columns.push(new Column(column.name, column.type, column.owner))
   },
   [types.ADD_TWEET_TO_COLUMN] (state, { payload }) {
-    state.all[payload.profile].columns[payload.index].tweetStorage.ids.unshift(payload.tweet)
+    state.all[payload.profile].columns[payload.index].tweetStorage.ids.unshift(payload.tweet.id_str)
+    state.all[payload.profile].columns[payload.index].tweetStorage.tweets[payload.tweet.id_str] = payload.tweet
   }
 }
 

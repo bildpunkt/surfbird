@@ -1,10 +1,11 @@
 <template>
-  <a class="c-tweet__media-image" href="#">
+  <a class="c-tweet__media-image" :href="medium.media_url_https" :style="{ backgroundImage: 'url(' + medium.media_url_https + ')' }">
   </a>
 </template>
 
 <script>
 export default {
+  props: ['medium']
 }
 </script>
 

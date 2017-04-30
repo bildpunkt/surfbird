@@ -2,12 +2,12 @@
   <header class="c-tweet__header">
     <a class="c-tweet__account-link" href="#">
       <div class="c-tweet__image">
-        <img class="c-tweet__avatar" src="">
+        <img class="c-tweet__avatar" :src="user.profile_image_url">
       </div>
       <div class="c-tweet__account-name">
         <span class="c-tweet__account-name--inline">
-          <b class="c-tweet__account-fullname">Full Name</b>
-          <span class="c-tweet__account-username">@username</span>
+          <b class="c-tweet__account-fullname">{{ user.name }}</b>
+          <span class="c-tweet__account-username">@{{ user.screen_name }}</span>
         </span>
       </div>
     </a>
@@ -21,6 +21,11 @@
 
 <script>
 export default {
+  computed: {
+    user: function () {
+      return this.$parent.data.user
+    }
+  },
   name: 'tweet-header'
 }
 </script>

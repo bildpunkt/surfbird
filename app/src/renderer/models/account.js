@@ -1,6 +1,7 @@
+import clients from '../clients'
+
 export default class Account {
-  constructor (user, tokens) {
-    this.user = user
-    this.tokens = tokens
+  constructor (tokens, service) {
+    this.client = new clients[service](tokens)
   }
 }

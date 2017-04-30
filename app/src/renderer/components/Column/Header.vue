@@ -3,7 +3,7 @@
     <h1 class="c-column__title">
       {{ data.name }}
       <span class="c-column__title-attribution">
-        @{{ user.screenname }}
+        @{{ user.screen_name }}
       </span>
     </h1>
   </header>

@@ -1,6 +1,6 @@
 <template>
-  <div class="c-tweet__media" data-media-count="1">
-    <item></item>
+  <div class="c-tweet__media" :data-media-count="media.length">
+    <item v-for="medium in media" :medium="medium"></item>
   </div>
 </template>
 
@@ -10,6 +10,12 @@ import Item from './Media/Item'
 export default {
   components: {
     Item
+  },
+  computed: {
+    media: function () {
+      console.log(this.$parent.data.extended_entities.media)
+      return this.$parent.data.extended_entities.media
+    }
   },
   name: 'tweet-media'
 }
