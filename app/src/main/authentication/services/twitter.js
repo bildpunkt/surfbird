@@ -1,15 +1,14 @@
 import { BrowserWindow } from 'electron'
 import NodeTwitterAPI from 'node-twitter-api'
-import credentials from '../../../../resources/credentials.json'
 
 let authWindow = null
 
 export default {
-  authenticate (callback) {
+  authenticate (credentials, callback) {
     const twitterAuth = new NodeTwitterAPI({
-      callback: credentials['twitter']['callbackURL'],
-      consumerKey: credentials['twitter']['consumerKey'],
-      consumerSecret: credentials['twitter']['consumerSecret']
+      callback: credentials['callbackURL'],
+      consumerKey: credentials['consumerKey'],
+      consumerSecret: credentials['consumerSecret']
     })
 
     twitterAuth.getRequestToken((error, requestToken, requestTokenSecret) => {
