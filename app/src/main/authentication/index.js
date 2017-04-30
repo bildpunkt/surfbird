@@ -19,11 +19,25 @@ export default class Authentication {
     }
 
     tokens.push(token)
-    Authentication.save(tokens)
+    Authentication.save(Authentication.uniqueAccounts(tokens))
+    callback()
   }
 
   static allAccounts () {
     return Authentication.load() || []
+  }
+
+  static uniqueAccounts (tokens) {
+    var names = []
+    var uniqueList = []
+
+    for (let token of tokens) {
+      if (names.indexOf(token['id_str']) < 0) {
+        uniqueList.push(token)
+        names.push(token['id_str'])
+      }
+    }
+    return uniqueList
   }
 
   static save (data) {

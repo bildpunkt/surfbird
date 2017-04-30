@@ -1,5 +1,6 @@
 import { BrowserWindow } from 'electron'
 import NodeTwitterAPI from 'node-twitter-api'
+import Twitter from 'twitter'
 
 let authWindow = null
 
@@ -46,12 +47,27 @@ export default {
               accessTokenSecret: accessTokenSecret
             }
 
-            callback(token)
+            const twit = new Twitter({
+              consumer_key: credentials['consumerKey'],
+              consumer_secret: credentials['consumerSecret'],
+              access_token_key: token['accessToken'],
+              access_token_secret: token['accessTokenSecret']
+            })
 
-            if (authWindow) {
-              authWindow.close()
-              authWindow = null
-            }
+            twit.get('account/verify_credentials', {}, (error, data, response) => {
+              if (error) {
+                console.log(JSON.stringify(error))
+              }
+
+              token['id_str'] = data.id_str
+
+              callback(token)
+
+              if (authWindow) {
+                authWindow.close()
+                authWindow = null
+              }
+            })
           })
         } else if (url.match(/\/account\/login_verification/)) {
           // Two-Factor Authentication
