@@ -50,6 +50,9 @@ let mainConfig = {
     })
   ],
   resolve: {
+    alias: {
+      'main': path.join(__dirname, 'app/src/main')
+    },
     extensions: ['.js', '.json', '.node'],
     modules: [
       path.join(__dirname, 'app/node_modules')
