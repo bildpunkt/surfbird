@@ -42,11 +42,6 @@ function createWindow () {
   ipcMain.on('surfbird:window:minimize', function (e) {
     mainWindow.minimize()
   })
-
-  // eslint-disable-next-line no-new
-  new Authentication('twitter', (tokens) => {
-    console.log(tokens)
-  })
 }
 
 app.on('ready', createWindow)
@@ -63,3 +58,15 @@ app.on('activate', () => {
   }
 })
 
+ipcMain.on('surfbird:request:accounts', (e) => {
+  e.sender.send('surfbird:get:accounts', Authentication.allAccounts())
+})
+
+ipcMain.on('surfbird:authentication:start', (e, data) => {
+  // eslint-disable-next-line no-new
+  new Authentication(data.service, (tokens) => {
+    Authentication.addToken(tokens, () => {
+      e.sender.send('surfbird:authentication:done', tokens)
+    })
+  })
+})
