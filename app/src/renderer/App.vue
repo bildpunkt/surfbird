@@ -19,8 +19,26 @@
       AppContent
     },
     created: function () {
+      this.$electron.ipcRenderer.send('surfbird:request:accounts')
+
+      this.$electron.ipcRenderer.on('surfbird:get:accounts', (e, data) => {
+        console.log(data)
+
+        if (data.length > 0) {
+          data.forEach((account) => {
+            this.$store.dispatch('addAccount', account)
+          })
+        } else {
+          this.$electron.ipcRenderer.send('surfbird:authentication:start', {service: 'twitter'})
+        }
+      })
+
+      this.$electron.ipcRenderer.on('surfbird:authentication:done', (e, account) => {
+        this.$store.dispatch('addAccount', account)
+      })
+
       this.$store.dispatch('addProfile', 'test')
-      this.$store.dispatch('addAccount', {user: {display_name: 'Test', screenname: 'username'}, tokens: {}})
+      // this.$store.dispatch('addAccount', {user: {display_name: 'Test', screenname: 'username'}, tokens: {}})
     },
     store
   }
