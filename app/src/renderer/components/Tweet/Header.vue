@@ -1,7 +1,7 @@
 <template>
   <header class="c-tweet__header">
     <a class="c-tweet__account-link" href="#">
-      <div class="c-tweet__image">
+      <div class="c-tweet__image" v-if="avatar === 'true'">
         <img class="c-tweet__avatar" :src="user.profile_image_url">
       </div>
       <div class="c-tweet__account-name">
@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  props: ['avatar'],
   computed: {
     user: function () {
       return this.$parent.data.user
