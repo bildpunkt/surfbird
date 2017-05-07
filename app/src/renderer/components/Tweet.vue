@@ -2,10 +2,11 @@
   <article class="c-tweet">
     <div class="c-tweet__content">
       <div class="c-tweet__inner">
-        <tweet-header></tweet-header>
+        <tweet-header avatar="true"></tweet-header>
         <div class="c-tweet__body">
           <p class="c-tweet__text" v-html="data.text_html"></p>
           <tweet-media v-if="data.extended_entities !== undefined"></tweet-media>
+          <tweet-quote :data="data.quoted_status" v-if="data.is_quote_status"></tweet-quote>
           <tweet-footer></tweet-footer>
         </div>
       </div>
@@ -17,13 +18,15 @@
 import TweetHeader from './Tweet/Header'
 import TweetFooter from './Tweet/Footer'
 import TweetMedia from './Tweet/Media'
+import TweetQuote from './Tweet/Quoted'
 
 export default {
   props: ['id', 'colindex'],
   components: {
     TweetHeader,
     TweetFooter,
-    TweetMedia
+    TweetMedia,
+    TweetQuote
   },
   computed: {
     data: function () {
