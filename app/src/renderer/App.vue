@@ -56,4 +56,16 @@ body, input, textarea, keygen, select, button {
   right: 0;
   overflow: hidden;
 }
+
+.emoji {
+  width: 1em;
+  height: 1em;
+  padding: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
+}
+
+a {
+  color: #2196F3;
+  text-decoration: none;
+}
 </style>

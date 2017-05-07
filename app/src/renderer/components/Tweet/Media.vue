@@ -13,7 +13,6 @@ export default {
   },
   computed: {
     media: function () {
-      console.log(this.$parent.data.extended_entities.media)
       return this.$parent.data.extended_entities.media
     }
   },

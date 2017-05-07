@@ -9,7 +9,9 @@
     "glob": "^7.1.1",
     "node-twitter-api": "^1.8.0",
     "normalize.css": "^6.0.0",
+    "twemoji": "^2.2.5",
     "twitter": "^1.7.0",
+    "twitter-text": "^1.14.3",
     "vue": "^2.1.10",
     "vue-electron": "^1.0.6",
     "vuex": "^2.1.1"
