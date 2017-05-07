@@ -1,12 +1,22 @@
 <template>
-  <article class="c-tweet">
+  <article class="c-tweet" :data-tweet-id="data.id_str">
     <div class="c-tweet__content">
-      <div class="c-tweet__inner">
+      <div class="c-tweet__inner" v-if="data.retweeted_status == undefined">
         <tweet-header avatar="true"></tweet-header>
         <div class="c-tweet__body">
           <p class="c-tweet__text" v-html="data.text_html"></p>
           <tweet-media v-if="data.extended_entities !== undefined"></tweet-media>
           <tweet-quote :data="data.quoted_status" v-if="data.is_quote_status"></tweet-quote>
+          <tweet-footer></tweet-footer>
+        </div>
+      </div>
+      <div class="c-tweet__inner" v-else>
+        <tweet-context :user="data.user"></tweet-context>
+        <tweet-header avatar="true"></tweet-header>
+        <div class="c-tweet__body">
+          <p class="c-tweet__text" v-html="data.retweeted_status.text_html"></p>
+          <tweet-media v-if="data.retweeted_status.extended_entities !== undefined"></tweet-media>
+          <tweet-quote :data="data.retweeted_status.quoted_status" v-if="data.retweeted_status.is_quote_status"></tweet-quote>
           <tweet-footer></tweet-footer>
         </div>
       </div>
@@ -19,6 +29,7 @@ import TweetHeader from './Tweet/Header'
 import TweetFooter from './Tweet/Footer'
 import TweetMedia from './Tweet/Media'
 import TweetQuote from './Tweet/Quoted'
+import TweetContext from './Tweet/Context'
 
 export default {
   props: ['id', 'colindex'],
@@ -26,7 +37,8 @@ export default {
     TweetHeader,
     TweetFooter,
     TweetMedia,
-    TweetQuote
+    TweetQuote,
+    TweetContext
   },
   computed: {
     data: function () {

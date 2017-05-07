@@ -13,7 +13,11 @@ export default {
   },
   computed: {
     media: function () {
-      return this.$parent.data.extended_entities.media
+      if (this.$parent.data.retweeted_status !== undefined) {
+        return this.$parent.data.retweeted_status.extended_entities.media
+      } else {
+        return this.$parent.data.extended_entities.media
+      }
     }
   },
   name: 'tweet-media'

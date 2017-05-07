@@ -24,7 +24,11 @@ export default {
   props: ['avatar'],
   computed: {
     user: function () {
-      return this.$parent.data.user
+      if (this.$parent.data.retweeted_status !== undefined) {
+        return this.$parent.data.retweeted_status.user
+      } else {
+        return this.$parent.data.user
+      }
     }
   },
   name: 'tweet-header'
