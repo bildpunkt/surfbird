@@ -4,7 +4,7 @@
       <div class="c-tweet__inner">
         <tweet-header></tweet-header>
         <div class="c-tweet__body">
-          <p class="c-tweet__text">{{ data.text }}</p>
+          <p class="c-tweet__text" v-html="data.text_html"></p>
           <tweet-media v-if="data.extended_entities !== undefined"></tweet-media>
           <tweet-footer></tweet-footer>
         </div>
