@@ -11,6 +11,7 @@
   import Sidebar from 'components/Sidebar'
   import AppContent from 'components/Content'
   import store from 'renderer/vuex/store'
+  import i18n from 'renderer/i18n'
 
   export default {
     components: {
@@ -39,7 +40,8 @@
 
       this.$store.dispatch('addProfile', 'test')
     },
-    store
+    store,
+    i18n
   }
 </script>
 
