@@ -3,6 +3,7 @@
     <window></window>
     <sidebar></sidebar>
     <app-content></app-content>
+    <modals></modals>
   </div>
 </template>
 
@@ -10,6 +11,8 @@
   import Window from 'components/Window'
   import Sidebar from 'components/Sidebar'
   import AppContent from 'components/Content'
+  import Modals from 'components/Modals'
+
   import store from 'renderer/vuex/store'
   import i18n from 'renderer/i18n'
 
@@ -17,7 +20,8 @@
     components: {
       Window,
       Sidebar,
-      AppContent
+      AppContent,
+      Modals
     },
     created: function () {
       this.$electron.ipcRenderer.send('surfbird:request:accounts')
@@ -29,13 +33,14 @@
             this.$store.dispatch('refreshUserInfo', this.$store.state.accounts.lastAddedAccount)
           })
         } else {
-          this.$electron.ipcRenderer.send('surfbird:authentication:start', {service: 'twitter'})
+          this.$modal.show('authentication-modal')
         }
       })
 
       this.$electron.ipcRenderer.on('surfbird:authentication:done', (e, account) => {
         this.$store.dispatch('addAccount', account)
         this.$store.dispatch('refreshUserInfo', this.$store.state.accounts.lastAddedAccount)
+        this.$modal.hide('authentication-modal')
       })
 
       this.$store.dispatch('addProfile', 'test')

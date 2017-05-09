@@ -46,7 +46,7 @@ export default {
     margin: 0;
     user-select: none;
     background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,1) 100%);
-    z-index: 9999;
+    z-index: 999;
   }
 
   &__control {
