@@ -15,7 +15,7 @@ export default {
     twitterAuth.getRequestToken((error, requestToken, requestTokenSecret) => {
       if (error) {
         // TODO: Send event to main window
-        throw Error('Something went wrong while autenticating with Twitter: ' + error.data)
+        throw Error('Something went wrong while authenticating with Twitter: ' + error.data)
       }
 
       const url = twitterAuth.getAuthUrl(requestToken)
@@ -38,7 +38,7 @@ export default {
           twitterAuth.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) => {
             if (error) {
               // TODO: Send event to main window
-              throw Error('Something went wrong while autenticating with Twitter: ' + error.data)
+              throw Error('Something went wrong while authenticating with Twitter: ' + error.data)
             }
 
             let token = {
@@ -81,7 +81,7 @@ export default {
           e.preventDefault()
 
           // TODO: Send event to main window
-          throw Error('Something went wrong while autenticating with Twitter')
+          throw Error('Something went wrong while authenticating with Twitter')
         }
       })
 
