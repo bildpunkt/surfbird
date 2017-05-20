@@ -8,7 +8,7 @@
 
 ## Notice
 
-Surfbird is in active development and far away from being usable. You can try [building it yourself](https://github.com/surfbirdapp/surfbird/blob/next/docs/dev/setup.md) or [download one of the pre-releases](https://github.com/surfbirdapp/surfbird/releases), yet a working or stable experience is not guaranteed yet.
+Surfbird is in active development and far away from being usable. You can try [building it yourself](https://github.com/surfbirdapp/surfbird/blob/next/docs/dev/setup.md) or [download one of the pre-releases](https://github.com/surfbirdapp/surfbird/releases), a working or stable experience is not guaranteed yet.
 
 ---
 
