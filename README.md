@@ -6,26 +6,10 @@
   A Twitter client, built on Electron
 </p>
 
-## Build Setup
+## Notice
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:9080
-npm run dev
-
-# build electron app for production
-npm run build
-
-# lint all JS/Vue component files in `app/src`
-npm run lint
-
-# run webpack in production
-npm run pack
-```
-More information can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/en/npm_scripts.html).
+Surfbird is in active development and far away from being usable. You can try [building it yourself](https://github.com/surfbirdapp/surfbird/blob/next/docs/dev/setup.md) or [download one of the pre-releases](https://github.com/surfbirdapp/surfbird/releases), yet a working or stable experience is not guaranteed yet.
 
 ---
 
-This project was generated from [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about this project can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/en/).
+This project was generated from [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about this project can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
