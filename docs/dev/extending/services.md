@@ -11,6 +11,8 @@ As the client gets the authentication request with your service name, the authen
 * `credentials`: Your service most likely needs credentials. Add them to the `credentials.json` where the key matches the service name.
 * `callback`: The callback function that should be called if authentication was successful. This callback should include an argument `token` which is an object including everything you need to log in the client to your service.
 
+Once the authentication request has been successful, Surfbird will save the tokens into `.surfbird` in the users home directory and also add the user to the application itself.
+
 ### Clients
 
 > You can find all current authentication providers in `app/src/renderer/clients`, the index file in the same folder handles referencing all of those so you don't need to manually import them somewhere else.
