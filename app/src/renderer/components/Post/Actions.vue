@@ -1,5 +1,5 @@
 <template>
-  <ul class="c-tweet__actions">
+  <ul class="c-post__actions">
     <reply></reply>
     <retweet></retweet>
     <like></like>
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss">
-.c-tweet {
+.c-post {
   &__actions {
     width: 100%;
     float: left;

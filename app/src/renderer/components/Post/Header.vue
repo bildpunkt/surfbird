@@ -1,18 +1,18 @@
 <template>
-  <header class="c-tweet__header">
-    <a class="c-tweet__account-link" href="#">
-      <div class="c-tweet__image" v-if="avatar === 'true'">
-        <img class="c-tweet__avatar" :src="user.profile_image_url">
+  <header class="c-post__header">
+    <a class="c-post__account-link" href="#">
+      <div class="c-post__image" v-if="avatar === 'true'">
+        <img class="c-post__avatar" :src="user.profile_image_url">
       </div>
-      <div class="c-tweet__account-name">
-        <span class="c-tweet__account-name--inline">
-          <b class="c-tweet__account-fullname">{{ user.name }}</b>
-          <span class="c-tweet__account-username">@{{ user.screen_name }}</span>
+      <div class="c-post__account-name">
+        <span class="c-post__account-name--inline">
+          <b class="c-post__account-fullname">{{ user.name }}</b>
+          <span class="c-post__account-username">@{{ user.screen_name }}</span>
         </span>
       </div>
     </a>
-    <time class="c-tweet__timestamp">
-      <a class="c-tweet__timestamp-link" href="#">
+    <time class="c-post__timestamp">
+      <a class="c-post__timestamp-link" href="#">
         now
       </a>
     </time>
@@ -31,12 +31,12 @@ export default {
       }
     }
   },
-  name: 'tweet-header'
+  name: 'post-header'
 }
 </script>
 
 <style lang="scss">
-.c-tweet {
+.c-post {
   &__header {
     display: flex;
     -webkit-box-orient: horizontal;

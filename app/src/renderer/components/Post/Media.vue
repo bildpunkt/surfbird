@@ -1,5 +1,5 @@
 <template>
-  <div class="c-tweet__media" :data-media-count="media.length">
+  <div class="c-post__media" :data-media-count="media.length">
     <item v-for="medium in media" :medium="medium"></item>
   </div>
 </template>
@@ -20,12 +20,12 @@ export default {
       }
     }
   },
-  name: 'tweet-media'
+  name: 'post-media'
 }
 </script>
 
 <style lang="scss">
-.c-tweet {
+.c-post {
   &__media {
     position: relative;
     height: 120px;

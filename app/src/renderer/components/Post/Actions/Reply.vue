@@ -1,5 +1,5 @@
 <template>
-  <li class="c-tweet__action c-tweet__action-reply">
+  <li class="c-post__action c-post__action-reply">
     
   </li>
 </template>
@@ -10,9 +10,9 @@ export default {
 </script>
 
 <style lang="scss">
-.c-tweet__action {
+.c-post__action {
   &-reply:hover,
-  &-reply.c-tweet__action-reply--active {
+  &-reply.c-post__action-reply--active {
     color: #199ff4;
   }
 }

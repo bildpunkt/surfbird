@@ -1,11 +1,11 @@
 <template>
-<div class="c-tweet-context">
-  <div class="c-tweet-context__icon-container">
-    <i class="c-tweet-context__icon">
+<div class="c-post-context">
+  <div class="c-post-context__icon-container">
+    <i class="c-post-context__icon">
       
     </i>  
   </div>
-  <div class="c-tweet-context__text">
+  <div class="c-post-context__text">
     <a href="#">{{ user.name }}</a> retweeted
   </div>  
 </div>  
@@ -14,12 +14,12 @@
 <script>
 export default {
   props: ['user'],
-  name: 'tweet-context'
+  name: 'post-context'
 }
 </script>
 
 <style lang="scss">
-.c-tweet-context {
+.c-post-context {
   color: #8899a6;
   margin-left: -58px;
   padding-bottom: 4px;

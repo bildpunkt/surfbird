@@ -1,5 +1,5 @@
 <template>
-  <a class="c-tweet__media-image" :href="medium.media_url_https" :style="{ backgroundImage: 'url(' + medium.media_url_https + ')' }">
+  <a class="c-post__media-image" :href="medium.media_url_https" :style="{ backgroundImage: 'url(' + medium.media_url_https + ')' }">
   </a>
 </template>
 
@@ -10,7 +10,7 @@ export default {
 </script>
 
 <style lang="scss">
-.c-tweet__media {
+.c-post__media {
   &-image {
     position: relative;
     display: inline-block;
@@ -35,19 +35,19 @@ export default {
   }
 
   &[data-media-count="1"] {
-    .c-tweet__media-image {
+    .c-post__media-image {
       height: 100%;
     }
   }
 
   &[data-media-count="2"] {
-    .c-tweet__media-image {
+    .c-post__media-image {
       width: 50%;
     }
   }
 
   &[data-media-count="3"] {
-    .c-tweet__media-image {
+    .c-post__media-image {
       padding: 0;
       width: 50%;
       height: 50%;
@@ -65,7 +65,7 @@ export default {
   }
 
   &[data-media-count="4"] {
-    .c-tweet__media-image {
+    .c-post__media-image {
       padding: 0;
       width: 50%;
       height: 50%;
