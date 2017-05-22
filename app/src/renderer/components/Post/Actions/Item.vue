@@ -1,12 +1,12 @@
 <template>
-  <li class="c-post__action" @click="func()">
+  <li class="c-post__action" @click="func(action.function)">
     {{ icon }}
   </li>
 </template>
 
 <script>
 export default {
-  props: ['icon', 'func'],
+  props: ['action', 'icon', 'func'],
   name: 'post-action'
 }
 </script>
