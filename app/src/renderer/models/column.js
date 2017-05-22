@@ -4,6 +4,6 @@ export default class Column {
     this.type = type
     this.owner = owner
 
-    this.tweetStorage = {ids: [], tweets: {}}
+    this.postStorage = {ids: [], posts: {}}
   }
 }

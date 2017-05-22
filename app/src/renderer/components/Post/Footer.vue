@@ -1,5 +1,5 @@
 <template>
-  <footer class="c-tweet__footer">
+  <footer class="c-post__footer">
     <actions></actions>
   </footer>
 </template>
@@ -11,12 +11,12 @@ export default {
   components: {
     Actions
   },
-  name: 'tweet-footer'
+  name: 'post-footer'
 }
 </script>
 
 <style lang="scss">
-.c-tweet {
+.c-post {
   &__footer {
     display: block;
     margin-top: 3px;

@@ -1,5 +1,5 @@
 <template>
-  <li class="c-tweet__action c-tweet__action-more">
+  <li class="c-post__action c-post__action-more">
     
   </li>
 </template>
@@ -10,9 +10,9 @@ export default {
 </script>
 
 <style lang="scss">
-.c-tweet__action {
+.c-post__action {
   &-more:hover,
-  &-more.c-tweet__action-more--active {
+  &-more.c-post__action-more--active {
     color: #202020;
   }
 }
