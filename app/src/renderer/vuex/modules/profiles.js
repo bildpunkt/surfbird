@@ -26,6 +26,13 @@ const actions = {
       payload.post = post
       commit(types.ADD_POST_TO_COLUMN, { payload })
     })
+  },
+  sendAction ({ commit, state, rootState }, payload) {
+    let activeAccount = rootState.accounts.activeAccount
+
+    rootState.accounts.all[activeAccount].client[payload.action](payload.data, (post) => {
+      console.log(post)
+    })
   }
 }
 

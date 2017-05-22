@@ -11,6 +11,31 @@ export default class TwitterClient {
       access_token_key: tokens['accessToken'],
       access_token_secret: tokens['accessTokenSecret']
     })
+
+    this.ACTIONS = [
+      {
+        name: 'Retweet',
+        icon: '',
+        function: 'retweet'
+      },
+      {
+        name: 'Like',
+        icon: '',
+        function: 'like'
+      }
+    ]
+  }
+
+  retweet (tweet, callback) {
+    console.log('retweet')
+
+    callback('Retweet there!')
+  }
+
+  like (tweet, callback) {
+    console.log('like')
+
+    callback('Like there!')
   }
 
   verifyCredentials (callback) {
