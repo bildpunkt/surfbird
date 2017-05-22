@@ -15,7 +15,7 @@ Once the authentication request has been successful, Surfbird will save the toke
 
 ### Clients
 
-> You can find all current authentication providers in `app/src/renderer/clients`, the index file in the same folder handles referencing all of those so you don't need to manually import them somewhere else.
+> You can find all current clients in `app/src/renderer/clients`, the index file in the same folder handles referencing all of those so you don't need to manually import them somewhere else.
 
 Clients are used to provide API access to Surfbird, to log in the user and to perform actions with the specified service.
 
