@@ -1,24 +1,18 @@
 <template>
   <ul class="c-post__actions">
-    <reply></reply>
-    <retweet></retweet>
-    <like></like>
-    <more></more>
+    <action-item icon="" func="null"></action-item>
+    <action-item icon="" func="null"></action-item>
+    <action-item icon="" func="null"></action-item>
+    <action-item icon="" func="null"></action-item>
   </ul>
 </template>
 
 <script>
-import Like from './Actions/Like'
-import More from './Actions/More'
-import Reply from './Actions/Reply'
-import Retweet from './Actions/Retweet'
+import ActionItem from './Actions/Item'
 
 export default {
   components: {
-    Like,
-    More,
-    Reply,
-    Retweet
+    ActionItem
   },
   name: 'actions'
 }
@@ -33,17 +27,6 @@ export default {
     padding: 0;
     margin: 0;
     user-select: none;
-  }
-
-  &__action {
-    color: #c1ccd1;
-    cursor: pointer;
-    float: left;
-    margin-right: 13px !important;
-    padding: 0;
-    margin: 0;
-    font-family: Batch;
-    font-size: 18px;
   }
 }
 </style>
