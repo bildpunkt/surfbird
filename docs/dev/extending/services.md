@@ -23,6 +23,34 @@ Most of this here is pretty much TODO still and probably needs quite a bit of re
 
 You can always use the already provided Twitter client as a reference to what's there yet.
 
+#### Actions
+
+To define actions that can be done with posts you need to have a `ACTIONS` attribute in your clients class, best place to define this is in the clients constructor. The `ACTIONS`
+array provides the action-container (`components/Post/Actions`) with a name, an icon and a function name to be executed, it looks like this:
+
+```js
+this.ACTIONS = [
+  {
+    name: 'Retweet',
+    icon: '',
+    function: 'retweet'
+  },
+  {
+    name: 'Like',
+    icon: '',
+    function: 'like'
+  }
+]
+```
+_(These weird squares are unicode references of the batch-webfont, which is used in Surfbird)_
+
+The function names provided are functions inside the client class both respectively called `retweet` and `like` in our example case. Action functions have two parameters `post` and `callback`.
+
+* `post`: The full data object of the post the action should be executed on.
+* `callback`: A callback function that should return data if the action was successful.
+
+Most APIs return post data for executed actions, so return it with `callback`, so the state can update the respective post on its own.
+
 ### Some more TODOs
 
 * List of available services from the `main` process, so a list can be shown on authentication initialization (instead of hardcoding it)
