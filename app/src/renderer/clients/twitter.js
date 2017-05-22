@@ -45,3 +45,8 @@ export default class TwitterClient {
     return tweet
   }
 }
+
+// Reply: #199ff4
+// Like: #e91e63
+// Retweet: #4caf50
+// More: #202020
