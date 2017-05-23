@@ -27,9 +27,19 @@ export default class TwitterClient {
   }
 
   retweet (tweet, callback) {
-    console.log('retweet')
+    if (tweet.retweeted) {
+      this.api.post('statuses/unretweet', {id: tweet.id_str}, (error, data, response) => {
+        if (error) { console.log(error) }
 
-    callback('Retweet there!')
+        callback(data)
+      })
+    } else {
+      this.api.post('statuses/retweet', {id: tweet.id_str}, (error, data, response) => {
+        if (error) { console.log(error) }
+
+        callback(data)
+      })
+    }
   }
 
   like (tweet, callback) {
