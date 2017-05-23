@@ -43,9 +43,19 @@ export default class TwitterClient {
   }
 
   like (tweet, callback) {
-    console.log('like')
+    if (tweet.favorited) {
+      this.api.post('favorites/destroy', {id: tweet.id_str}, (error, data, response) => {
+        if (error) { console.log(error) }
 
-    callback('Like there!')
+        callback(data)
+      })
+    } else {
+      this.api.post('favorites/create', {id: tweet.id_str}, (error, data, response) => {
+        if (error) { console.log(error) }
+
+        callback(data)
+      })
+    }
   }
 
   verifyCredentials (callback) {
