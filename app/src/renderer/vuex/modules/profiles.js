@@ -31,7 +31,14 @@ const actions = {
     let activeAccount = rootState.accounts.activeAccount
 
     rootState.accounts.all[activeAccount].client[payload.action](payload.data, (post) => {
-      console.log(post)
+      let p = {
+        index: payload.columnData.index,
+        profile: state.activeProfile,
+        owner: payload.columnData.owner,
+        post: post
+      }
+
+      commit(types.UPDATE_POST_IN_COLUMN, { p })
     })
   }
 }
@@ -49,6 +56,9 @@ const mutations = {
   [types.ADD_POST_TO_COLUMN] (state, { payload }) {
     state.all[payload.profile].columns[payload.index].postStorage.ids.unshift(payload.post.id_str)
     state.all[payload.profile].columns[payload.index].postStorage.posts[payload.post.id_str] = payload.post
+  },
+  [types.UPDATE_POST_IN_COLUMN] (state, { p }) {
+    state.all[p.profile].columns[p.index].postStorage.posts[p.post.id_str] = p.post
   }
 }
 

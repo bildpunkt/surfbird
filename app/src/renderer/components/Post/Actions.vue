@@ -23,9 +23,11 @@ export default {
   },
   methods: {
     sendAction: function (action) {
+      let column = this.$parent.$parent.$parent.$parent
+      let columnData = {index: column.index, owner: column.data.owner}
       let data = this.$parent.$parent.data
 
-      this.$store.dispatch('sendAction', {action: action, data: data})
+      this.$store.dispatch('sendAction', {action: action, data: data, columnData: columnData})
     }
   },
   name: 'actions'
