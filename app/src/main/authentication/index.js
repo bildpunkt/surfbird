@@ -64,4 +64,14 @@ export default class Authentication {
   static homePath () {
     return process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
   }
+
+  static allServices () {
+    let srvArr = []
+
+    for (let property in services) {
+      srvArr.push(services[property].data())
+    }
+
+    return srvArr
+  }
 }

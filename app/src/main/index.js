@@ -62,6 +62,10 @@ ipcMain.on('surfbird:request:accounts', (e) => {
   e.sender.send('surfbird:get:accounts', Authentication.allAccounts())
 })
 
+ipcMain.on('surfbird:request:services', (e) => {
+  e.sender.send('surfbird:get:services', Authentication.allServices())
+})
+
 ipcMain.on('surfbird:authentication:start', (e, data) => {
   // eslint-disable-next-line no-new
   new Authentication(data.service, (tokens) => {
