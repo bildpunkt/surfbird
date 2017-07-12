@@ -10,7 +10,7 @@
     <div v-else>
       <p>This is the modal that is shown when no accounts were added, basically your first start.</p> 
 
-      <p><a href="#" @click="authenticate">Authenticate with Twitter</a></p>
+      <p v-for="(s, index) in services"><a href="#" @click="authenticate(s.identifier)">Authenticate with {{s.name}}</a></p>
     </div>
   </modal>  
 </template>
@@ -20,14 +20,13 @@ export default {
   name: 'authentication-modal',
   data: function () {
     return {
-      loading: false
+      loading: false,
+      services: []
     }
   },
   methods: {
-    authenticate: function (e) {
-      e.preventDefault()
-
-      this.$electron.ipcRenderer.send('surfbird:authentication:start', {service: 'twitter'})
+    authenticate: function (identifier) {
+      this.$electron.ipcRenderer.send('surfbird:authentication:start', {service: identifier})
       this.loading = true
     },
     beforeClose: function (e) {
@@ -35,6 +34,13 @@ export default {
         e.stop()
       }
     }
+  },
+  created: function () {
+    this.$electron.ipcRenderer.send('surfbird:request:services')
+
+    this.$electron.ipcRenderer.on('surfbird:get:services', (e, data) => {
+      this.services = data
+    })
   }
 }
 </script>

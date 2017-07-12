@@ -5,6 +5,14 @@ import Twitter from 'twitter'
 let authWindow = null
 
 export default {
+
+  data () {
+    return {
+      identifier: 'twitter',
+      name: 'Twitter'
+    }
+  },
+
   authenticate (credentials, callback) {
     const twitterAuth = new NodeTwitterAPI({
       callback: credentials['callbackURL'],
