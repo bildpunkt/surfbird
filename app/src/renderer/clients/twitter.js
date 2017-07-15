@@ -24,6 +24,22 @@ export default class TwitterClient {
         function: 'like'
       }
     ]
+
+    this.COLUMN_TYPES = [
+      'home'
+    ]
+
+    this.COLUMNS = {
+      home: {
+        name: 'Home',
+        icon: '',
+        type: 'streaming',
+        functions: {
+          initialData: 'homeInitialData',
+          data: 'homeData'
+        }
+      }
+    }
   }
 
   retweet (tweet, callback) {
