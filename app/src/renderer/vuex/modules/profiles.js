@@ -2,6 +2,8 @@ import Profile from '../../models/profile'
 import Column from '../../models/column'
 import * as types from '../mutation-types'
 
+import { sortInsertionPoint } from '../../util/sort'
+
 const state = {
   activeProfile: 0,
   all: []
@@ -22,7 +24,19 @@ const actions = {
     commit(types.ADD_COLUMN, { column })
   },
   startStreaming ({ commit, state, rootState }, payload) {
-    rootState.accounts.all[payload.owner].client.startStreaming('user', (post) => {
+    const client = rootState.accounts.all[payload.owner].client
+    const functions = client.COLUMNS[payload.type].functions
+
+    console.log(functions)
+
+    if (functions.initialData !== undefined) {
+      client[functions.initialData]((post) => {
+        payload.post = post
+        commit(types.ADD_POST_TO_COLUMN, { payload })
+      })
+    }
+
+    client[functions.data]((post) => {
       payload.post = post
       commit(types.ADD_POST_TO_COLUMN, { payload })
     })
@@ -54,8 +68,13 @@ const mutations = {
     state.all[state.activeProfile].columns.push(new Column(column.name, column.type, column.owner))
   },
   [types.ADD_POST_TO_COLUMN] (state, { payload }) {
-    state.all[payload.profile].columns[payload.index].postStorage.ids.unshift(payload.post.id_str)
-    state.all[payload.profile].columns[payload.index].postStorage.posts[payload.post.id_str] = payload.post
+    const column = state.all[payload.profile].columns[payload.index]
+
+    if (!column.postStorage.ids.includes(payload.post.id_str)) {
+      const position = sortInsertionPoint(column.postStorage.ids, payload.post.id_str)
+      column.postStorage.ids.splice(position, 0, payload.post.id_str)
+    }
+    column.postStorage.posts[payload.post.id_str] = payload.post
   },
   [types.UPDATE_POST_IN_COLUMN] (state, { p }) {
     state.all[p.profile].columns[p.index].postStorage.posts[p.post.id_str] = p.post

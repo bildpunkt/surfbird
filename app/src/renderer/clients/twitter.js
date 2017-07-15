@@ -1,7 +1,6 @@
 import Twitter from 'twitter'
-import twitterText from 'twitter-text'
-import twemoji from 'twemoji'
 import credentials from '../../../resources/credentials.json'
+import { processTweet } from '../processors/twitter'
 
 export default class TwitterClient {
   constructor (tokens) {
@@ -91,19 +90,22 @@ export default class TwitterClient {
     })
   }
 
-  process (tweet) {
-    if (tweet.retweeted_status !== undefined) {
-      tweet.retweeted_status = this.process(tweet.retweeted_status)
-    }
+  homeInitialData (callback) {
+    this.api.get('statuses/home_timeline', {with: 'followings', include_rts: 'false', extended_tweet: true}, (error, data, response) => {
+      if (error) { console.log(error) }
 
-    if (tweet.quoted_status !== undefined) {
-      tweet.quoted_status = this.process(tweet.quoted_status)
-    }
+      data.forEach(function (tweet) {
+        callback(processTweet(tweet))
+      })
+    })
+  }
 
-    tweet.text_html = twitterText.autoLink(tweet.text, {'usernameIncludeSymbol': true, 'targetBlank': true})
-    tweet.text_html = twemoji.parse(tweet.text_html)
-
-    return tweet
+  homeData (callback) {
+    this.api.stream('user', {with: 'followings', include_rts: 'false', extended_tweet: true}, (stream) => {
+      stream.on('data', (tweet) => {
+        callback(processTweet(tweet))
+      })
+    })
   }
 }
 
