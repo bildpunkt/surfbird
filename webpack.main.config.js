@@ -4,7 +4,6 @@ process.env.BABEL_ENV = 'main'
 
 const path = require('path')
 const pkg = require('./app/package.json')
-const settings = require('./config.js')
 const webpack = require('webpack')
 
 let mainConfig = {
@@ -50,9 +49,6 @@ let mainConfig = {
     })
   ],
   resolve: {
-    alias: {
-      'main': path.join(__dirname, 'app/src/main')
-    },
     extensions: ['.js', '.json', '.node'],
     modules: [
       path.join(__dirname, 'app/node_modules')
