@@ -11,12 +11,13 @@ export default {
   components: {
     Item
   },
+  inject: ['postData'],
   computed: {
     media: function () {
-      if (this.$parent.data.retweeted_status !== undefined) {
-        return this.$parent.data.retweeted_status.extended_entities.media
+      if (this.postData.retweeted_status !== undefined) {
+        return this.postData.retweeted_status.extended_entities.media
       } else {
-        return this.$parent.data.extended_entities.media
+        return this.postData.extended_entities.media
       }
     }
   },
