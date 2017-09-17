@@ -13,7 +13,7 @@ export default {
   components: {
     ActionItem
   },
-  inject: ['columnIndex', 'columnOwner'],
+  inject: ['columnIndex', 'columnOwner', 'postData'],
   computed: {
     actions: function () {
       let owner = this.columnOwner
@@ -24,7 +24,7 @@ export default {
   methods: {
     sendAction: function (action) {
       let columnData = {index: this.columnIndex, owner: this.columnOwner}
-      let data = this.$parent.$parent.data
+      let data = this.postData
 
       this.$store.dispatch('sendAction', {action: action, data: data, columnData: columnData})
     }
