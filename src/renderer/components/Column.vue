@@ -23,6 +23,13 @@ export default {
     ColumnHeader,
     ColumnContent
   },
+  provide: function () {
+    return {
+      columnIndex: this.index,
+      columnOwner: this.data.owner,
+      columnProfile: this.$store.state.profiles.activeProfile
+    }
+  },
   name: 'column'
 }
 </script>

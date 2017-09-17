@@ -13,18 +13,17 @@ export default {
   components: {
     ActionItem
   },
+  inject: ['columnIndex', 'columnOwner'],
   computed: {
     actions: function () {
-      // FIXME: Find a cleaner way to get the column owner
-      let owner = this.$parent.$parent.$parent.$parent.data.owner
+      let owner = this.columnOwner
 
       return this.$store.state.accounts.all[owner].client.ACTIONS
     }
   },
   methods: {
     sendAction: function (action) {
-      let column = this.$parent.$parent.$parent.$parent
-      let columnData = {index: column.index, owner: column.data.owner}
+      let columnData = {index: this.columnIndex, owner: this.columnOwner}
       let data = this.$parent.$parent.data
 
       this.$store.dispatch('sendAction', {action: action, data: data, columnData: columnData})
