@@ -1,7 +1,7 @@
 <template>
   <div class="c-column__content">
     <div class="c-column__scroller">
-      <post v-for="post in posts" :id="post" :colindex="columnindex"></post>
+      <post v-for="post in posts" :id="post" :colindex="columnIndex"></post>
     </div>
   </div>
 </template>
@@ -10,12 +10,10 @@
 import Post from '../Post'
 
 export default {
+  inject: ['columnIndex', 'columnProfile'],
   computed: {
     posts: function () {
-      return this.$store.state.profiles.all[this.$store.state.profiles.activeProfile].columns[this.$parent.index].postStorage.ids
-    },
-    columnindex: function () {
-      return this.$parent.index
+      return this.$store.state.profiles.all[this.columnProfile].columns[this.columnIndex].postStorage.ids
     }
   },
   components: {
