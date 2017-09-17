@@ -22,12 +22,13 @@
 <script>
 export default {
   props: ['avatar'],
+  inject: ['postData'],
   computed: {
     user: function () {
-      if (this.$parent.data.retweeted_status !== undefined) {
-        return this.$parent.data.retweeted_status.user
+      if (this.postData.retweeted_status !== undefined) {
+        return this.postData.retweeted_status.user
       } else {
-        return this.$parent.data.user
+        return this.postData.user
       }
     }
   },
