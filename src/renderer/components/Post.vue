@@ -45,6 +45,11 @@ export default {
       return this.$store.state.profiles.all[this.$store.state.profiles.activeProfile].columns[this.colindex].postStorage.posts[this.id]
     }
   },
+  provide: function () {
+    return {
+      postData: this.data
+    }
+  },
   name: 'post'
 }
 </script>
