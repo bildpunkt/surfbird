@@ -2,7 +2,7 @@
   <article class="c-post" :data-post-id="data.id_str">
     <div class="c-post__content">
       <div class="c-post__inner" v-if="data.retweeted_status == undefined">
-        <post-header avatar="true"></post-header>
+        <post-header avatar="true" :user="postUser"></post-header>
         <div class="c-post__body">
           <p class="c-post__text" v-html="data.text_html"></p>
           <post-media v-if="data.extended_entities !== undefined"></post-media>
@@ -12,7 +12,7 @@
       </div>
       <div class="c-post__inner" v-else>
         <post-context :user="data.user"></post-context>
-        <post-header avatar="true"></post-header>
+        <post-header avatar="true" :user="postUser"></post-header>
         <div class="c-post__body">
           <p class="c-post__text" v-html="data.retweeted_status.text_html"></p>
           <post-media v-if="data.retweeted_status.extended_entities !== undefined"></post-media>
@@ -43,12 +43,24 @@ export default {
   computed: {
     data: function () {
       return this.$store.state.profiles.all[this.$store.state.profiles.activeProfile].columns[this.colindex].postStorage.posts[this.id]
+    },
+    postUser: function () {
+      if (this.data.retweeted_status !== undefined) {
+        return this.data.retweeted_status.user
+      } else {
+        return this.data.user
+      }
     }
   },
   provide: function () {
-    return {
-      postData: this.data
-    }
+    let provider = {}
+
+    Object.defineProperty(provider, 'postData', {
+      enumerable: true,
+      get: () => this.data
+    })
+
+    return provider
   },
   name: 'post'
 }
