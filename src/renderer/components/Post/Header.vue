@@ -21,17 +21,7 @@
 
 <script>
 export default {
-  props: ['avatar'],
-  inject: ['postData'],
-  computed: {
-    user: function () {
-      if (this.postData.retweeted_status !== undefined) {
-        return this.postData.retweeted_status.user
-      } else {
-        return this.postData.user
-      }
-    }
-  },
+  props: ['avatar', 'user'],
   name: 'post-header'
 }
 </script>

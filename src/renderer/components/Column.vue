@@ -24,11 +24,24 @@ export default {
     ColumnContent
   },
   provide: function () {
-    return {
-      columnIndex: this.index,
-      columnOwner: this.data.owner,
-      columnProfile: this.$store.state.profiles.activeProfile
-    }
+    let provider = {}
+
+    Object.defineProperty(provider, 'columnIndex', {
+      enumerable: true,
+      get: () => this.index
+    })
+
+    Object.defineProperty(provider, 'columnOwner', {
+      enumerable: true,
+      get: () => this.data.owner
+    })
+
+    Object.defineProperty(provider, 'columnProfile', {
+      enumerable: true,
+      get: () => this.$store.state.profiles.activeProfile
+    })
+
+    return provider
   },
   name: 'column'
 }
