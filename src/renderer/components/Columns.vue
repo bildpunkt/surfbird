@@ -13,7 +13,7 @@ export default {
   },
   computed: {
     columns: function () {
-      return this.$store.state.profiles.all[this.$store.state.profiles.activeProfile].columns
+      return this.$store.getters.getColumns(this.$store.state.profiles.activeProfile)
     }
   },
   name: 'columns'
