@@ -13,7 +13,7 @@ export default {
   inject: ['columnIndex', 'columnProfile'],
   computed: {
     posts: function () {
-      return this.$store.state.columns[this.columnProfile][this.columnIndex].postStorage.ids
+      return this.$store.getters.getColumn(this.columnProfile, this.columnIndex).postStorage.ids
     }
   },
   components: {
