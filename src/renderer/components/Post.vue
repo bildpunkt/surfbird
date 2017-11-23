@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     data: function () {
-      return this.$store.state.profiles.all[this.$store.state.profiles.activeProfile].columns[this.colindex].postStorage.posts[this.id]
+      return this.$store.getters.getColumn(this.$store.state.profiles.activeProfile, this.colindex).postStorage.posts[this.id]
     },
     postUser: function () {
       if (this.data.retweeted_status !== undefined) {
