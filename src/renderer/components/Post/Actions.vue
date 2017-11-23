@@ -1,7 +1,7 @@
 <template>
   <ul class="c-post__actions">
     <action-item icon="" func="null"></action-item>
-    <action-item  v-for="action in actions" :action="action" :icon="action.icon" :func="sendAction"></action-item>
+    <action-item  v-for="action in actions" :action="action" :icon="action.icon" :func="sendAction" :key="action.name"></action-item>
     <action-item icon="" func="null"></action-item>
   </ul>
 </template>
