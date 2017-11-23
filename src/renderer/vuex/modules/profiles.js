@@ -27,8 +27,6 @@ const actions = {
     const client = rootState.accounts.all[payload.owner].client
     const functions = client.COLUMNS[payload.type].functions
 
-    console.log(functions)
-
     if (functions.initialData !== undefined) {
       client[functions.initialData]((post) => {
         payload.post = post
