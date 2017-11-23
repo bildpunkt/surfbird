@@ -5,7 +5,7 @@
         <post-header avatar="true" :user="postUser"></post-header>
         <div class="c-post__body">
           <p class="c-post__text" v-html="data.text_html"></p>
-          <post-media v-if="data.extended_entities !== undefined"></post-media>
+          <post-media :media="data.extended_entities.media" v-if="data.extended_entities !== undefined"></post-media>
           <post-quote :data="data.quoted_status" v-if="data.is_quote_status"></post-quote>
           <post-footer></post-footer>
         </div>
@@ -15,7 +15,7 @@
         <post-header avatar="true" :user="postUser"></post-header>
         <div class="c-post__body">
           <p class="c-post__text" v-html="data.retweeted_status.text_html"></p>
-          <post-media v-if="data.retweeted_status.extended_entities !== undefined"></post-media>
+          <post-media :media="data.retweeted_status.extended_entities.media" v-if="data.retweeted_status.extended_entities !== undefined"></post-media>
           <post-quote :data="data.retweeted_status.quoted_status" v-if="data.retweeted_status.is_quote_status"></post-quote>
           <post-footer></post-footer>
         </div>

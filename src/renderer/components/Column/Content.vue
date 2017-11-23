@@ -1,7 +1,7 @@
 <template>
   <div class="c-column__content">
     <div class="c-column__scroller">
-      <post v-for="post in posts" :id="post" :colindex="columnIndex"></post>
+      <post v-for="(post, index) in posts" :id="post" :colindex="columnIndex" :key="index"></post>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="c-post__media" :data-media-count="media.length">
-    <item v-for="medium in media" :medium="medium"></item>
+    <item v-for="(medium, index) in media" :medium="medium" :key="index"></item>
   </div>
 </template>
 
@@ -8,19 +8,11 @@
 import Item from './Media/Item'
 
 export default {
+  props: ['media'],
   components: {
     Item
   },
   inject: ['postData'],
-  computed: {
-    media: function () {
-      if (this.postData.retweeted_status !== undefined) {
-        return this.postData.retweeted_status.extended_entities.media
-      } else {
-        return this.postData.extended_entities.media
-      }
-    }
-  },
   name: 'post-media'
 }
 </script>

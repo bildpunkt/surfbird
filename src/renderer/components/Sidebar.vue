@@ -1,6 +1,6 @@
 <template>
   <div class="l-sidebar">
-    <profile v-for="(p, index) in profiles" :data="p" :index="index"></profile>
+    <profile v-for="(p, index) in profiles" :data="p" :index="index" :key="index"></profile>
     <action icon="" :func="addProfile"></action>
     <action icon="" :func="addColumn"></action>
   </div>

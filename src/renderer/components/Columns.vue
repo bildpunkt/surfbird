@@ -1,6 +1,6 @@
 <template>
   <div class="l-columns">
-    <column v-for="(c, index) in columns" :data="c" :index="index"></column>
+    <column v-for="(c, index) in columns" :data="c" :index="index" :key="index"></column>
   </div>
 </template>
 

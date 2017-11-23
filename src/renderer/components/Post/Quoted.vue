@@ -1,9 +1,9 @@
 <template>
 <div class="c-quoted-post">
-  <post-header avatar="false"></post-header>
+  <post-header avatar="false" :user="data.user"></post-header>
   <div class="c-post__body">
     <p class="c-post__text" v-html="data.text_html"></p>
-    <post-media v-if="data.extended_entities !== undefined"></post-media>
+    <post-media :media="data.extended_entities.media" v-if="data.extended_entities !== undefined"></post-media>
   </div>
 </div>  
 </template>
