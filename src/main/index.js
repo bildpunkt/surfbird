@@ -26,9 +26,12 @@ function createWindow () {
     mainWindow = null
   })
 
-  // eslint-disable-next-line no-console
   ipcMain.on('surfbird:window:close', function (e) {
-    mainWindow.close()
+    try {
+      e.sender.getOwnerBrowserWindow().close()
+    } catch (error) {
+      console.log(`[WARN] mainWindow couldn't be closed, most likely due to ${error}`)
+    }
   })
 
   ipcMain.on('surfbird:window:maximize', function (e) {
