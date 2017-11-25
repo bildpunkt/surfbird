@@ -17,10 +17,15 @@ function createWindow () {
     width: 800,
     title: 'Surfbird',
     autoHideMenuBar: true,
+    show: false,
     frame: false
   })
 
   mainWindow.loadURL(winURL)
+
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
 
   mainWindow.on('closed', () => {
     mainWindow = null
