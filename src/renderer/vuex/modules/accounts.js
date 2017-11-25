@@ -13,7 +13,7 @@ const getters = {
 }
 
 const actions = {
-  addAccount ({ commit, state }, account) {
+  addAccount ({ commit, state, rootState }, account) {
     commit(types.ADD_ACCOUNT, { account })
   },
   setActiveAccount ({ commit, state }, id) {
@@ -28,6 +28,10 @@ const mutations = {
   [types.ADD_ACCOUNT] (state, { account }) {
     state.all.push(new Account(account, 'twitter'))
     state.lastAddedAccount = state.all.length - 1
+
+    state.all[state.lastAddedAccount].client.verifyCredentials((user) => {
+      state.all[state.lastAddedAccount].user = user
+    })
   },
   [types.SET_ACTIVE_ACCOUNT] (state, { id }) {
     state.activeAccount = id
