@@ -30,7 +30,6 @@
         if (data.length > 0) {
           data.forEach((account) => {
             this.$store.dispatch('addAccount', account)
-            this.$store.dispatch('refreshUserInfo', this.$store.state.accounts.lastAddedAccount)
           })
         } else {
           this.$modal.show('authentication-modal')
@@ -39,7 +38,6 @@
 
       this.$electron.ipcRenderer.on('surfbird:authentication:done', (e, account) => {
         this.$store.dispatch('addAccount', account)
-        this.$store.dispatch('refreshUserInfo', this.$store.state.accounts.lastAddedAccount)
         this.$modal.hide('authentication-modal')
       })
 
