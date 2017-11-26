@@ -13,14 +13,22 @@ const getters = {
 }
 
 const actions = {
-  addAccount ({ commit, state, rootState }, account) {
+  addAccount ({ commit, dispatch, state }, account) {
     commit(types.ADD_ACCOUNT, { account })
+    dispatch('refreshUserInfo', state.lastAddedAccount)
   },
   setActiveAccount ({ commit, state }, id) {
     commit(types.SET_ACTIVE_ACCOUNT, { id })
   },
   refreshUserInfo ({ commit, state }, id) {
-    commit(types.REFRESH_USER_INFO, { id })
+    state.all[state.lastAddedAccount].client.verifyCredentials((user) => {
+      let payload = {
+        id: state.lastAddedAccount,
+        data: user
+      }
+
+      commit(types.REFRESH_USER_INFO, { payload })
+    })
   }
 }
 
@@ -36,10 +44,8 @@ const mutations = {
   [types.SET_ACTIVE_ACCOUNT] (state, { id }) {
     state.activeAccount = id
   },
-  [types.REFRESH_USER_INFO] (state, { id }) {
-    state.all[id].client.verifyCredentials((user) => {
-      state.all[id].user = user
-    })
+  [types.REFRESH_USER_INFO] (state, { payload }) {
+    state.all[payload.id].user = payload.data
   }
 }
 
