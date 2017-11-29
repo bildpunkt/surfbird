@@ -27,6 +27,8 @@ a event will be fired that sends a authentication request to the main process on
 Back to the main process, after receiving the service identifier, it will initialize a new Authentication class with the supplied identifier,
 calling the `authenticate` method, which will prompt the user to authorize Surfbird getting access to the users account on the service.
 
+**Read more: [Authenticators](authenticators.md)**
+
 Once authentication has been successful the received tokens will be sent back to the renderer process over the `surfbird:authentication:done`
 channel. The main process receives the sent data and pushes the newly authenticated account into the store.
 
@@ -38,5 +40,7 @@ Once the tokens have been received, an action `addAccount` with the tokens as pa
 
 Inside the then committed state mutation `ADD_ACCOUNT` a new
 Account class will be pushed into the state. On creation of this class, the API client for the corresponding service will be initialized with the given tokens.
+
+**Read more: [Clients](clients.md)**
 
 After the account has been added, another action `refreshUserInfo` will be dispatched, which not only verifies the authenticated user for valid tokens, but also returns user data. We take the user data and save it inside the corresponding account with the state mutation `REFRESH_USER_INFO` to have it available for displaying in the interface.
