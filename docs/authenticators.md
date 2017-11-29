@@ -31,8 +31,6 @@ data () {
 }
 ```
 
-_An example can be found in the [Twitter authenticator](https://github.com/surfbirdapp/surfbird/blob/master/src/main/authentication/services/twitter.js#L9-L14)._
-
 #### `authenticate`
 
 This method takes two arguments, `credentials` and `callback`, both are already given from the Authentication class constructor.
@@ -57,4 +55,6 @@ to interact with the service. The callback function will handle saving the token
 
 Other than that you just authenticate the user in this method, preferably opening a new window prompting a user to login to specified service.
 
-_An example implementation how this could look like can be found in the [Twitter authenticator](https://github.com/surfbirdapp/surfbird/blob/master/src/main/authentication/services/twitter.js#L16-L98)._
+---
+
+A reference implementation of an authenticator can be found [here](https://github.com/surfbirdapp/surfbird/blob/master/src/main/authentication/services/twitter.js)
