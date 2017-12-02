@@ -18,11 +18,9 @@ export default {
   }),
   methods: {
     addColumn (e) {
-      // this.$store.dispatch('addColumn', {name: 'Test Column', type: 'Home', owner: this.$store.state.accounts.activeAccount})
       this.$modal.show('column-modal')
     },
     addProfile (e) {
-      //      this.$store.dispatch('addProfile', 'Test')
       this.$modal.show('profile-modal')
     }
   },
