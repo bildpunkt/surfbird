@@ -22,8 +22,8 @@ export default {
       this.$modal.show('column-modal')
     },
     addProfile (e) {
-//      this.$store.dispatch('addProfile', 'Test')
-        this.$modal.show('profile-modal')
+      //      this.$store.dispatch('addProfile', 'Test')
+      this.$modal.show('profile-modal')
     }
   },
   components: {
