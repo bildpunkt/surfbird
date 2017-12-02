@@ -2,7 +2,8 @@
   <div class="l-modals">
     <authentication-modal></authentication-modal>
     <column-modal></column-modal>
-  </div>  
+    <profile-modal></profile-modal>
+  </div>
 </template>
 
 <script>

@@ -15,24 +15,24 @@
 
 <script>
     export default {
-        name: 'profile-modal',
-        data: function () {
-            return {
-                profileName: ''
-            }
-        },
-        methods: {
-            beforeOpen () {
-                this.profileName = ''
-            },
-            createProfile () {
-//                let payload = {
-//                    name: this.profileName,
-//                }
-                this.$store.dispatch('addProfile', this.profileName)
-                this.$modal.hide('profile-modal')
-            }
+      name: 'profile-modal',
+      data: function () {
+        return {
+          profileName: ''
         }
+      },
+      methods: {
+        beforeOpen () {
+          this.profileName = ''
+        },
+        createProfile () {
+          //                let payload = {
+          //                    name: this.profileName,
+          //                }
+          this.$store.dispatch('addProfile', this.profileName)
+          this.$modal.hide('profile-modal')
+        }
+      }
     }
 </script>
 
