@@ -10,7 +10,6 @@
 import Close from './Controls/Close'
 import Maximize from './Controls/Maximize'
 import Minimize from './Controls/Minimize'
-const ipcRenderer = require('electron').ipcRenderer
 
 export default {
   components: {
@@ -20,13 +19,13 @@ export default {
   },
   methods: {
     close (e) {
-      ipcRenderer.send('surfbird:window:close', true)
+      this.$electron.ipcRenderer.send('surfbird:window:close', true)
     },
     maximize (e) {
-      ipcRenderer.send('surfbird:window:maximize', true)
+      this.$electron.ipcRenderer.send('surfbird:window:maximize', true)
     },
     minimize (e) {
-      ipcRenderer.send('surfbird:window:minimize', true)
+      this.$electron.ipcRenderer.send('surfbird:window:minimize', true)
     }
   },
   name: 'controls'
