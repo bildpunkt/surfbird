@@ -26,11 +26,10 @@
                 this.profileName = ''
             },
             createProfile () {
-                let payload = {
-                    name: this.profileName,
-                }
-
-                this.$store.dispatch('addProfile', payload)
+//                let payload = {
+//                    name: this.profileName,
+//                }
+                this.$store.dispatch('addProfile', this.profileName)
                 this.$modal.hide('profile-modal')
             }
         }
