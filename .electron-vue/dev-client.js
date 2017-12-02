@@ -4,9 +4,9 @@ hotClient.subscribe(event => {
   /**
    * Reload browser when HTMLWebpackPlugin emits a new index.html
    */
-  if (event.action === 'reload') {
-    window.location.reload()
-  }
+  //  if (event.action === 'reload') {
+  //    window.location.reload()
+  //  }
 
   /**
    * Notify `mainWindow` when `main` process is compiling,
