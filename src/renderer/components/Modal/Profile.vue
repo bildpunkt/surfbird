@@ -3,12 +3,12 @@
         <h1>Create a profile</h1>
 
         <p>
-            <label for="column-name"> Profile Name</label>
-            <input type="text" for="column-name" v-model="profile_name"/>
+            <label for="profile-name"> Profile Name</label>
+            <input type="text" for="profile-name" v-model="profileName"/>
         </p>
 
         <p>
-            <button @click="createColumn">Create profile</button>
+            <button @click="createProfile">Create profile</button>
         </p>
     </modal>
 </template>
@@ -18,16 +18,16 @@
         name: 'profile-modal',
         data: function () {
             return {
-                profile_name: ''
+                profileName: ''
             }
         },
         methods: {
             beforeOpen () {
-                this.profile_name = ''
+                this.profileName = ''
             },
-            createColumn () {
+            createProfile () {
                 let payload = {
-                    name: this.profile_name,
+                    name: this.profileName,
                 }
 
                 this.$store.dispatch('addProfile', payload)
