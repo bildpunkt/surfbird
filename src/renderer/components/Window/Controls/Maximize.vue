@@ -1,6 +1,6 @@
 <template>
   <li class="l-window__control" @click="func()">
-    
+    <icon name="plus-square"></icon>
   </li>
 </template>
 

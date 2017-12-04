@@ -55,7 +55,6 @@ export default {
     margin-right: 13px !important;
     padding: 0;
     margin: 0;
-    font-family: Batch;
     font-size: 18px;
 
     &:first-child {

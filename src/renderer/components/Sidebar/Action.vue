@@ -1,6 +1,6 @@
 <template>
   <div class="c-sidebar__button" @click="func()">
-      {{ icon }}
+      <icon :name="icon"></icon>
   </div>
 </template>
 
@@ -16,7 +16,6 @@ export default {
   margin-top: 10px;
   color: #b0bec5;
   font-size: 24px;
-  font-family: Batch;
   text-align: center;
   user-select: none;
   cursor: pointer;

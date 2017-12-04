@@ -1,14 +1,12 @@
 <template>
 <div class="c-post-context">
   <div class="c-post-context__icon-container">
-    <i class="c-post-context__icon">
-      
-    </i>  
+    <icon name="repeat" size="12"></icon>
   </div>
   <div class="c-post-context__text">
     <a href="#">{{ user.name }}</a> retweeted
-  </div>  
-</div>  
+  </div>
+</div>
 </template>
 
 <script>
@@ -20,6 +18,8 @@ export default {
 
 <style lang="scss">
 .c-post-context {
+  display: flex;
+  flex-direction: row;
   color: #8899a6;
   margin-left: -58px;
   padding-bottom: 4px;
@@ -27,22 +27,20 @@ export default {
 
   &__icon-container {
     width: 48px;
-    float: left;
     margin-right: 10px;
+    text-align: right;
   }
 
   &__icon {
     color: #8899a6;
-    display: inline-block;
     vertical-align: top;
     width: 1em;
-    float: right;
     font-size: 16px;
     margin-top:-20px;
-    font-family: Batch;
   }
 
   &__text {
+    flex-grow: 1;
     overflow: hidden;
     word-break: break-word;
     word-wrap: break-word;
