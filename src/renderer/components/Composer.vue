@@ -5,10 +5,10 @@
     <div class="c-composer__footer">
       <ul class="c-composer__actions">
         <li class="c-composer__action c-composer__action-message">
-          
+          <icon name="mail" size="18"></icon>
         </li>
         <li class="c-composer__action c-composer__action-media">
-          
+          <icon name="image" size="18"></icon>
         </li>
       </ul>
       <div class="c-composer__submit">
@@ -80,7 +80,6 @@ export default {
     margin-right: 13px !important;
     padding: 0;
     margin: 0;
-    font-family: Batch;
     font-size: 18px;
   }
 

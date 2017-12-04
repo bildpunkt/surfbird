@@ -1,6 +1,6 @@
 <template>
   <li class="c-post__action" @click="func(action.function)">
-    {{ icon }}
+    <icon :name="icon" size="18"></icon>
   </li>
 </template>
 
@@ -19,7 +19,6 @@ export default {
   margin-right: 13px !important;
   padding: 0;
   margin: 0;
-  font-family: Batch;
   font-size: 18px;
 }
 </style>

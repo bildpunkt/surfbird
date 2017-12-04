@@ -14,12 +14,12 @@ export default class TwitterClient {
     this.ACTIONS = [
       {
         name: 'Retweet',
-        icon: '',
+        icon: 'repeat',
         function: 'retweet'
       },
       {
         name: 'Like',
-        icon: '',
+        icon: 'star',
         function: 'like'
       }
     ]
