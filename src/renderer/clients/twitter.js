@@ -31,7 +31,7 @@ export default class TwitterClient {
     this.COLUMNS = {
       home: {
         name: 'Home',
-        icon: '',
+        icon: 'home',
         type: 'streaming',
         functions: {
           initialData: 'homeInitialData',
