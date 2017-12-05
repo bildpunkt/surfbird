@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "Andreas N. <git@pixelde.su>",
   "description": "A Twitter client built on Electron and Vue",
-  "license": null,
+  "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
