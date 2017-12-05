@@ -15,7 +15,6 @@ export default {
   padding: 0 10px;
   margin-top: 10px;
   color: #b0bec5;
-  font-size: 24px;
   text-align: center;
   user-select: none;
   cursor: pointer;

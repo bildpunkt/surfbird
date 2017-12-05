@@ -19,6 +19,5 @@ export default {
   margin-right: 13px !important;
   padding: 0;
   margin: 0;
-  font-size: 18px;
 }
 </style>
