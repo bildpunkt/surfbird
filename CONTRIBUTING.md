@@ -26,6 +26,7 @@ Once the setup is up and running, you're ready to implement your feature or fix.
   * _**Example:** `feature/12-locales`_
 * Commit your changes into the branch
   * Follow the [conventional commits](https://conventionalcommits.org/) style for your commit messages
+    * To easily follow the commit message standard, you can use `npm run commit` after you added your files
   * This project uses ESLint for linting. Please ensure that your code follows the [Standard](https://standardjs.com/) formatting style, and is well linted.
 
 Almost ready to open that Pull Request! But before we hop into the action, please ensure that you are up-to-date with the master branch!
