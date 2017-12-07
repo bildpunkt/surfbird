@@ -1,6 +1,5 @@
 export default {
   message: {
-    hello: 'hello world',
     send: 'Send',
     whats_happening: 'What\x27s happening {0}?',
     column_create: 'Create Column',
