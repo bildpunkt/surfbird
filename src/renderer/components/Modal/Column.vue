@@ -1,21 +1,21 @@
 <template>
   <modal name="column-modal" @before-open="beforeOpen">
-    <h1>Create a column</h1>
+    <h1>{{ $t("message.column_create_long") }}</h1>
 
     <p>
-      <label for="column-name"> Column Name</label>
+      <label for="column-name">{{ $t("message.column_name") }}</label>
       <input type="text" for="column-name" v-model="selected.name"/>
     </p>
 
     <p>
-      <label for="column-type-selection">Column Type</label>
+      <label for="column-type-selection">{{ $t("message.column_type") }}</label>
       <select name="column-type-selection" v-model="selected.column_type">
         <option v-for="columntype in column_types" :value="columntype">{{ columns[columntype].name }}</option>
       </select>
     </p>
 
     <p>
-      <button @click="createColumn">Create Column</button>
+      <button @click="createColumn">{{ $t("message.column_create") }}</button>
     </p>
   </modal>
 </template>
@@ -64,5 +64,5 @@ export default {
 </script>
 
 <style>
-  
+
 </style>
