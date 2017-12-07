@@ -8,11 +8,11 @@
       <p>Waiting for authentication to be finished...</p>
     </div>
     <div v-else>
-      <p>This is the modal that is shown when no accounts were added, basically your first start.</p> 
+      <p>This is the modal that is shown when no accounts were added, basically your first start.</p>
 
       <p v-for="(s, index) in services"><a href="#" @click="authenticate(s.identifier)">Authenticate with {{s.name}}</a></p>
     </div>
-  </modal>  
+  </modal>
 </template>
 
 <script>
@@ -47,6 +47,6 @@ export default {
 
 <style lang="scss">
 .ball-scale > div {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 </style>

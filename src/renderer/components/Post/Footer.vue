@@ -21,12 +21,12 @@ export default {
     display: block;
     margin-top: 3px;
 
-    &:before {
+    &::before {
       display: block;
       content: " ";
     }
 
-    &:after {
+    &::after {
       clear: both;
     }
   }

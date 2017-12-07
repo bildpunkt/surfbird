@@ -54,12 +54,12 @@ export default {
     right: 0;
     padding: 5px;
 
-    &:before {
+    &::before {
       display: block;
       content: " ";
     }
 
-    &:after {
+    &::after {
       clear: both;
     }
   }
@@ -77,9 +77,9 @@ export default {
     color: #000;
     cursor: pointer;
     float: left;
+    margin: 0;
     margin-right: 13px !important;
     padding: 0;
-    margin: 0;
   }
 
   &__submit {

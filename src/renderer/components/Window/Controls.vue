@@ -36,15 +36,15 @@ export default {
 .l-window {
   &__controls {
     position: fixed;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     float: right;
     list-style: none;
     padding: 17px;
     padding-left: 25px;
     margin: 0;
     user-select: none;
-    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 100%);
     z-index: 999;
   }
 
@@ -52,12 +52,12 @@ export default {
     color: #b0bec5;
     cursor: pointer;
     float: right;
+    margin: 0;
     margin-right: 13px !important;
     padding: 0;
-    margin: 0;
 
     &:first-child {
-      margin-right: 0px !important;
+      margin-right: 0 !important;
     }
   }
 }

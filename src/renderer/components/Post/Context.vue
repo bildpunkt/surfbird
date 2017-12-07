@@ -36,7 +36,7 @@ export default {
     vertical-align: top;
     width: 1em;
     font-size: 16px;
-    margin-top:-20px;
+    margin-top: -20px;
   }
 
   &__text {

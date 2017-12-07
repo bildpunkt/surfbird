@@ -5,7 +5,7 @@
     <p class="c-post__text" v-html="data.text_html"></p>
     <post-media :media="data.extended_entities.media" v-if="data.extended_entities !== undefined"></post-media>
   </div>
-</div>  
+</div>
 </template>
 
 <script>
@@ -24,7 +24,7 @@ export default {
 
 <style lang="scss">
 .c-quoted-post {
-  border: 1px solid #E1E8ED;
+  border: 1px solid #e1e8ed;
   color: #66757f;
   font-size: 0.9em;
   margin-bottom: 8px;
