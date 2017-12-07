@@ -1,6 +1,6 @@
 <template>
   <div class="c-composer">
-    <textarea class="c-composer__input" :placeholder="$t('message.whats_happening', ['user'])">
+    <textarea class="c-composer__input" :placeholder="$t('composer.whats_happening', ['user'])">
     </textarea>
     <div class="c-composer__footer">
       <ul class="c-composer__actions">
@@ -16,7 +16,7 @@
           140
         </span>
         <button class="c-composer__send">
-          {{ $t("message.send") }}
+          {{ $t("composer.send") }}
         </button>
       </div>
     </div>

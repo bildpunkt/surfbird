@@ -1,21 +1,21 @@
 <template>
   <modal name="column-modal" @before-open="beforeOpen">
-    <h1>{{ $t("message.column_create_long") }}</h1>
+    <h1>{{ $t("modal.column.title") }}</h1>
 
     <p>
-      <label for="column-name">{{ $t("message.column_name") }}</label>
+      <label for="column-name">{{ $t("modal.column.name") }}</label>
       <input type="text" for="column-name" v-model="selected.name"/>
     </p>
 
     <p>
-      <label for="column-type-selection">{{ $t("message.column_type") }}</label>
+      <label for="column-type-selection">{{ $t("modal.column.type") }}</label>
       <select name="column-type-selection" v-model="selected.column_type">
         <option v-for="columntype in column_types" :value="columntype">{{ columns[columntype].name }}</option>
       </select>
     </p>
 
     <p>
-      <button @click="createColumn">{{ $t("message.column_create") }}</button>
+      <button @click="createColumn">{{ $t("modal.column.create") }}</button>
     </p>
   </modal>
 </template>

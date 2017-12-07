@@ -1,14 +1,14 @@
 <template>
     <modal name="profile-modal" @before-open="beforeOpen">
-        <h1>{{ $t('message.profile_create_long') }}</h1>
+        <h1>{{ $t('modal.profile.title') }}</h1>
 
         <p>
-            <label for="profile-name">{{ $t('message.profile_name') }}</label>
+            <label for="profile-name">{{ $t('modal.profile.name') }}</label>
             <input type="text" for="profile-name" v-model="profileName"/>
         </p>
 
         <p>
-            <button @click="createProfile">{{ $t('message.profile_create') }}</button>
+            <button @click="createProfile">{{ $t('modal.profile.create') }}</button>
         </p>
     </modal>
 </template>

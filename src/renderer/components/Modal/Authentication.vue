@@ -5,12 +5,12 @@
         <div></div>
       </div>
 
-      <p>{{ $t('message.authentication_waiting') }}</p>
+      <p>{{ $t('modal.authentication.waiting') }}</p>
     </div>
     <div v-else>
-      <p>{{ $t('message.authentication_start') }}</p>
+      <p>{{ $t('modal.authentication.start') }}</p>
 
-      <p v-for="(s, index) in services"><a href="#" @click="authenticate(s.identifier)">{{ $t('message.authentication_with', [s.name]) }}</a></p>
+      <p v-for="(s, index) in services"><a href="#" @click="authenticate(s.identifier)">{{ $t('modal.authentication.with', [s.name]) }}</a></p>
     </div>
   </modal>
 </template>
