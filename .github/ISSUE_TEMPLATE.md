@@ -27,3 +27,5 @@
 ### Additional Information
 
 [Any additional information, configuration or data that might be necessary to reproduce the issue]
+<!-- Love surfbird? Please consider supporting our collective:
+👉  https://opencollective.com/surfbird/donate -->
