@@ -13,7 +13,7 @@
     </a>
     <time class="c-post__timestamp">
       <a class="c-post__timestamp-link" href="#">
-        <timeago :since="createdAt"></timeago>
+        <timeago :since="createdAt" :auto-update="1"></timeago>
       </a>
     </time>
   </header>
