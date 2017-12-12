@@ -1,11 +1,11 @@
 <template>
 <div class="c-quoted-post">
-  <post-header avatar="false" :user="data.user"></post-header>
+  <post-header avatar="false" :user="data.user" :createdAt="data.created_at"></post-header>
   <div class="c-post__body">
     <p class="c-post__text" v-html="data.text_html"></p>
     <post-media :media="data.extended_entities.media" v-if="data.extended_entities !== undefined"></post-media>
   </div>
-</div>  
+</div>
 </template>
 
 <script>

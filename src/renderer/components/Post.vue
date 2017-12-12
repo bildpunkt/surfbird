@@ -2,7 +2,7 @@
   <article class="c-post" :data-post-id="data.id_str">
     <div class="c-post__content">
       <div class="c-post__inner" v-if="data.retweeted_status == undefined">
-        <post-header avatar="true" :user="postUser"></post-header>
+        <post-header avatar="true" :user="postUser" :createdAt="data.created_at"></post-header>
         <div class="c-post__body">
           <p class="c-post__text" v-html="data.text_html"></p>
           <post-media :media="data.extended_entities.media" v-if="data.extended_entities !== undefined"></post-media>
@@ -12,7 +12,7 @@
       </div>
       <div class="c-post__inner" v-else>
         <post-context :user="data.user"></post-context>
-        <post-header avatar="true" :user="postUser"></post-header>
+        <post-header avatar="true" :user="postUser" :createdAt="data.created_at"></post-header>
         <div class="c-post__body">
           <p class="c-post__text" v-html="data.retweeted_status.text_html"></p>
           <post-media :media="data.retweeted_status.extended_entities.media" v-if="data.retweeted_status.extended_entities !== undefined"></post-media>
