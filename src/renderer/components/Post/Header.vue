@@ -13,7 +13,7 @@
     </a>
     <time class="c-post__timestamp">
       <a class="c-post__timestamp-link" href="#">
-        now
+        <timeago :since="createdAt"></timeago>
       </a>
     </time>
   </header>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  props: ['avatar', 'user'],
+  props: ['avatar', 'user', 'createdAt'],
   name: 'post-header'
 }
 </script>

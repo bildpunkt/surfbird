@@ -67,6 +67,7 @@
     "vue-feather-icons-ssr": "^0.1.7",
     "vue-i18n": "^6.1.1",
     "vue-js-modal": "^1.0.21",
+    "vue-timeago": "^3.4.1",
     "vuex": "^2.3.1"
   },
   "devDependencies": {
