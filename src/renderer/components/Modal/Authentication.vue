@@ -5,12 +5,12 @@
         <div></div>
       </div>
 
-      <p>Waiting for authentication to be finished...</p>
+      <p>{{ $t('modal.authentication.waiting') }}</p>
     </div>
     <div v-else>
-      <p>This is the modal that is shown when no accounts were added, basically your first start.</p>
+      <p>{{ $t('modal.authentication.start') }}</p>
 
-      <p v-for="(s, index) in services"><a href="#" @click="authenticate(s.identifier)">Authenticate with {{s.name}}</a></p>
+      <p v-for="(s, index) in services"><a href="#" @click="authenticate(s.identifier)">{{ $t('modal.authentication.with', [s.name]) }}</a></p>
     </div>
   </modal>
 </template>

@@ -26,6 +26,7 @@ Once the setup is up and running, you're ready to implement your feature or fix.
   * _**Example:** `feature/12-locales`_
 * Commit your changes into the branch
   * Follow the [conventional commits](https://conventionalcommits.org/) style for your commit messages
+    * To easily follow the commit message standard, you can use `npm run commit` after you added your files
   * This project uses ESLint for linting. Please ensure that your code follows the [Standard](https://standardjs.com/) formatting style, and is well linted.
 
 Almost ready to open that Pull Request! But before we hop into the action, please ensure that you are up-to-date with the master branch!
@@ -68,3 +69,41 @@ This project and everyone participating in it is governed by the [Surfbird Code 
 
 _This Contribution Guideline is inspired by [activeadmin](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md), taking some key aspects and explanations from it!_
 
+
+
+## Financial contributions
+
+We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/surfbird).
+Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
+
+
+## Credits
+
+
+### Contributors
+
+Thank you to all the people who have already contributed to surfbird!
+<a href="graphs/contributors"><img src="https://opencollective.com/surfbird/contributors.svg?width=890" /></a>
+
+
+### Backers
+
+Thank you to all our backers! [[Become a backer](https://opencollective.com/surfbird#backer)]
+
+<a href="https://opencollective.com/surfbird#backers" target="_blank"><img src="https://opencollective.com/surfbird/backers.svg?width=890"></a>
+
+
+### Sponsors
+
+Thank you to all our sponsors! (please ask your company to also support this open source project by [becoming a sponsor](https://opencollective.com/surfbird#sponsor))
+
+<a href="https://opencollective.com/surfbird/sponsor/0/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/surfbird/sponsor/1/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/surfbird/sponsor/2/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/surfbird/sponsor/3/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/surfbird/sponsor/4/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/surfbird/sponsor/5/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/surfbird/sponsor/6/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/surfbird/sponsor/7/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/surfbird/sponsor/8/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/surfbird/sponsor/9/website" target="_blank"><img src="https://opencollective.com/surfbird/sponsor/9/avatar.svg"></a>

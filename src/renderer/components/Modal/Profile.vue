@@ -1,14 +1,14 @@
 <template>
     <modal name="profile-modal" @before-open="beforeOpen">
-        <h1>Create a profile</h1>
+        <h1>{{ $t('modal.profile.title') }}</h1>
 
         <p>
-            <label for="profile-name"> Profile Name</label>
+            <label for="profile-name">{{ $t('modal.profile.name') }}</label>
             <input type="text" for="profile-name" v-model="profileName"/>
         </p>
 
         <p>
-            <button @click="createProfile">Create profile</button>
+            <button @click="createProfile">{{ $t('modal.profile.create') }}</button>
         </p>
     </modal>
 </template>

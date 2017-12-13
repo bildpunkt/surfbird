@@ -18,7 +18,7 @@
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "postinstall": "npm run lint:fix"
+    "postinstall": "npm run lint:fix && opencollective postinstall"
   },
   "build": {
     "productName": "surfbird",
@@ -59,6 +59,7 @@
     "loaders.css": "^0.1.2",
     "node-twitter-api": "^1.8.0",
     "normalize.css": "^6.0.0",
+    "opencollective": "^1.0.3",
     "twemoji": "^2.2.5",
     "twitter": "^1.7.0",
     "twitter-text": "^1.14.3",
@@ -125,5 +126,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/surfbird",
+    "logo": "https://opencollective.com/opencollective/logo.txt"
   }
 }
