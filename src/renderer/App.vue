@@ -49,7 +49,12 @@
 </script>
 
 <style>
-body, input, textarea, keygen, select, button {
+body,
+input,
+textarea,
+keygen,
+select,
+button {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
@@ -65,12 +70,12 @@ body, input, textarea, keygen, select, button {
 .emoji {
   width: 1em;
   height: 1em;
-  padding: 0 .05em 0 .1em;
+  padding: 0 0.05em 0 0.1em;
   vertical-align: -0.1em;
 }
 
 a {
-  color: #2196F3;
+  color: #2196f3;
   text-decoration: none;
 }
 </style>

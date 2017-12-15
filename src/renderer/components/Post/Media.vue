@@ -23,7 +23,7 @@ export default {
     position: relative;
     height: 120px;
     width: 100%;
-    margin: 8px 0px;
+    margin: 8px 0;
   }
 }
 </style>

@@ -24,7 +24,7 @@ export default {
 
 <style lang="scss">
 .c-quoted-post {
-  border: 1px solid #E1E8ED;
+  border: 1px solid #e1e8ed;
   color: #66757f;
   font-size: 0.9em;
   margin-bottom: 8px;

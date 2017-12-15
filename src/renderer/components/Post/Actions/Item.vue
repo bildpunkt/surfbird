@@ -16,8 +16,8 @@ export default {
   color: #c1ccd1;
   cursor: pointer;
   float: left;
+  margin: 0;
   margin-right: 13px !important;
   padding: 0;
-  margin: 0;
 }
 </style>

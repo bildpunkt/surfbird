@@ -46,6 +46,15 @@ export default {
     }
   }
 
+  &[data-media-count="4"] {
+    .c-post__media-image {
+      padding: 0;
+      width: 50%;
+      height: 50%;
+      float: left;
+    }
+  }
+
   &[data-media-count="3"] {
     .c-post__media-image {
       padding: 0;
@@ -61,15 +70,6 @@ export default {
         left: 3px;
         height: calc(50% - 3px);
       }
-    }
-  }
-
-  &[data-media-count="4"] {
-    .c-post__media-image {
-      padding: 0;
-      width: 50%;
-      height: 50%;
-      float: left;
     }
   }
 }

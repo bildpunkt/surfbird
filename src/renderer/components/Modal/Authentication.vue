@@ -47,6 +47,6 @@ export default {
 
 <style lang="scss">
 .ball-scale > div {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 </style>

@@ -84,7 +84,8 @@ export default {
     }
   }
 
-  &__account-fullname, &__account-username {
+  &__account-fullname,
+  &__account-username {
     line-height: 1;
   }
 

@@ -81,12 +81,13 @@ export default {
     word-break: break-word;
     word-wrap: break-word;
 
-    &:before, &:after {
+    &::before,
+    &::after {
       display: block;
       content: " ";
     }
 
-    &:after {
+    &::after {
       clear: both;
     }
   }
