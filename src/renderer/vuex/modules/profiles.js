@@ -7,7 +7,10 @@ const state = {
 }
 
 const getters = {
-  allProfiles: state => state.all
+  allProfiles: state => state.all,
+  getColumnIds: (state, getters) => (index) => {
+    return state.all[index].columns
+  }
 }
 
 const actions = {

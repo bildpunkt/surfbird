@@ -8,11 +8,13 @@ const state = [
 ]
 
 const getters = {
-  getColumn: (state, getters) => (profileIndex, columnIndex) => {
-    return state[profileIndex][columnIndex]
+  getColumn: (state, getters) => (columnId) => {
+    return state[columnId]
   },
-  getColumns: (state, getters) => (profileIndex) => {
-    return state[profileIndex]
+  getColumns: (state, getters) => (ids) => {
+    let cols = []
+    ids.forEach(id => { cols.push(state[id]) })
+    return cols
   }
 }
 
@@ -58,10 +60,12 @@ const mutations = {
       state[rootState.profiles.activeProfile] = []
     }
 
-    state[rootState.profiles.activeProfile].push(new Column(column.name, column.type, column.owner))
+    let col = new Column(column.name, column.type, column.owner)
+    state[col.id] = col
+    rootState.profiles.all[rootState.profiles.activeProfile].columns.push(col.id)
   },
   [types.ADD_POST_TO_COLUMN] (state, { payload }) {
-    const column = state[payload.profile][payload.index]
+    const column = state[payload.index]
 
     if (!column.postStorage.ids.includes(payload.post.id_str)) {
       const position = sortInsertionPoint(column.postStorage.ids, payload.post.id_str)
@@ -70,7 +74,7 @@ const mutations = {
     column.postStorage.posts[payload.post.id_str] = payload.post
   },
   [types.UPDATE_POST_IN_COLUMN] (state, { p }) {
-    state[p.profile][p.index].postStorage.posts[p.post.id_str] = p.post
+    state[p.index].postStorage.posts[p.post.id_str] = p.post
   }
 }
 

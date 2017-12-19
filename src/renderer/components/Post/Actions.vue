@@ -13,7 +13,7 @@ export default {
   components: {
     ActionItem
   },
-  inject: ['columnIndex', 'columnOwner', 'postData'],
+  inject: ['columnId', 'columnOwner', 'postData'],
   computed: {
     actions: function () {
       let owner = this.columnOwner
