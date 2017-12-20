@@ -1,5 +1,3 @@
-'use strict'
-
 import { app, BrowserWindow, ipcMain } from 'electron'
 import Authentication from './authentication'
 

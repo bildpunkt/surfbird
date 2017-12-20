@@ -1,5 +1,3 @@
-'use strict'
-
 process.env.BABEL_ENV = 'web'
 
 const path = require('path')

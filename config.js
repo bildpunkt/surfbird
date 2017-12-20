@@ -1,5 +1,3 @@
-'use strict'
-
 let config = {
   // Use ESLint (extends `standard`)
   // Further changes can be made in `.eslintrc.js`

@@ -1,5 +1,3 @@
-'use strict'
-
 const config = require('../config')
 const exec = require('child_process').exec
 const treeKill = require('tree-kill')
