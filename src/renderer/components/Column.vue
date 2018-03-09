@@ -3,7 +3,7 @@
     <div class="c-column__holder">
       <div class="c-column__panel">
         <column-header :data="data"></column-header>
-        <column-content></column-content>
+        <column-content :columnId="this.id"></column-content>
       </div>
     </div>
   </section>
@@ -14,9 +14,9 @@ import ColumnHeader from './Column/Header'
 import ColumnContent from './Column/Content'
 
 export default {
-  props: ['data', 'index'],
+  props: ['data', 'id'],
   created: function () {
-    let payload = {index: this.index, type: this.data.type, profile: this.$store.state.profiles.activeProfile, owner: this.data.owner}
+    let payload = {index: this.id, type: this.data.type, profile: this.$store.state.profiles.activeProfile, owner: this.data.owner}
     this.$store.dispatch('startStreaming', payload)
   },
   components: {
@@ -26,9 +26,9 @@ export default {
   provide: function () {
     let provider = {}
 
-    Object.defineProperty(provider, 'columnIndex', {
+    Object.defineProperty(provider, 'columnId', {
       enumerable: true,
-      get: () => this.index
+      get: () => this.id
     })
 
     Object.defineProperty(provider, 'columnOwner', {

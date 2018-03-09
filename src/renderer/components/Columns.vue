@@ -1,6 +1,6 @@
 <template>
   <div class="l-columns">
-    <column v-for="(c, index) in columns" :data="c" :index="index" :key="index"></column>
+    <column v-for="(c, index) in columns" :data="c" :id="c.id" :key="index"></column>
   </div>
 </template>
 
@@ -13,7 +13,8 @@ export default {
   },
   computed: {
     columns: function () {
-      return this.$store.getters.getColumns(this.$store.state.profiles.activeProfile)
+      let ids = this.$store.getters.getColumnIds(this.$store.state.profiles.activeProfile)
+      return this.$store.getters.getColumns(ids)
     }
   },
   name: 'columns'

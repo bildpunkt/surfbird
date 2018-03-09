@@ -32,7 +32,7 @@ import PostQuote from './Post/Quoted'
 import PostContext from './Post/Context'
 
 export default {
-  props: ['id', 'colindex'],
+  props: ['id', 'columnId'],
   components: {
     PostHeader,
     PostFooter,
@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     data: function () {
-      return this.$store.getters.getColumn(this.$store.state.profiles.activeProfile, this.colindex).postStorage.posts[this.id]
+      return this.$store.getters.getColumn(this.columnId).postStorage.posts[this.id]
     },
     postUser: function () {
       if (this.data.retweeted_status !== undefined) {

@@ -1,7 +1,7 @@
 <template>
   <div class="c-column__content">
     <div class="c-column__scroller">
-      <post v-for="(post, index) in posts" :id="post" :colindex="columnIndex" :key="index"></post>
+      <post v-for="(post, index) in posts" :id="post" :columnId="columnId" :key="index"></post>
     </div>
   </div>
 </template>
@@ -10,10 +10,10 @@
 import Post from '../Post'
 
 export default {
-  inject: ['columnIndex', 'columnProfile'],
-  computed: {
-    posts: function () {
-      return this.$store.getters.getColumn(this.columnProfile, this.columnIndex).postStorage.ids
+  inject: ['columnId'],
+  data: function () {
+    return {
+      posts: this.$store.getters.getColumn(this.columnId).postStorage.ids
     }
   },
   components: {
