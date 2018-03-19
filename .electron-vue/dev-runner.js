@@ -1,5 +1,3 @@
-'use strict'
-
 const chalk = require('chalk')
 const electron = require('electron')
 const path = require('path')
